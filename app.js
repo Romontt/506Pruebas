@@ -516,8 +516,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.style.backgroundColor = "#ff4444";
             }
         });
-    }
-});
 // --- INICIO DE LA APP ---
 loadData();
 registrarActividad('visita_pagina', 'Punto 506');
