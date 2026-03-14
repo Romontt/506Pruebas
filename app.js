@@ -1,28 +1,7 @@
 // --- CONFIGURACIÓN DE SUPABASE ---
 const SUPABASE_URL = 'https://yfqxnjohojtbjevrmbmq.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_NLDSfBo4DC3hPdbjgxHvJQ_MsI7JYLH';
-async function registrarActividad(tipo, negocio) {
-    // 1. Enviar a Google Analytics (mantenemos lo que ya tenías)
-    if (typeof gtag === 'function') {
-        gtag('event', tipo, { 'business_name': negocio });
-    }
-    // 2. Enviar a Supabase
-    try {
-        await fetch(`${SUPABASE_URL}/rest/v1/registros_actividad`, {
-            method: 'POST',
-            headers: {
-                'apikey': SUPABASE_KEY,
-                'Authorization': `Bearer ${SUPABASE_KEY}`,
-                'Content-Type': 'application/json',
-                'Prefer': 'return=minimal'
-            },
-            body: JSON.stringify({
-                tipo_evento: tipo,
-                nombre_negocio: negocio
-            })
-        });
-    } catch (e) { console.error("Error Supabase:", e); }
-}
+
 let negociosRaw = [];
 let categoriaActual = 'todos';
 let etiquetaActual = null;
