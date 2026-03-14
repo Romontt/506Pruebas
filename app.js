@@ -310,8 +310,7 @@ function activarBoton(btn) {
 // --- MODAL DETALLE ---
 function verDetalle(id) {
     const n = negociosRaw.find(item => item.id === id);
-    if (!n) return;
-    registrarActividad('ver_detalle', n.nombre);
+    if (!n) return;;
     const mensajeWA = encodeURIComponent(`¡Hola! Vi a ${n.nombre} en Punto 506 y me gustaría solicitar más información.`);
     const mapsUrl = (n.maps_link && n.maps_link !== "null") ? n.maps_link : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(n.nombre + ' ' + n.direccion)}`;
     // --- LÓGICA DE REDES SOCIALES DINÁMICA ---
