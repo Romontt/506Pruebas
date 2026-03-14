@@ -332,13 +332,17 @@ function verDetalle(id) {
     const mensajeWA = encodeURIComponent(`¡Hola! Vi a ${n.nombre} en Punto 506 y me gustaría solicitar más información.`);
     const mapsUrl = (n.maps_link && n.maps_link !== "null") ? n.maps_link : `https://www.google.com/maps/search/${encodeURIComponent(n.nombre + ' ' + n.direccion)}`;
 
-    // --- LÓGICA DEL BOTÓN DE MENÚ INTERACTIVO ---
+    // --- LÓGICA DE RUTA PARA EL MENÚ ---
     let botonMenuInteractivos = '';
-    // Aparece si el negocio tiene una URL de menú o es el caso específico de Uy.. Que rico
-    if (n.menu_url || n.nombre.toLowerCase().includes("uy.. que rico") || n.nombre.toLowerCase().includes("uy ke rico")) {
+    const esUyKeRico = n.nombre.toLowerCase().includes("uy.. que rico") || n.nombre.toLowerCase().includes("uy ke rico");
+    
+    if (n.menu_url || esUyKeRico) {
+        // Usamos la ruta de tu repositorio: menu/Uy_ke_rico/index.html
+        const rutaFinal = n.menu_url || "menu/Uy_ke_rico/index.html";
+        
         botonMenuInteractivos = `
             <div class="flex justify-center mb-8">
-               const rutaFinal = n.menu_url || "menu/Uy_ke_rico/index.html";
+                <a href="${rutaFinal}" 
                    class="flex items-center justify-center gap-3 px-10 py-4 bg-[#d4a373] text-[#130f0e] hover:bg-white transition-all duration-300 font-black uppercase tracking-[0.2em] text-[11px] shadow-xl w-full md:w-auto">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -402,6 +406,7 @@ function verDetalle(id) {
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="11" r="3" stroke-width="1.5"/></svg>
                 </a>
             </div>
+            
             <div class="border-t border-white/5 pt-10">
                 <div id="form-wrapper">
                     <form id="feedback-form" action="https://formspree.io/f/mlgwzggv" method="POST" class="max-w-xl mx-auto space-y-4">
@@ -417,7 +422,7 @@ function verDetalle(id) {
         </div>
     `;
 
-    // Lógica Formspree Feedback (Se mantiene idéntica)
+    // Lógica Formspree Feedback (Sin cambios)
     const form = document.getElementById('feedback-form');
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
