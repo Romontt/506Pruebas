@@ -334,7 +334,7 @@ function verDetalle(id) {
 
     // --- LÓGICA DE RUTA PARA EL MENÚ ---
     let botonMenuInteractivos = '';
-    const esUyKeRico = n.nombre.toLowerCase().includes("UY Ke Rico") || n.nombre.toLowerCase().includes("uy ke rico");
+    const esUyKeRico = n.nombre.toLowerCase().includes("UY Ke Rico") || n.nombre.toLowerCase().includes("Uy Ke Rico");
     
     if (n.menu_url || esUyKeRico) {
         // Usamos la ruta de tu repositorio: menu/Uy_ke_rico/index.html
