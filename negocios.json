@@ -1,0 +1,875 @@
+[
+  {
+    "id": 1,
+    "nombre": "Uy Ke Rico",
+    "categoria": "Gastronomía",
+    "etiquetas": ["Hamburguesas", "Servicio a Domicilio", "Comida Rápida", "Parrilla"],
+    "keywords_busqueda": "hamburgueseria grill parrilla carne bbq barbacoa papas fritas cena comida rapida artesanal llevar domicilio delivery antojo moncha costillas cerdito pan artesanal glaseado cena noche comida urbana guapiles pococi",
+    "servicios_resumen": "Hamburguesas artesanales, costillas BBQ y papas especiales. Servicio exclusivo para llevar.",
+    "instagram": "https://www.instagram.com/uykericocr/",
+    "imagen": "img/logos/uykerico.webp",
+    "facebook": "https://www.facebook.com/profile.php?id=61579744980372",
+    "whatsapp": "50689537426",
+    "descripcion": "Una de las propuestas más sólidas de Fast Food Grill en Pococí. Destaca por el uso de pan artesanal en sus hamburguesas y costillas con un glaseado BBQ impecable.",
+    "horario": "Jueves, Viernes y Sábados | 6:00 PM a 10:00 PM",
+    "estado_horario": {
+      "tipo": "horario",
+      "config": {
+        "4": ["18:00", "22:00"],
+        "5": ["18:00", "22:00"],
+        "6": ["18:00", "22:00"]
+      }
+    },
+    "direccion": "La Emilia, 100m Norte de la Panadería La Esquinita",
+    "lat": 10.215089,
+    "lng": -83.778693,
+    "maps_link": "https://maps.app.goo.gl/88hsnuMyQa3h7FEv9"
+  },
+  {
+    "id": 2,
+    "nombre": "María del Mar Venegas Estética & Spa",
+    "categoria": "Estética",
+    "etiquetas": ["Faciales", "Masajes", "Corporal", "Nutrición"],
+    "keywords_busqueda": "belleza relajacion cuidado piel peeling coreano drenaje brasileno bienestar salud facial corporal masajista spa relax cita nutricionista",
+    "servicios_resumen": "Estética Facial | Corporal| Terapias Spa| Nutrición",
+    "instagram": "https://www.instagram.com/mariadelmarvenegasesteticaspa/",
+    "facebook": "https://www.facebook.com/madelmaresteticaspa",
+    "imagen": "img/logos/esteticamariadelmar.webp",
+    "whatsapp": "+50661928809",
+    "descripcion": "Un centro estético que se diferencia por traer a la zona técnicas de vanguardia como el drenaje brasileño y el peeling coreano. El enfoque aquí es el bienestar integral, ofreciendo un espacio de calma donde la tecnología estética y el cuidado personal se encuentran en un ambiente profesional.",
+    "horario": "Lunes a Sábado | Previa cita",
+    "estado_horario": {
+      "tipo": "cita",
+      "config": null
+    },
+    "direccion": "Costado Noreste de las Oficinas del PANI, Guápiles",
+    "lat": 10.218297,
+    "lng": -83.787854,
+    "maps_link": "https://maps.app.goo.gl/cKZRwTGcz8h9QkDL7"
+  },
+  {
+    "id": 3,
+    "nombre": "Brows by María del Mar",
+    "categoria": "Estética",
+    "etiquetas": ["Cejas", "Pestañas", "Laminado", "Henna"],
+    "keywords_busqueda": "mirada ojos depilacion hilo cera microblading efecto polvo diseño cejas belleza mujer salon maquillaje pestañas",
+    "servicios_resumen": "Diseño de cejas profesional, Depilación con hilo y cera, Laminado, Henna y Efecto Polvo.",
+    "instagram": "https://www.instagram.com/browsbymariadelmar/",
+    "facebook": "https://www.facebook.com/browsbymariadelmar",
+    "imagen": "img/logos/browsmariadelmar.webp",
+    "whatsapp": "+50661928809",
+    "descripcion": "Especialista en el arte de la mirada desde 2015. Brows by María del Mar combina técnica avanzada y precisión artística para resaltar la belleza natural de cada cliente. Ubicado en el corazón de Guápiles, este estudio es el referente en diseño de cejas, ofreciendo desde servicios tradicionales de depilación hasta las últimas tendencias internacionales como el laminado y el efecto polvo.",
+    "horario": "Lunes a Sábado | Previa cita",
+    "estado_horario": {
+      "tipo": "cita",
+      "config": null
+    },
+    "direccion": "Costado Noreste de las Oficinas del PANI, Guápiles",
+    "lat": 10.218297,
+    "lng": -83.787854,
+    "maps_link": "https://maps.app.goo.gl/7vMxdqNDrwk5vQdW8"
+  },
+{
+    "id": 4,
+    "nombre": "Montiel Diseño y Fotografía",
+    "categoria": "Servicios",
+    "etiquetas": ["Profesionales", "Eventos", "Diseño"],
+    "keywords_busqueda": "fotos sesiones graduacion boda quinceanos marca logo identidad visual publicidad camara video recuerdos arte creativo diseño grafico montiel fotografia retratos edicion sesiones de fotos guapiles fotografo bodas postales empresarial",
+    "servicios_resumen": "Fotografía de eventos y sesiones, diseño de identidad visual y logotipos profesionales.",
+    "instagram": "https://www.instagram.com/montieldyf/",
+    "facebook": "https://www.facebook.com/montiel.phot0",
+    "imagen": "img/logos/montielfoto.webp",
+    "whatsapp": "+50683484866",
+    "descripcion": "Capturando momentos y construyendo marcas con una visión única. Montiel Diseño y Fotografía ofrece soluciones visuales integrales, desde la cobertura artística de eventos especiales y sesiones personalizadas hasta el desarrollo de logotipos que definen la esencia de su negocio. Profesionalismo y creatividad al servicio de su imagen.",
+    "horario": "Lunes a Sábado: Bajo reserva",
+    "estado_horario": {
+      "tipo": "reserva",
+      "config": null
+    },
+    "direccion": "Guápiles, Pococí.",
+    "lat": 10.2117,
+    "lng": -83.7853,
+    "maps_link": "null"
+  },
+  {
+    "id": 5,
+    "nombre": "Trámites de Licencia Costa Rica",
+    "categoria": "Servicios",
+    "etiquetas": ["Asesoría", "Trámites", "Licencias"],
+    "keywords_busqueda": "manejo conducir carro moto licencia dictamen medico cosevi prueba practica prueba teorica alquiler vehiculo asesoría b1 a1 a2 a3 renovacion puntos citas guapiles san jose sedes cita de manejo sacar licencia manejar",
+    "servicios_resumen": "Alquiler de vehículos para pruebas en las 13 sedes, Dictamen Médico Digital y asesoría en trámites de licencia.",
+    "instagram": "https://www.instagram.com/tramites_licencia_costarica/",
+    "facebook": "https://www.facebook.com/TramitesLicenciaCR",
+    "imagen": "img/logos/tramite-licencia.webp",
+    "whatsapp": "+50686776688",
+    "descripcion": "Todos tus trámites de licencia en un mismo lugar. Especialistas en facilitar el proceso de obtención y renovación de licencia. Ofrecen alquiler de vehículos (moto, carro, cuadraciclo) para pruebas de manejo en las 13 sedes de Cosevi, además de dictámenes médicos digitales autorizados. ¡Aprovechá sus promociones mensuales!",
+    "horario": "Lunes a Sábado | 8:00 AM a 5:00 PM",
+    "estado_horario": {
+      "tipo": "horario",
+      "config": {
+        "1": ["08:00", "17:00"],
+        "2": ["08:00", "17:00"],
+        "3": ["08:00", "17:00"],
+        "4": ["08:00", "17:00"],
+        "5": ["08:00", "17:00"],
+        "6": ["08:00", "17:00"]
+      }
+    },
+    "direccion": "Sede Guápiles: 300 mts sur de Pequeño Mundo",
+    "lat": 10.1970902946147,
+    "lng": -83.78486457460879,
+    "maps_link": "https://maps.app.goo.gl/nq5zw6GH2MBipga47"
+  },
+  {
+    "id": 6,
+    "nombre": "AC Medical & Esthetic Center",
+    "categoria": "Salud",
+    "etiquetas": ["Depilación Láser", "Medicina", "Nutrición", "Odontología", "Perforaciones"],
+    "keywords_busqueda": "clinica doctor dentista medico nutricionista depilacion laser piel acne perforacion orejas salud dental fyralaser estetica",
+    "servicios_resumen": "Especialistas en depilación láser Fyralaser, medicina general, odontología, nutrición y perforación humanizada.",
+    "instagram": "https://www.instagram.com/acmedicalcenter/",
+    "facebook": "https://www.facebook.com/profile.php?id=100089073395565",
+    "imagen": "img/logos/acmedical.webp",
+    "whatsapp": "+50672999737",
+    "descripcion": "Un centro integral que combina salud y belleza con tecnología de punta en Guápiles. Destacan por su sistema de depilación efectiva Fyralaser y una amplia gama de servicios profesionales que incluyen medicina, nutrición, odontología y perforación humanizada de orejas. Calidad médica y resultados estéticos en un solo lugar.",
+    "horario": "Lunes a Sábado | Previa cita",
+    "estado_horario": {
+      "tipo": "cita",
+      "config": null
+    },
+    "direccion": "Frente a la delegación del Tránsito (Policía de Tránsito), Guápiles",
+    "lat": 10.197221,
+    "lng": -83.784806,
+    "maps_link": "https://maps.app.goo.gl/FTisDrorsGPtaDpb9"
+  },
+  {
+    "id": 7,
+    "nombre": "AC Fitness Center",
+    "categoria": "Salud",
+    "etiquetas": ["Gimnasios", "Natación", "Yoga", "Fitness"],
+    "keywords_busqueda": "gym gimnasio piscina nadar ejercicio entrenamiento yoga cardio pesas funcional deporte salud cuerpo baile natacion semiolimpica",
+    "servicios_resumen": "Único gimnasio con piscina semi-olímpica, natación, cardio dance y yoga.",
+    "instagram": "https://www.instagram.com/acfitness_center/",
+    "facebook": "https://www.facebook.com/profile.php?id=100076404891619",
+    "imagen": "img/logos/acfitness.webp",
+    "whatsapp": "+50672048120",
+    "descripcion": "La propuesta de entrenamiento más completa en Guápiles. Se distingue por ser el único centro de acondicionamiento físico en la zona con piscina semi-olímpica, integrando la natación con disciplinas modernas como cardio dance, yoga y entrenamiento funcional. Ideal para quienes buscan variedad y profesionalismo en un solo lugar.",
+    "horario": "Consultar horarios de clases y piscina directamente",
+    "estado_horario": {
+      "tipo": "cita",
+      "config": null
+    },
+    "direccion": "300 mts sur de Pequeño mundo, Guápiles, Pococí.",
+    "lat": 10.196724500377636,
+    "lng": -83.78396446350246,
+    "maps_link": "https://maps.app.goo.gl/ghyug93dwWaM49958"
+  },
+  {
+    "id": 8,
+    "nombre": "Centro Recreativo Aguas Claras",
+    "categoria": "Turismo",
+    "etiquetas": ["Balneario", "Piscinas", "Toboganes", "Restaurante", "Recreación"],
+    "keywords_busqueda": "balneario recreacion familia ninos paseo piscinas toboganes restaurante diversion fin de semana verano sol helados cocteles",
+    "servicios_resumen": "Balneario familiar con toboganes para niños y adultos, restaurante, heladería y coctelería.",
+    "instagram": "https://www.instagram.com/aguasclaras92/",
+    "facebook": "https://www.facebook.com/AguasClaras0",
+    "imagen": "img/logos/aguasclaras.webp",
+    "whatsapp": "+50672048120",
+    "descripcion": "⛱️ El balneario favorito de Guápiles para disfrutar en familia. Cuenta con amplias piscinas para adultos y niños equipadas con divertidos toboganes 💦. Además de la zona de piscinas, ofrece una experiencia completa con Restaurante😋, Heladería🍨 y Coctelería🍹🍻 para pasar un día inolvidable.",
+    "horario": "Miércoles a Domingo | 9:00 AM a 5:00 PM",
+    "estado_horario": {
+      "tipo": "horario",
+      "config": {
+        "3": ["09:00", "17:00"],
+        "4": ["09:00", "17:00"],
+        "5": ["09:00", "17:00"],
+        "6": ["09:00", "17:00"],
+        "7": ["09:00", "17:00"]
+      }
+    },
+    "direccion": "300 mts sur de Pequeño mundo, Guápiles, Pococí.",
+    "lat": 10.196865935328027,
+    "lng": -83.78427664694284,
+    "maps_link": "https://maps.app.goo.gl/fCaVNBLQendZPwkN8"
+  },
+  {
+    "id": 9,
+    "nombre": "AC Medical & Esthetic Center",
+    "categoria": "Estética",
+    "etiquetas": ["Depilación Láser", "Medicina", "Nutrición", "Odontología", "Perforaciones"],
+    "keywords_busqueda": "belleza laser depilacion facial dental odontologo salud medico fyralaser piel clinica estetica",
+    "servicios_resumen": "Especialistas en depilación láser Fyralaser, medicina general, odontología, nutrición y perforación humanizada.",
+    "instagram": "https://www.instagram.com/acmedicalcenter/",
+    "facebook": "https://www.facebook.com/profile.php?id=100089073395565",
+    "imagen": "img/logos/acmedical.webp",
+    "whatsapp": "+50672999737",
+    "descripcion": "Un centro integral que combina salud y belleza con tecnología de punta en Guápiles. Destacan por su sistema de depilación efectiva Fyralaser y una amplia gama de servicios profesionales que incluyen medicina, nutrición, odontología y perforación humanizada de orejas. Calidad médica y resultados estéticos en un solo lugar.",
+    "horario": "Lunes a Sábado | Previa cita",
+    "estado_horario": {
+      "tipo": "cita",
+      "config": null
+    },
+    "direccion": "Frente a la delegación del Tránsito (Policía de Tránsito), Guápiles",
+    "lat": 10.197221,
+    "lng": -83.784806,
+    "maps_link": "https://maps.app.goo.gl/FTisDrorsGPtaDpb9"
+  },
+  {
+    "id": 10,
+    "nombre": "Delicias Lucam",
+    "categoria": "Gastronomía",
+    "etiquetas": ["Repostería", "Postres", "Eventos", "Pasteles"],
+    "keywords_busqueda": "queques tortas dulces reposteria panaderia cumpleanos celebracion postre artesanal personalizados cupcakes eventos fiestas galletas mesa de dulces bocadillos decorados diseño candy bar guapiles bocaditos",
+    "servicios_resumen": "Pastelería artesanal personalizada: queques temáticos, cupcakes, galletas y repostería fina.",
+    "instagram": "https://www.instagram.com/delicias_lucam/",
+    "facebook": "https://www.facebook.com/deliciaslucam",
+    "imagen": "img/logos/delicias-lucam.webp",
+    "whatsapp": "+50686250301",
+    "descripcion": "Especialistas en transformar ideas en arte comestible. Esta pastelería artesanal destaca en Pococí por su nivel de detalle en queques personalizados y una línea de repostería que equilibra sabor y presentación impecable.",
+    "horario": "Martes a Domingo | 8:00 AM a 5:00 PM Contra Pedido",
+    "estado_horario": {
+      "tipo": "reserva",
+      "config": null
+    },
+    "direccion": "Barrio San Miguel, Guápiles",
+    "lat": 10.229433930782404,
+    "lng": -83.7992972045998,
+    "maps_link": "https://maps.app.goo.gl/3Jw8vqgDHtFuzsUeA"
+  },
+  {
+    "id": 11,
+    "nombre": "Mal de Amores",
+    "categoria": "Vida Nocturna",
+    "etiquetas": ["Bar", "Coctelería", "Música en Vivo", "Despecho"],
+    "keywords_busqueda": "bar tragos cerveza fiesta discoteca noche karaoke musica despecho salir bailar diversion cocteles licores",
+    "servicios_resumen": "Primer Bar de Despecho en Guápiles. Coctelería temática, ambiente de fiesta y noches de karaoke/DJ.",
+    "instagram": "https://www.instagram.com/mal_de.amores/",
+    "facebook": "https://www.facebook.com/profile.php?id=61569214917513",
+    "imagen": "img/logos/mal_de_amores.webp",
+    "whatsapp": "+50671183698",
+    "descripcion": "El lugar definitivo en Guápiles para quienes buscan una noche diferente. Bajo el lema 'Ama, llora y bebe', ofrece un concepto único de Bar de Despecho con promociones semanales, shows de comedia y el mejor ambiente para celebrar o pasar un buen rato entre amigos.",
+    "horario": "Miércoles a Domingo | 5:00 PM a 12:00 MN",
+    "estado_horario": {
+      "tipo": "horario",
+      "config": {
+        "3": ["17:00", "23:59"],
+        "4": ["17:00", "23:59"],
+        "5": ["17:00", "23:59"],
+        "6": ["17:00", "23:59"],
+        "7": ["17:00", "23:59"]
+      }
+    },
+    "direccion": "A un costado de Cosevi, Guápiles)",
+    "lat": 10.196840,
+    "lng": -83.784308,
+    "maps_link": "https://maps.app.goo.gl/agxXpaXArgspxbHXA"
+  },
+  {
+    "id": 12,
+    "nombre": "Taquería Torres",
+    "categoria": "Gastronomía",
+    "etiquetas": ["Tacos", "Hamburguesas", "Comida Rápida", "Cenas"],
+    "keywords_busqueda": "tacos tostones comida urbana cena tacos artesanales comida rapida guapiles nocturno hambre comida mexicana carne mechada queso fundido tortilla palmada nachos antojitos barata noche salir comer",
+    "servicios_resumen": "Especialistas en Tacos Artesanales, Hamburguesas y Tostones Supremos con el sabor auténtico de la zona.",
+    "instagram": "https://www.instagram.com/taqueria.torres.guapiles/",
+    "facebook": "https://www.facebook.com/taqueria.torres.guapiles",
+    "imagen": "img/logos/taqueria-torres.webp",
+    "whatsapp": "+50688543437",
+    "descripcion": "Una parada obligatoria en Guápiles para los amantes de la comida urbana de calidad. Sus Tacos Artesanales y el Tostón Supremo son los favoritos de la comunidad, servidos en un ambiente familiar y acogedor.",
+    "horario": "Lun a Jue: 4:00 PM - 10:00 PM | Vie a Dom: 4:00 PM - 11:00 PM",
+    "estado_horario": {
+      "tipo": "horario",
+      "config": {
+        "1": ["16:00", "22:00"],
+        "2": ["16:00", "22:00"],
+        "3": ["16:00", "22:00"],
+        "4": ["16:00", "22:00"],
+        "5": ["16:00", "23:00"],
+        "6": ["16:00", "23:00"],
+        "7": ["16:00", "23:00"]
+      }
+    },
+    "direccion": "Barrio Zurquí, de Lavacar Los Mangos 150m Norte, Guápiles.",
+    "lat": 10.221872145675153,
+    "lng": -83.79109947138134,
+    "maps_link": "https://maps.app.goo.gl/f39CiNtFi6wuEwL66"
+  },
+  {
+    "id": 13,
+    "nombre": "JR BarberShop",
+    "categoria": "Estética",
+    "etiquetas": ["Barbería", "Cortes", "Barbas", "Servicio a Domicilio"],
+    "keywords_busqueda": "barberia peluqueria hombre caballero corte pelo barba a domicilio josias afeitado mascarilla facial desvanecidos",
+    "servicios_resumen": "Barbería profesional especializada en cortes clásicos, desvanecidos y cuidado integral de la barba.",
+    "instagram": "https://www.instagram.com/jrbarbershop_25/",
+    "imagen": "img/logos/jr-barbershop.webp",
+    "whatsapp": "+50684087743",
+    "descripcion": "Liderada por Josías Rojas, JR BarberShop ofrece una experiencia de cuidado masculino de alta calidad. Expertos en diseño de barba, mascarilla negra y exfoliación, brindan un servicio detallista tanto en su local como en modalidad a domicilio.",
+    "horario": "Lun a Dom | 8:00 AM - 7:00 PM",
+    "estado_horario": {
+      "tipo": "horario",
+      "config": {
+        "1": ["08:00", "19:00"],
+        "2": ["08:00", "19:00"],
+        "3": ["08:00", "19:00"],
+        "4": ["08:00", "19:00"],
+        "5": ["08:00", "19:00"],
+        "6": ["08:00", "19:00"],
+        "7": ["08:00", "19:00"]
+      }
+    },
+    "direccion": "Barrio La Emilia, 50 metros norte Escuela los Diamantes, a mano derecha, Guápiles",
+    "lat": 10.214265,
+    "lng": -83.777698,
+    "maps_link": "https://maps.app.goo.gl/FyVt7BLS24DA7pk67"
+  },
+  {
+    "id": 14,
+    "nombre": "Go Cell Support",
+    "categoria": "Servicios",
+    "etiquetas": ["Tecnología", "Reparación", "Librería"],
+    "keywords_busqueda": "celulares reparacion soporte tecnico consolas computadoras playstation xbox bazar libreria tecnologia cargadores pantallas audifonos mantenimiento controles juegos tablets cargador cables usb estuches laptops oficina",
+    "servicios_resumen": "Soporte técnico profesional para dispositivos y una amplia línea de bazar y librería.",
+    "instagram": "https://www.instagram.com/go.cell.support/",
+    "facebook": "https://www.facebook.com/profile.php?id=61555534261005",
+    "imagen": "img/logos/go-cell-support.webp",
+    "whatsapp": "+50670739765",
+    "descripcion": "Especialistas en la reparación de celulares, consolas (PS4, PS5, Xbox) y computadoras. Además, cuentan con una completa sección de accesorios para móvil, artículos de librería y bazar en un solo lugar.",
+    "horario": "Lun a Sab | 8:00 AM - 6:00 PM",
+    "estado_horario": {
+      "tipo": "horario",
+      "config": {
+        "1": ["08:00", "18:00"],
+        "2": ["08:00", "18:00"],
+        "3": ["08:00", "18:00"],
+        "4": ["08:00", "18:00"],
+        "5": ["08:00", "18:00"],
+        "6": ["08:00", "18:00"]
+      }
+    },
+    "direccion": "75 Metros Sur de Iglesia Católica, Toro Amarillo, Guápiles",
+    "lat": 10.21253109508652,
+    "lng": -83.80910082913286,
+    "maps_link": "https://maps.app.goo.gl/Gp9yVhghfzHAy1FZ7"
+  },
+  {
+    "id": 15,
+    "nombre": "Ale Catering Service",
+    "categoria": "eventos",
+    "etiquetas": ["Catering", "Salón de Eventos", "Bodas", "Bajo Reserva", "Alimentación"],
+    "keywords_busqueda": "boda eventos catering comida buffet celebracion salon fiesta corporativo reuniones comida eventos fiestas boquitas",
+    "servicios_resumen": "Servicio de catering profesional y salas de eventos exclusivas para momentos inolvidables.",
+    "instagram": "https://www.instagram.com/alecateringservice/",
+    "facebook": "https://www.facebook.com/alecateringservicecr",
+    "imagen": "img/logos/ale-catering.webp",
+    "whatsapp": "+50688978662",
+    "descripcion": "Especialistas en la planificación y ejecución de eventos sociales y corporativos en Guápiles. Ofrecen un servicio integral de alimentación y elegantes salas de eventos diseñadas para bodas, celebraciones y reuniones especiales. Atención profesional bajo reserva previa.",
+    "horario": "Previa Reservación",
+    "estado_horario": {
+      "tipo": "reserva",
+      "config": null
+    },
+    "direccion": "Guápiles, Pococí",
+    "lat": 10.22686309071414,
+    "lng": -83.78563281339672,
+    "maps_link": "https://maps.app.goo.gl/R1zVNTD9ftvUqbPP7"
+  },
+  {
+    "id": 16,
+    "nombre": "Aytana Tours",
+    "categoria": "turismo",
+    "etiquetas": ["Tours", "Senderismo", "Aventura", "Cataratas", "Naturaleza"],
+    "keywords_busqueda": "viajes tours aventura naturaleza senderismo caminatas cataratas volcanes excursion guia turistico montaña aire libre",
+    "servicios_resumen": "Experiencias turísticas únicas y tours guiados a los destinos más increíbles de Costa Rica.",
+    "instagram": "https://www.instagram.com/aytanatourscr/",
+    "facebook": "https://www.facebook.com/aytanatours",
+    "imagen": "img/logos/aytana-tours.webp",
+    "whatsapp": "+50686776534",
+    "descripcion": "Especialistas en crear momentos inolvidables a través del turismo de aventura. Ofrecemos tours guiados a cataratas, caminatas benéficas, expediciones a volcanes y destinos internacionales. ¡Atrévete a vivir la próxima experiencia con guías profesionales!",
+    "horario": "Salidas Programadas",
+    "estado_horario": {
+      "tipo": "reserva",
+      "config": null
+    },
+    "direccion": "San Luis, Jiménez, Pococí",
+    "lat": 10.258542309810144,
+    "lng": -83.70628191994274,
+    "maps_link": "https://maps.app.goo.gl/hrpEqFcrmeiqZqVz5"
+  },
+  {
+    "id": 17,
+    "nombre": "Yendry Alfaro Estilista",
+    "categoria": "estética",
+    "etiquetas": ["Salón de Belleza", "Corte", "Colorimetría", "Balayage", "Tratamientos Capilares"],
+    "keywords_busqueda": "salon belleza estilista cabello tinte color balayage pelo mujer peluqueria tratamiento capilar keratinas mechas",
+    "servicios_resumen": "Estilismo profesional especializado en transformación de color, cortes y cuidado avanzado del cabello.",
+    "instagram": "https://www.instagram.com/yendry_estilista/",
+    "facebook": "https://www.facebook.com/saladebellezalilly",
+    "imagen": "img/logos/yendry-alfaro.webp",
+    "whatsapp": "+50686248576",
+    "descripcion": "Bajo la dirección de la profesional Yendry Alfaro, este Beauty Salon en el centro de Guápiles se destaca por resultados impecables en colorimetría y salud capilar. Un espacio dedicado a realzar la belleza personal con técnicas modernas y atención personalizada.",
+    "horario": "Lun a Sab | 9:00 AM - 6:00 PM",
+    "estado_horario": {
+      "tipo": "horario",
+      "config": {
+        "1": ["09:00", "18:00"],
+        "2": ["09:00", "18:00"],
+        "3": ["09:00", "18:00"],
+        "4": ["09:00", "18:00"],
+        "5": ["09:00", "18:00"],
+        "6": ["09:00", "18:00"]
+      }
+    },
+    "direccion": "Costado izquierdo de la Librería Clips, Guápiles Centro",
+    "lat": 10.214593,
+    "lng": -83.788957,
+    "maps_link": "https://maps.app.goo.gl/t9pDk8NKDkgeTvBU6"
+  },
+  {
+    "id": 18,
+    "nombre": "Escuela de Manejo Ruta 32",
+    "categoria": "Servicios",
+    "etiquetas": ["Asesoría", "Licencias", "Clases de Manejo"],
+    "keywords_busqueda": "aprender conducir manejo clases vehiculo licencia carro moto retroexcavadora montacargas educacion vial prueba practica prueba teorica maquinaria pesada curso de manejo instructor guapiles pococi aprender a manejar b1 b2 b3 b4",
+    "servicios_resumen": "Formación integral de conductores con preparación para pruebas teóricas y prácticas de todo tipo de licencias.",
+    "instagram": "https://www.instagram.com/escuelademanejoruta32/",
+    "facebook": "https://www.facebook.com/profile.php?id=100036776841589",
+    "imagen": "img/logos/escuela-manejo-ruta32.webp",
+    "whatsapp": "+50684937223",
+    "descripcion": "Expertos en educación vial en Guápiles. Ofrecemos paquetes completos que incluyen alquiler de vehículos (auto y moto), dictamen médico y acompañamiento en recorridos de prueba. Especialistas también en licencias para equipo especial como retroexcavadoras y montacargas.",
+    "horario": "Lunes a Sábado | Previa cita",
+    "estado_horario": {
+      "tipo": "cita",
+      "config": null
+    },
+    "direccion": "Guápiles 100 metros sur de Ruta 32 contiguo a Cabinas del Tropico, Guápiles",
+    "lat": 10.201123934626223,
+    "lng": -83.78662390708773,
+    "maps_link": "https://maps.app.goo.gl/3SXtaYzdAd3WcmjD6"
+  },
+  {
+    "id": 19,
+    "nombre": "Visas Montzu",
+    "categoria": "Servicios",
+    "etiquetas": ["Asesoría", "Trámites", "Viajes"],
+    "keywords_busqueda": "viajes visas estados unidos canada boletos aereos pasaporte tramites viaje asesoria turistica tiquetes embajada cita consular formulario ds160 renovacion visa americana tiquetes de avion vuelos turismo asesor de viajes",
+    "servicios_resumen": "Tu aliado confiable para viajar: asesoría experta en trámites de visas y gestión de boletos aéreos.",
+    "instagram": "https://www.instagram.com/visasmontzu/",
+    "imagen": "img/logos/visas-montzu.webp",
+    "whatsapp": "+50661961136",
+    "descripcion": "En Visas Montzu te acompañamos paso a paso en el proceso de tu viaje. Somos expertos en asesoría para trámites de visas (USA, Canadá), compra de boletos aéreos y planificación logística para que tu única preocupación sea disfrutar del destino.",
+    "horario": "Lunes a Viernes | 8:00 AM - 5:00 PM",
+    "estado_horario": {
+      "tipo": "horario",
+      "config": {
+        "1": ["08:00", "17:00"],
+        "2": ["08:00", "17:00"],
+        "3": ["08:00", "17:00"],
+        "4": ["08:00", "17:00"],
+        "5": ["08:00", "17:00"]
+      }
+    },
+    "direccion": "Guápiles, Pococí",
+    "lat": 10.212531,
+    "lng": -83.785632,
+    "maps_link": "https://montzucr.com/visas.html"
+  },
+  {
+    "id": 20,
+    "nombre": "JC Tour & Travel",
+    "categoria": "turismo",
+    "etiquetas": ["Agencia de Viajes", "Reservas Hoteleras", "Tiquetes Aéreos", "Eventos", "Turismo"],
+    "keywords_busqueda": "viajes hoteles todo incluido vacaciones playa tiquetes aéreos agencia de viajes nacional internacional turs crucero",
+    "servicios_resumen": "Tu experto en experiencias de viaje: reservas de hoteles todo incluido, tiquetes aéreos y viajes personalizados.",
+    "instagram": "https://www.instagram.com/jc_tour_travel/",
+    "facebook": "https://www.facebook.com/profile.php?id=61569286086840",
+    "imagen": "img/logos/jc-tour-travel.webp",
+    "whatsapp": "+50685581384",
+    "descripcion": "Agencia de viajes dedicada a la planificación de experiencias a tu medida. Especialistas en reservas hoteleras en los mejores destinos, gestión de tiquetes aéreos y organización de eventos sociales o corporativos en hoteles nacionales.",
+    "horario": "Salidas Programadas",
+    "estado_horario": {
+      "tipo": "reserva",
+      "config": null
+    },
+    "direccion": "Buenos Aires, Jiménez, 150m sur de la antena del ICE",
+    "lat": 10.182624259815679,
+    "lng": -83.78325640910872,
+    "maps_link": "https://maps.app.goo.gl/yn8KcKtpdHJ2bh6v6"
+  },
+  {
+    "id": 21,
+    "nombre": "Azalea Accesorios",
+    "categoria": "Servicios",
+    "etiquetas": ["Tienda Virtual", "Moda", "A Domicilio"],
+    "keywords_busqueda": "joyas bisuteria aretes anillos cadenas collares pulseras regalos mujer emprendimiento mayorista oro plata acero inoxidable envios correos de costa rica joyeria por mayor detalle regalos brillo accesorios dama",
+    "servicios_resumen": "Joyería de alta calidad al por mayor y detalle con envíos a todo el país.",
+    "instagram": "https://www.instagram.com/azalea.accesorioscr/",
+    "facebook": "https://www.facebook.com/profile.php?id=61551813113544",
+    "imagen": "img/logos/azalea-accesorios.webp",
+    "whatsapp": "+50660621842",
+    "descripcion": "Especialistas en joyería y accesorios que resaltan tu belleza. Ofrecen opciones de compra al detalle y precios especiales al por mayor para quienes desean emprender su propio negocio. Calidad y brillo en cada pieza con envíos seguros a todo Costa Rica.",
+    "horario": "Consultar al Whatsapp",
+    "estado_horario": {
+      "tipo": "cita",
+      "config": null
+    },
+    "direccion": "Calle Vargas, entrada del taller Juan Acuña calle sin salida penúltima casa, Guápiles.",
+    "lat": 10.212531,
+    "lng": -83.785632,
+    "maps_link": "https://maps.app.goo.gl/1iQKiinppzfCm2Vo8"
+  },
+  {
+    "id": 22,
+    "nombre": "Adry Impulsa",
+    "categoria": "Salud",
+    "etiquetas": ["Nutrición", "Hábitos Saludables", "Colágeno", "Bienestar", "Suplementos"],
+    "keywords_busqueda": "salud nutricion bajar peso colageno suplementos vitaminas bienestar habitos vida saludable motivacion dieta nutricionista",
+    "servicios_resumen": "Transforma tu estilo de vida: asesoría en hábitos, nutrición avanzada y productos de bienestar.",
+    "instagram": "https://www.instagram.com/adry__impulsa/",
+    "imagen": "img/logos/adry-impulsa.webp",
+    "facebook": "null",
+    "whatsapp": "+50671120443",
+    "descripcion": "Enfocada en acción y resultados reales, Adry Impulsa te guía en la transformación de tus hábitos diarios. Especialista en suplementación premium como colágeno hidrolizado y nutrición celular, brindando el apoyo necesario para mejorar tu salud física y motivarte a alcanzar tu mejor versión.",
+    "horario": "Asesoría Personalizada | Virtual",
+    "estado_horario": {
+      "tipo": "cita",
+      "config": null
+    },
+    "direccion": "Servicio en línea, Guápiles",
+    "lat": 10.212531,
+    "lng": -83.785632,
+    "maps_link": "https://wa.me/50671120443"
+  },
+  {
+    "id": 23,
+    "nombre": "Dulzuras Luna",
+    "categoria": "Gastronomía",
+    "etiquetas": ["Repostería", "Postres", "Eventos", "Bocadillos"],
+    "keywords_busqueda": "reposteria artesanal pasteles personalizados queques bodas quinceaños mesas de dulces postres bocadillos salados dulces eventos catering pan artesanal guapiles artesano bocaditos fiestas celebraciones",
+    "servicios_resumen": "Repostería 100% artesanal, pasteles personalizados y mesas de dulces para eventos especiales.",
+    "instagram": "null",
+    "imagen": "img/logos/dulzuras-luna.webp",
+    "facebook": "https://www.facebook.com/profile.php?id=100063601992500",
+    "whatsapp": "+50684215432",
+    "descripcion": "En Dulzuras Luna creamos repostería y pastelería 100% artesanal con ingredientes de la mejor calidad. Nos especializamos en complacer el gusto de cada cliente con pasteles totalmente personalizados y una gran variedad de bocadillos dulces y salados.",
+    "horario": "Bajo Pedido | Pedidos Personalizados",
+    "estado_horario": {
+      "tipo": "reserva",
+      "config": null
+    },
+    "direccion": "125 metros al Sur de la Carnicería Guerrero, Guápiles.",
+    "lat": 10.21104818593506,
+    "lng": -83.78149021970603,
+    "maps_link": "https://maps.app.goo.gl/wsVPJiRMjJnMMbrx9"
+  },
+  {
+    "id": 24,
+    "nombre": "Zootecnia HZ del Caribe",
+    "categoria": "Servicios",
+    "etiquetas": ["Profesionales", "Mascotas", "Servicio a Domicilio"],
+    "keywords_busqueda": "veterinaria zootecnista bienestar animal salud vacunas desparasitacion ganado vacas perros gatos asistencia tecnica fincas nutricion animal domicilio santa rosa limon caribe caballo cerdos fincas veterinario domicilio",
+    "servicios_resumen": "Asistencia técnica especializada, vacunación y chequeo general para especies productivas y de compañía.",
+    "instagram": "https://www.instagram.com/zootecniahzcaribe/",
+    "facebook": "null",
+    "imagen": "img/logos/zootecnia-hz.webp",
+    "whatsapp": "+50672461352",
+    "descripcion": "Un equipo apasionado por la vida animal que combina precisión técnica y eficiencia productiva con un enfoque ético. Ofrecen soluciones integrales tanto para ganadería (optimización de rendimiento) como para mascotas del hogar, garantizando salud y bienestar en cada etapa del camino. Trabajo profesional realizado directamente a domicilio.",
+    "horario": "Lunes a Sábado | Bajo Cita (Trabajo a Domicilio)",
+    "estado_horario": {
+      "tipo": "cita",
+      "config": null
+    },
+    "direccion": "Servicio a Domicilio",
+    "lat": 10.21379121016654,
+    "lng": -83.78871668439581,
+    "maps_link": "https://maps.app.goo.gl/AvEKJFFUt3o4LSAn7"
+  },
+  {
+    "id": 25,
+    "nombre": "Podoclínica Dra. Pies",
+    "categoria": "Salud",
+    "etiquetas": ["Podología", "Medicina General", "Pie Diabético", "Uñas Encarnadas", "Salud Integral"],
+    "keywords_busqueda": "pies podologo medicina general salud pies uñas hongos pie diabetico plantillas ortopedicas adultos mayores guapiles clinica medica cuidado pies",
+    "servicios_resumen": "Especialistas en podología y medicina general. Cuidado profesional de la salud de sus pies con criterio médico.",
+    "instagram": "https://www.instagram.com/drapiescr/",
+    "imagen": "img/logos/dra-pies.webp",
+    "facebook": "https://www.facebook.com/drapiescr",
+    "whatsapp": "+50685515775",
+    "descripcion": "Bajo la dirección de la Dra. Katherine Gómez, Podoclínica Dra. Pies ofrece un enfoque médico integral para la salud de sus pies. Especializados en tratamientos para adultos mayores, manejo de pie diabético y patologías ungueales, combinando precisión técnica con calidez humana en el corazón de Guápiles.",
+    "horario": "Lunes a Sábado | Previa Cita",
+    "estado_horario": {
+      "tipo": "cita",
+      "config": null
+    },
+    "direccion": "CliniTotal Plaza Médica, a un costado del INS, Guápiles.",
+    "lat": 10.215552342483994,
+    "lng": -83.78340343136733,
+    "maps_link": "https://maps.app.goo.gl/GsPt9BcPntMMcYUW7"
+  },
+  {
+    "id": 26,
+    "nombre": "Hi Tea Guápiles",
+    "categoria": "Gastronomía",
+    "etiquetas": ["Bubble Tea", "Postres", "Comida Asiática", "Snacks"],
+    "keywords_busqueda": "te de burbujas boba tea comida china asiática gyosas dumplings rollos de camaron cake pastel postres merienda bebida fria barrio chino hello kitty cafe snacks tapioca perlas fruta refresco guapiles",
+    "servicios_resumen": "Bubble Tea auténtico, repostería creativa y snacks asiáticos como gyosas y rollos de camarón.",
+    "instagram": "https://www.instagram.com/hitea.guapiles/",
+    "facebook": "https://www.facebook.com/profile.php?id=61575271720818",
+    "imagen": "img/logos/hi-tea.webp",
+    "whatsapp": "+50687448301",
+    "descripcion": "¡Desde el Barrio Chino hasta el corazón de Guápiles! Hi Tea ofrece una experiencia gastronómica asiática única, especializándose en el auténtico Bubble Tea y repostería temática.",
+    "horario": "Lunes a Domingo | 11:00 AM a 7:00 PM",
+    "estado_horario": {
+      "tipo": "horario",
+      "config": {
+        "1": ["11:00", "19:00"],
+        "2": ["11:00", "19:00"],
+        "3": ["11:00", "19:00"],
+        "4": ["11:00", "19:00"],
+        "5": ["11:00", "19:00"],
+        "6": ["11:00", "19:00"],
+        "7": ["11:00", "19:00"]
+      }
+    },
+    "direccion": "Frente a Asembis, Guápiles.",
+    "lat": 10.215998338775448,
+    "lng": -83.79318621739729,
+    "maps_link": "https://maps.app.goo.gl/7vMxdqNDrwk5vQdW80"
+  },
+  {
+    "id": 27,
+    "nombre": "Royal Lashes",
+    "categoria": "Estética",
+    "etiquetas": ["Pestañas", "Uñas", "Cejas", "Faciales", "Lifting"],
+    "keywords_busqueda": "pestañas extensiones de pestañas uñas acrilicas manicure limpieza facial henna cejas lifting de pestañas laminado de cejas belleza mujer mirada salon estética sauces guapiles",
+    "servicios_resumen": "Especialistas en extensiones de pestañas, diseño de cejas, uñas y cuidado facial.",
+    "instagram": "https://www.instagram.com/royal_lashes.nv/",
+    "facebook": "null",
+    "imagen": "img/logos/royal-lashes.webp",
+    "whatsapp": "+50662624356",
+    "descripcion": "Un estudio especializado en resaltar la mirada y la belleza natural mediante técnicas profesionales. Royal Lashes destaca en la zona de Los Sauces por sus servicios de aplicación de pestañas, laminado de cejas y acabados impecables en uñas, brindando una atención personalizada en un ambiente diseñado para la comodidad y relajación de sus clientes.",
+    "horario": "Lunes a Sábado | Previa Cita",
+    "estado_horario": {
+      "tipo": "cita",
+      "config": null
+    },
+    "direccion": "Los Sauces, Guápiles.",
+    "lat": 10.226890251437572,
+    "lng": -83.80168949333206,
+    "maps_link": "https://maps.app.goo.gl/RyuU68mgvUZi73oD6"
+  },
+  {
+    "id": 28,
+    "nombre": "Tropihelados Gourmet",
+    "categoria": "Gastronomía",
+    "etiquetas": ["Postres", "Servicio a Domicilio", "Helados"],
+    "keywords_busqueda": "helados artesanales deli gourmet postres cremosos paletas helado de leche nutella cheesecake galleta oreo baileys frio dulce merienda entrega gratis guapiles centro antojo paletas sorbetes",
+    "servicios_resumen": "Helados artesanales cremosos con sabores gourmet y entregas gratuitas en Guápiles centro.",
+    "instagram": "https://www.instagram.com/heladosdeligourmet/",
+    "facebook": "null",
+    "imagen": "img/logos/helados-deli.webp",
+    "whatsapp": "+50660110386",
+    "descripcion": "Una empresa familiar dedicada a llevar sabor y tradición a través de helados artesanales excepcionalmente cremosos. Se distinguen por ofrecer entregas gratuitas en el casco central de Guápiles.",
+    "horario": "Lunes a Sábado | 12:00 MD a 4:00 PM",
+    "estado_horario": {
+      "tipo": "horario",
+      "config": {
+        "1": ["12:00", "16:00"],
+        "2": ["12:00", "16:00"],
+        "3": ["12:00", "16:00"],
+        "4": ["12:00", "16:00"],
+        "5": ["12:00", "16:00"],
+        "6": ["12:00", "16:00"]
+      }
+    },
+    "direccion": "Servicio a Domicilio, Guápiles y alrededores.",
+    "lat": 10.212531,
+    "lng": -83.785632,
+    "maps_link": "https://maps.app.goo.gl/7vMxdqNDrwk5vQdW84"
+  },
+  {
+    "id": 29,
+    "nombre": "El Lab",
+    "categoria": "Vida Nocturna",
+    "etiquetas": ["Discoteca", "Mixología", "Cócteles XL", "Eventos", "Bar"],
+    "keywords_busqueda": "discoteca fiesta baile bar cocteles xl mixologia el lab drinks hulk la toxica avenger tequila margarita jager shots musica djs eventos guapiles noche diversion",
+    "servicios_resumen": "Especialistas en mixología creativa, cócteles XL y eventos de vida nocturna con DJs en vivo.",
+    "instagram": "https://www.instagram.com/el_lab_/",
+    "facebook": "https://www.facebook.com/ellabbarcr",
+    "imagen": "img/logos/el-lab.webp",
+    "whatsapp": "+50684966116",
+    "descripcion": "Un referente de la vida nocturna en Guápiles que combina la pasión por la mixología con un ambiente de fiesta inigualable. El Lab destaca por su propuesta de 'Cócteles XL' y una carta de bebidas creativas con nombres temáticos, ofreciendo eventos constantes con DJs locales, promociones especiales para cumpleañeros y un espacio moderno diseñado para el entretenimiento nocturno.",
+    "horario": "Miércoles, Jueves y Domingo: 4:00 PM - 12:00 MN | Viernes y Sábado: 8:30 PM - 2:30 AM",
+    "estado_horario": {
+      "tipo": "horario",
+      "config": {
+        "3": ["16:00", "00:00"],
+        "4": ["16:00", "00:00"],
+        "5": ["20:30", "02:30"],
+        "6": ["20:30", "02:30"],
+        "7": ["16:00", "00:00"]
+      }
+    },
+    "direccion": "Centro Comercial Nuevo Guápiles, Guápiles.",
+    "lat": 10.201588093030356,
+    "lng": -83.78263955787607,
+    "maps_link": "https://maps.app.goo.gl/Fn8k8RGQbKtDvF5D8"
+  },
+  {
+    "id": 30,
+    "nombre": "Drunk Street Food / El Lab",
+    "categoria": "Gastronomía",
+    "etiquetas": ["Hamburguesas", "Servicio a Domicilio", "Comida Rápida", "Snacks"],
+    "keywords_busqueda": "comida rapida street food hamburguesas smash burger alitas de pollo wings papas fritas nachos palitos de queso mozarrella sticks cena domicilio express guapiles el lab drunk lab cargadas salsas",
+    "servicios_resumen": "Especialistas en Smash Burgers, alitas y snacks con servicio express y consumo en local.",
+    "instagram": "https://www.instagram.com/el_lab_/",
+    "facebook": "null",
+    "imagen": "img/logos/drunk-street-food.webp",
+    "whatsapp": "+50664211214",
+    "descripcion": "La propuesta gastronómica de El Lab que conquista por su sabor urbano. Ofrece una variedad de Smash Burgers, alitas con salsas originales y sus famosas Papas LAB cargadas.",
+    "horario": "Miércoles a Domingo | 5:00 PM a 11:00 PM",
+    "estado_horario": {
+      "tipo": "horario",
+      "config": {
+        "3": ["17:00", "23:00"],
+        "4": ["17:00", "23:00"],
+        "5": ["17:00", "23:00"],
+        "6": ["17:00", "23:00"],
+        "7": ["17:00", "23:00"]
+      }
+    },
+    "direccion": "El Lab, Centro Comercial Nuevo, Guápiles (Dentro de El Lab).",
+    "lat": 10.201588,
+    "lng": -83.782639,
+    "maps_link": "https://maps.app.goo.gl/Fn8k8RGQbKtDvF5D8"
+  },
+  {
+    "id": 31,
+    "nombre": "LUX Sport Bar",
+    "categoria": "Vida Nocturna",
+    "etiquetas": ["Bar", "Restaurante", "Karaoke", "Bocas", "Olla de Carne"],
+    "keywords_busqueda": "sport bar bar restaurante lux guapiles centro karaoke cantar fiesta bocas olla de carne cortesía comida criolla chifrijo tragos cervezas noche diversion",
+    "servicios_resumen": "Bar y restaurante con el mejor ambiente de karaoke, bocas tradicionales y cortesías de la casa.",
+    "instagram": "https://www.instagram.com/luxsportbar_/",
+    "facebook": "https://www.facebook.com/luxdiscotecaysportbar",
+    "imagen": "img/logos/lux-bar.webp",
+    "whatsapp": "+50671651360",
+    "descripcion": "LUX Sport Bar es el destino favorito en Guápiles para quienes buscan buena comida y entretenimiento. Reconocido por su ambiente de karaoke diario y sus deliciosas bocas tradicionales de cortesía, el lugar destaca por detalles como su clásica olla de carne toda la semana. Es el sitio perfecto para disfrutar de una cena con sabor criollo y una noche llena de música y diversión.",
+    "horario": "Lunes, Miércoles y Jueves: 12:00 MD - 12:00 MN | Viernes y Sábado: 12:00 MD - 2:30 AM | Domingo: 12:00 MD - 1:00 AM",
+    "estado_horario": {
+      "tipo": "horario",
+      "config": {
+        "1": ["12:00", "00:00"],
+        "3": ["12:00", "00:00"],
+        "4": ["12:00", "00:00"],
+        "5": ["12:00", "02:30"],
+        "6": ["12:00", "02:30"],
+        "7": ["12:00", "01:00"]
+      }
+    },
+    "direccion": "Centro Comercial Dos Rios Lux, Guápiles.",
+    "lat": 10.21324916664367,
+    "lng": -83.78680990645091,
+    "maps_link": "https://maps.app.goo.gl/DthUzN9rcn1uXDNU7"
+  },
+  {
+    "id": 32,
+    "nombre": "LUX Discoteca",
+    "categoria": "Vida Nocturna",
+    "etiquetas": ["Discoteca", "DJs", "Fiesta", "VIP", "Eventos"],
+    "keywords_busqueda": "discoteca fiesta baile lux night room guapiles centro djs musica en vivo barra libre perreo intenso noche diversion cocteleria premium eventos",
+    "servicios_resumen": "Experiencia nocturna exclusiva con los mejores DJs, coctelería premium y noches temáticas.",
+    "instagram": "https://www.instagram.com/luxsportbar_/",
+    "facebook": "https://www.facebook.com/luxdiscotecaysportbar",
+    "imagen": "img/logos/lux-discoteca.webp",
+    "whatsapp": "+50671651360",
+    "descripcion": "El 'Night Room' de LUX redefine la fiesta en Guápiles con una propuesta de entretenimiento de alto nivel. Bajo el concepto de 'One Room, Different Vibes', ofrece una experiencia inmersiva con DJs invitados, una producción visual de vanguardia y un ambiente diseñado para quienes buscan lo mejor de la vida nocturna local.",
+    "horario": "Viernes, Sábado y Domingo | 8:00 PM a 2:30 AM",
+    "estado_horario": {
+      "tipo": "horario",
+      "config": {
+        "5": ["20:00", "02:30"],
+        "6": ["20:00", "02:30"],
+        "7": ["20:00", "02:30"]
+      }
+    },
+    "direccion": "Centro Comercial Dos Rios Lux, Guápiles.",
+    "lat": 10.21324916664367,
+    "lng": -83.78680990645091,
+    "maps_link": "https://maps.app.goo.gl/DthUzN9rcn1uXDNU7"
+  },
+  {
+    "id": 33,
+    "nombre": "Bar Punta Mona",
+    "categoria": "Vida Nocturna",
+    "etiquetas": ["Bar", "Playa Urbana", "Coctelería", "DJs", "Transmisiones Deportivas"],
+    "keywords_busqueda": "bar punta mona guapiles centro fiesta playa arena mar cocteles gin tonic 2x1 chiliguaro gratis promociones cervezas djs musica en vivo futbol transmisiones ambiente relax",
+    "servicios_resumen": "Ambiente de playa selvática en la ciudad con coctelería creativa, DJs y el mejor ambiente.",
+    "instagram": "https://www.instagram.com/barpuntamona/",
+    "facebook": "https://www.facebook.com/profile.php?id=100076526342555",
+    "imagen": "img/logos/punta-mona.webp",
+    "whatsapp": "+50683107808",
+    "descripcion": "Bar Punta Mona ofrece un ambiente de playa selvática cuidadosamente detallado para que vivas las emociones del mar, el sol y la arena en el corazón de Guápiles. Es el lugar perfecto para disfrutar de coctelería premium y promociones, noches de fiesta con DJs y transmisiones de los mejores eventos deportivos con audio en vivo.",
+    "horario": "Lunes: 5:00 PM - 12:00 MN | Martes a Domingo: 12:00 MD - 12:00 AM",
+    "estado_horario": {
+      "tipo": "horario",
+      "config": {
+        "1": ["17:00", "00:00"],
+        "2": ["12:00", "00:00"],
+        "3": ["12:00", "00:00"],
+        "4": ["12:00", "00:00"],
+        "5": ["12:00", "00:00"],
+        "6": ["12:00", "00:00"],
+        "7": ["12:00", "00:00"]
+      }
+    },
+    "direccion": "La Comarca Gastro Park, Frente al parqueo de la subasta de la Expo Pococí, Guápiles.",
+    "lat": 10.22457063080131,
+    "lng": -83.78107744708205,
+    "maps_link": "https://maps.app.goo.gl/GaVrYfhvyvnVjwXo7"
+  },
+  {
+    "id": 34,
+    "nombre": "Café Letras",
+    "categoria": "Gastronomía",
+    "etiquetas": ["Cafetería", "Eventos", "Servicio a Domicilio", "Postres"],
+    "keywords_busqueda": "café de especialidad barista eventos privados bodas baby shower reuniones fiestas barra de café móvil nómada lectura aroma café letras ferias guápiles la rita pococí catering servicio profesional tico",
+    "servicios_resumen": "Barras de café de especialidad para eventos privados, ferias y celebraciones en todo el país.",
+    "instagram": "https://www.instagram.com/_letras.cafe/",
+    "facebook": "https://www.facebook.com/el.cafe.letras",
+    "imagen": "img/logos/cafe-letras.webp",
+    "whatsapp": "+50661564793",
+    "descripcion": "Café de Letras es una experiencia nómada que combina el aroma del café de especialidad con la armonía de la lectura. Llevan la esencia de una cafetería artesanal directamente a su celebración.",
+    "horario": "Servicio para Eventos | Bajo Reservación",
+    "estado_horario": {
+      "tipo": "reserva",
+      "config": null
+    },
+    "direccion": "Servicio a Domicilio y Eventos Privados (Todo el país)",
+    "lat": 10.212531,
+    "lng": -83.785632,
+    "maps_link": "https://wa.me/50661564793"
+  },
+  {
+    "id": 35,
+    "nombre": "Alma Inquebrantable",
+    "categoria": "Servicios",
+    "etiquetas": ["Tienda Virtual", "Moda", "A Domicilio"],
+    "keywords_busqueda": "ropa mujer chicas accesorios joyeria virtual tienda online guapiles blusas jeans vestidos bisuteria moda femenina emprendimiento gemelas vargas ropa dama outfits juvenil envios",
+    "servicios_resumen": "Tienda virtual especializada en ropa, joyería y accesorios exclusivos para chicas.",
+    "instagram": "https://www.instagram.com/alma.inquebrantable1411/",
+    "facebook": "null",
+    "imagen": "img/logos/alma-inquebrantable.webp",
+    "whatsapp": "+50688744168",
+    "descripcion": "Alma Inquebrantable es una tienda virtual diseñada para resaltar la esencia femenina. Ofrecen una selección de ropa, joyería y accesorios modernos para chicas que buscan estilo y calidad. Bajo la gestión de sus propietarias Graciela Vargas y Maricruz Vargas, brindan atención personalizada a través de sus líneas de contacto: 8874-4168 / 8874-4108.",
+    "horario": "Tienda Virtual | Bajo Pedido",
+    "estado_horario": {
+      "tipo": "cita",
+      "config": null
+    },
+    "direccion": "Servicio a Domicilio y Envíos, Guápiles",
+    "lat": 10.212531,
+    "lng": -83.785632,
+    "maps_link": "https://wa.me/50688744168"
+  }
+]
