@@ -8,6 +8,7 @@ const MENU_DATA = [
             { id: 4, nombre: "Smash Burger", precio: 4000, desc: "Pan, 2 tortas, 2 quesos, cebolla caramelizada, pepinillos y salsa especial Smash." }
         ]
     },
+    
     {
         categoria: "Papas Fritas",
         items: [
