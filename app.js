@@ -164,6 +164,12 @@ function actualizarFlechasNav() {
         });
     }
 }
+function obtenerBadgeEstado(n) {
+    if (n.es_nuevo) {
+        return `<div class="absolute top-4 right-4 z-20 bg-[#d4a373] text-[#130f0e] text-[7px] font-bold px-2 py-1 tracking-widest uppercase animate-pulse">Nuevo</div>`;
+    }
+    return ''; // O lógica de "Abierto ahora"
+}
 function renderCards(listaFiltrada) {
     const landing = document.getElementById('landing-categories');
     const resultados = document.getElementById('section-results');
