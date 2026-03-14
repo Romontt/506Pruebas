@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uy.. Que rico | Menú Digital Punto 506</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #130f0e; color: #e2e8f0; font-family: 'Inter', sans-serif; }
+        .serif-title { font-family: 'Cinzel', serif; color: #d4a373; }
+        .accent-border { border-color: #d4a373; }
+        .bg-gold { background-color: #d4a373; }
+    </style>
+</head>
+<body class="pb-24">
+    <header class="py-8 text-center border-b border-[#d4a373]/20 bg-[#1c1614]">
+        <h1 class="serif-title text-2xl tracking-widest uppercase">Uy.. Que rico</h1>
+        <p class="text-[10px] tracking-[0.3em] text-[#d4a373]/60 mt-2">MENU EXCLUSIVO EN PUNTO 506</p>
+    </header>
+
+    <main id="menu-container" class="max-w-md mx-auto px-6 mt-8 space-y-10">
+        </main>
+
+    <div id="cart-bar" class="fixed bottom-0 left-0 right-0 bg-[#1c1614] border-t border-[#d4a373]/30 p-4 transform translate-y-full transition-transform duration-300 shadow-[0_-10px_20px_rgba(0,0,0,0.5)]">
+        <div class="max-w-md mx-auto flex justify-between items-center">
+            <div>
+                <span id="cart-count" class="text-[10px] text-[#d4a373] font-bold block">0 ARTÍCULOS</span>
+                <span id="cart-total" class="text-xl font-bold text-white">₡0</span>
+            </div>
+            <button onclick="enviarPedido()" class="bg-gold text-[#130f0e] px-6 py-3 font-black text-xs uppercase tracking-widest rounded-sm hover:bg-white transition-colors">
+                Pedir por WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <script src="productos.js"></script>
+    <script>
+        let carrito = [];
+
+        function renderMenu() {
+            const container = document.getElementById('menu-container');
+            MENU_DATA.forEach(cat => {
+                let html = `<section>
+                    <h2 class="serif-title text-sm tracking-[0.4em] mb-6 border-b border-[#d4a373]/10 pb-2 uppercase">${cat.categoria}</h2>
+                    <div class="space-y-6">`;
+                
+                cat.items.forEach(item => {
+                    html += `
+                        <div class="flex justify-between items-start group">
+                            <div class="flex-1 pr-4">
+                                <h3 class="text-white font-bold text-sm uppercase tracking-wider">${item.nombre}</h3>
+                                <p class="text-stone-500 text-[11px] mt-1 leading-relaxed">${item.desc}</p>
+                                <span class="text-[#d4a373] font-bold text-sm block mt-2">₡${item.precio}</span>
+                            </div>
+                            <button onclick="agregarAlCarrito(${item.id})" class="border border-[#d4a373]/30 p-2 hover:bg-[#d4a373] hover:text-black transition-all">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-width="2"/></svg>
+                            </button>
+                        </div>`;
+                });
+                html += `</div></section>`;
+                container.innerHTML += html;
+            });
+        }
+
+        function agregarAlCarrito(id) {
+            let item;
+            MENU_DATA.forEach(c => {
+                let found = c.items.find(i => i.id === id);
+                if(found) item = found;
+            });
+            
+            carrito.push(item);
+            actualizarUI();
+        }
+
+        function actualizarUI() {
+            const bar = document.getElementById('cart-bar');
+            const total = carrito.reduce((sum, item) => sum + item.precio, 0);
+            
+            if(carrito.length > 0) bar.classList.remove('translate-y-full');
+            document.getElementById('cart-count').innerText = `${carrito.length} ARTÍCULOS`;
+            document.getElementById('cart-total').innerText = `₡${total}`;
+        }
+
+        function enviarPedido() {
+            const total = carrito.reduce((sum, item) => sum + item.precio, 0);
+            let texto = "¡Hola! Quiero hacer un pedido desde *Punto 506*:\n\n";
+            
+            // Agrupar items repetidos
+            const resumen = {};
+            carrito.forEach(i => resumen[i.nombre] = (resumen[i.nombre] || 0) + 1);
+            
+            for(let prod in resumen) {
+                texto += `• ${resumen[prod]}x ${prod}\n`;
+            }
+            
+            texto += `\n*Total: ₡${total}*\n\n¿Me confirman el tiempo de entrega?`;
+            const url = `https://wa.me/50689537426?text=${encodeURIComponent(texto)}`;
+            window.open(url, '_blank');
+        }
+
+        renderMenu();
+    </script>
+</body>
+</html>
