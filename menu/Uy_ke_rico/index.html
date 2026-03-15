@@ -12,11 +12,9 @@
         .accent-border { border-color: #d4a373; }
         .bg-gold { background-color: #d4a373; }
         
-        /* Estilos para el carrusel */
         #slider-container { display: flex; transition: transform 0.7s ease-in-out; }
         .slide { min-width: 100%; position: relative; height: 350px; }
         
-        /* Animación para el modal */
         .modal-active { transform: translateY(0%); }
         .modal-inactive { transform: translateY(100%); }
     </style>
@@ -30,10 +28,23 @@
         <button onclick="moveSlider(1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-[#d4a373] text-white p-2 transition-all">❯</button>
     </div>
 
-    <header class="py-8 text-center border-b border-[#d4a373]/20 bg-[#1c1614]">
+    <header class="py-8 text-center border-b border-[#d4a373]/20 bg-[#1c1614] relative">
+        <button onclick="history.back()" class="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2 text-[#d4a373] hover:text-white transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M15 19l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="text-[9px] uppercase tracking-[0.2em] font-bold hidden md:inline">Volver</span>
+        </button>
+
         <h1 class="serif-title text-2xl tracking-widest uppercase">Uy Ke Rico</h1>
-        <p class="text-[10px] tracking-[0.3em] text-[#d4a373]/60 mt-2">MENU EXCLUSIVO EN PUNTO 506</p>
+        <p class="text-[10px] tracking-[0.3em] text-[#d4a373]/60 mt-2 uppercase">Menú Exclusivo en Punto 506</p>
     </header>
+
+    <div class="max-w-md mx-auto px-6 mt-6">
+        <button onclick="history.back()" class="flex items-center gap-2 text-stone-500 hover:text-[#d4a373] transition-colors group">
+            <span class="text-[10px] uppercase tracking-[0.3em]">← Volver al Directorio</span>
+        </button>
+    </div>
 
     <main id="menu-container" class="max-w-md mx-auto px-6 mt-8 space-y-10"></main>
 
