@@ -15,34 +15,41 @@
         #slider-container { display: flex; transition: transform 0.7s ease-in-out; }
         .slide { min-width: 100%; position: relative; height: 350px; }
         
+        /* Mejora de legibilidad en textos de imágenes */
+        .slide-overlay {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            padding: 10px 20px;
+            border-radius: 4px;
+            border-left: 3px solid #d4a373;
+            display: inline-block;
+        }
+
         .modal-active { transform: translateY(0%); }
         .modal-inactive { transform: translateY(100%); }
     </style>
 </head>
 <body class="pb-32">
 
-    <div class="relative w-full overflow-hidden bg-black border-b border-[#d4a373]/20">
+    <div class="relative w-full overflow-hidden bg-black border-b border-[#d4a373]/40">
         <div id="slider-container"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-[#130f0e] via-transparent to-transparent pointer-events-none"></div>
-        <button onclick="moveSlider(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-[#d4a373] text-white p-2 transition-all">❮</button>
-        <button onclick="moveSlider(1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-[#d4a373] text-white p-2 transition-all">❯</button>
+        
+        <button onclick="moveSlider(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/60 border border-[#d4a373]/50 hover:bg-[#d4a373] text-white w-10 h-10 flex items-center justify-center rounded-full transition-all z-10">❮</button>
+        <button onclick="moveSlider(1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/60 border border-[#d4a373]/50 hover:bg-[#d4a373] text-white w-10 h-10 flex items-center justify-center rounded-full transition-all z-10">❯</button>
     </div>
 
     <header class="py-8 text-center border-b border-[#d4a373]/20 bg-[#1c1614] relative">
-        <button onclick="history.back()" class="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2 text-[#d4a373] hover:text-white transition-colors">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M15 19l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="text-[9px] uppercase tracking-[0.2em] font-bold hidden md:inline">Volver</span>
-        </button>
-
         <h1 class="serif-title text-2xl tracking-widest uppercase">Uy Ke Rico</h1>
         <p class="text-[10px] tracking-[0.3em] text-[#d4a373]/60 mt-2 uppercase">Menú Exclusivo en Punto 506</p>
     </header>
 
     <div class="max-w-md mx-auto px-6 mt-6">
-        <button onclick="history.back()" class="flex items-center gap-2 text-stone-500 hover:text-[#d4a373] transition-colors group">
-            <span class="text-[10px] uppercase tracking-[0.3em]">← Volver al Directorio</span>
+        <button onclick="history.back()" class="w-full flex items-center justify-center gap-2 bg-[#d4a373] text-[#130f0e] py-3 px-4 rounded-sm font-black transition-transform active:scale-95 shadow-lg shadow-black/50">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="text-[11px] uppercase tracking-[0.2em]">Volver al Directorio</span>
         </button>
     </div>
 
@@ -97,8 +104,10 @@
                 <div class="slide">
                     <img src="${foto.url}" class="w-full h-full object-cover">
                     <div class="absolute bottom-12 left-0 w-full text-center px-4">
-                        <span class="text-[9px] uppercase tracking-[0.5em] text-[#d4a373] block mb-2 font-bold">Recomendado</span>
-                        <h3 class="serif-title text-xl text-white tracking-[0.2em] uppercase italic drop-shadow-lg">${foto.nombre}</h3>
+                        <div class="slide-overlay">
+                            <span class="text-[9px] uppercase tracking-[0.5em] text-[#d4a373] block mb-1 font-bold">Recomendado</span>
+                            <h3 class="serif-title text-xl text-white tracking-[0.1em] uppercase italic drop-shadow-2xl">${foto.nombre}</h3>
+                        </div>
                     </div>
                 </div>
             `).join('');
