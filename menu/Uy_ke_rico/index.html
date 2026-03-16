@@ -13,7 +13,7 @@
         
         #slider-container { display: flex; transition: transform 0.7s ease-in-out; }
         
-        /* Altura adaptativa: 350px en móvil, 50% del alto de pantalla en PC */
+        /* Altura adaptativa: 350px en móvil, 55vh en PC */
         .slide { min-width: 100%; position: relative; height: 350px; }
         @media (min-width: 768px) {
             .slide { height: 55vh; }
@@ -22,6 +22,9 @@
         .slide-caption-bg {
             background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 70%, transparent 100%);
         }
+
+        /* Estilo para botón deshabilitado cuando está cerrado */
+        .btn-closed { background-color: #2a2423 !important; color: #555 !important; cursor: not-allowed !important; border-color: transparent !important; }
     </style>
 </head>
 <body class="pb-32">
@@ -42,7 +45,7 @@
         </button>
 
         <h1 class="serif-title text-3xl tracking-[0.2em] uppercase mt-6">Uy Ke Rico</h1>
-        <p class="text-[11px] tracking-[0.4em] text-[#d4a373]/50 mt-2 uppercase">Menú Exclusivo en Punto 506</p>
+        <p id="business-status" class="text-[11px] tracking-[0.4em] mt-2 uppercase">Cargando horario...</p>
     </header>
 
     <main id="menu-container" class="max-w-md mx-auto px-6 mt-12 space-y-16"></main>
@@ -57,7 +60,7 @@
                 <button onclick="toggleCartModal(true)" class="flex-1 border border-[#d4a373]/50 text-[#d4a373] py-3 font-black text-[10px] uppercase tracking-[0.2em] rounded-sm hover:bg-[#d4a373]/10 transition-colors">
                     Ver Carrito
                 </button>
-                <button onclick="enviarPedido()" class="flex-[1.5] bg-gold text-[#130f0e] py-3 font-black text-[10px] uppercase tracking-[0.2em] rounded-sm hover:bg-white transition-colors">
+                <button id="btn-enviar-main" onclick="enviarPedido()" class="flex-[1.5] bg-gold text-[#130f0e] py-3 font-black text-[10px] uppercase tracking-[0.2em] rounded-sm hover:bg-white transition-colors">
                     Enviar Pedido
                 </button>
             </div>
@@ -69,18 +72,28 @@
             <h2 class="serif-title text-lg uppercase tracking-widest">Tu Pedido</h2>
             <button onclick="toggleCartModal(false)" class="text-[#d4a373] text-sm font-bold uppercase">Cerrar</button>
         </div>
+        
         <div id="cart-items-list" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
+
+        <div class="p-6 border-t border-white/5">
+            <label class="text-[10px] text-[#d4a373] font-bold uppercase tracking-widest block mb-2">Notas del Pedido:</label>
+            <textarea id="order-notes" placeholder="Ej. Sin cebolla, extra salsa, tocar el timbre..." class="w-full bg-white/5 border border-[#d4a373]/20 rounded p-3 text-sm text-white focus:outline-none focus:border-[#d4a373] transition-colors resize-none" rows="2"></textarea>
+        </div>
+
         <div class="p-6 bg-[#1c1614] border-t border-[#d4a373]/20">
             <div class="flex justify-between mb-4">
                 <span class="text-stone-500 uppercase text-xs tracking-widest">Total Estimado</span>
                 <span id="modal-total" class="text-[#d4a373] font-bold">₡0</span>
             </div>
-            <button onclick="enviarPedido()" class="w-full bg-gold text-[#130f0e] py-4 font-black text-xs uppercase tracking-widest">Confirmar y Enviar</button>
+            <button id="btn-enviar-modal" onclick="enviarPedido()" class="w-full bg-gold text-[#130f0e] py-4 font-black text-xs uppercase tracking-widest">Confirmar y Enviar</button>
         </div>
     </div>
 
     <script src="productos.js"></script>
     <script>
+        // CONFIGURACIÓN DE HORARIO (24 HORAS)
+        const HORARIO = { apertura: 11, cierre: 22 }; 
+
         const FOTOS_SLIDER = [
             { url: 'papas.webp', nombre: 'Papas Especiales' },
             { url: 'costilla.webp', nombre: 'Costilla BBQ' },
@@ -89,6 +102,34 @@
 
         let currentSlide = 0;
         let carrito = [];
+
+        // FUNCIÓN REVISAR HORARIO
+        function verificarHorario() {
+            const ahora = new Date();
+            const horaActual = ahora.getHours();
+            const estaAbierto = horaActual >= HORARIO.apertura && horaActual < HORARIO.cierre;
+            
+            const statusLabel = document.getElementById('business-status');
+            const btnMain = document.getElementById('btn-enviar-main');
+            const btnModal = document.getElementById('btn-enviar-modal');
+
+            if (estaAbierto) {
+                statusLabel.innerText = "Abierto ahora";
+                statusLabel.style.color = "#22c55e"; // Verde
+                btnMain.classList.remove('btn-closed');
+                btnModal.classList.remove('btn-closed');
+                btnMain.innerText = "Enviar Pedido";
+                btnModal.innerText = "Confirmar y Enviar";
+            } else {
+                statusLabel.innerText = `Cerrado • Abre a las ${HORARIO.apertura}:00 AM`;
+                statusLabel.style.color = "#ef4444"; // Rojo
+                btnMain.classList.add('btn-closed');
+                btnModal.classList.add('btn-closed');
+                btnMain.innerText = "Local Cerrado";
+                btnModal.innerText = "Local Cerrado";
+            }
+            return estaAbierto;
+        }
 
         function renderSlider() {
             const slider = document.getElementById('slider-container');
@@ -190,20 +231,36 @@
         }
 
         function enviarPedido() {
+            // Validar horario antes de proceder
+            if (!verificarHorario()) {
+                alert("Lo sentimos, el negocio está cerrado en este momento. Te esperamos mañana a las 11:00 AM.");
+                return;
+            }
+
             const total = carrito.reduce((sum, item) => sum + item.precio, 0);
+            const notas = document.getElementById('order-notes').value;
             let texto = "¡Hola! Quiero hacer un pedido desde *Punto 506*:\n\n";
             const resumen = {};
+            
             carrito.forEach(i => resumen[i.nombre] = (resumen[i.nombre] || 0) + 1);
             for(let prod in resumen) {
                 texto += `• ${resumen[prod]}x ${prod}\n`;
             }
+
+            if(notas.trim() !== "") {
+                texto += `\n*Notas:* _${notas}_\n`;
+            }
+            
             texto += `\n*Total: ₡${total.toLocaleString()}*\n\n¿Me confirman el tiempo de entrega?`;
             const url = `https://wa.me/50689537426?text=${encodeURIComponent(texto)}`;
             window.open(url, '_blank');
         }
 
+        verificarHorario();
         renderSlider();
         renderMenu();
+        // Verificar horario cada minuto automáticamente
+        setInterval(verificarHorario, 60000);
     </script>
 </body>
 </html>
