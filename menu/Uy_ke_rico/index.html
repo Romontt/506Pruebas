@@ -92,7 +92,11 @@
     <script src="productos.js"></script>
     <script>
         // CONFIGURACIÓN DE HORARIO (24 HORAS)
-        const HORARIO = { apertura: 11, cierre: 22 }; 
+        const HORARIO = { 
+            apertura: 18, // 6:00 PM
+            cierre: 22,    // 10:00 PM
+            diasPermitidos: [4, 5, 6] // 4=Jueves, 5=Viernes, 6=Sábado
+        };
 
         const FOTOS_SLIDER = [
             { url: 'papas.webp', nombre: 'Papas Especiales' },
@@ -107,7 +111,12 @@
         function verificarHorario() {
             const ahora = new Date();
             const horaActual = ahora.getHours();
-            const estaAbierto = horaActual >= HORARIO.apertura && horaActual < HORARIO.cierre;
+            const diaActual = ahora.getDay(); // 0=Domingo, 1=Lunes... 4=Jueves, 5=Viernes, 6=Sábado
+
+            const esDiaAbierto = HORARIO.diasPermitidos.includes(diaActual);
+            const esHoraAbierta = horaActual >= HORARIO.apertura && horaActual < HORARIO.cierre;
+            
+            const estaAbierto = esDiaAbierto && esHoraAbierta;
             
             const statusLabel = document.getElementById('business-status');
             const btnMain = document.getElementById('btn-enviar-main');
@@ -115,14 +124,21 @@
 
             if (estaAbierto) {
                 statusLabel.innerText = "Abierto ahora";
-                statusLabel.style.color = "#22c55e"; // Verde
+                statusLabel.style.color = "#22c55e";
                 btnMain.classList.remove('btn-closed');
                 btnModal.classList.remove('btn-closed');
                 btnMain.innerText = "Enviar Pedido";
                 btnModal.innerText = "Confirmar y Enviar";
             } else {
-                statusLabel.innerText = `Cerrado • Abre a las ${HORARIO.apertura}:00 AM`;
-                statusLabel.style.color = "#ef4444"; // Rojo
+                let mensaje = "Cerrado hoy";
+                if (!esDiaAbierto) {
+                    mensaje = "Abrimos Jueves, Viernes y Sábados";
+                } else if (horaActual < HORARIO.apertura) {
+                    mensaje = `Cerrado • Abre hoy a las 6:00 PM`;
+                }
+                
+                statusLabel.innerText = mensaje;
+                statusLabel.style.color = "#ef4444";
                 btnMain.classList.add('btn-closed');
                 btnModal.classList.add('btn-closed');
                 btnMain.innerText = "Local Cerrado";
