@@ -25,6 +25,9 @@
 
         /* Estilo para botón deshabilitado cuando está cerrado */
         .btn-closed { background-color: #2a2423 !important; color: #555 !important; cursor: not-allowed !important; border-color: transparent !important; }
+        
+        /* Ajuste para que el horario en 2 líneas se vea bien */
+        #business-status { line-height: 1.5; }
     </style>
 </head>
 <body class="pb-32">
@@ -44,11 +47,11 @@
             <span class="text-[13px] uppercase tracking-[0.2em] font-black">Volver al Directorio</span>
         </button>
 
-        <h1 class="serif-title text-3xl tracking-[0.2em] uppercase mt-6">Uy Ke Rico</h1>
-        <p id="business-status" class="text-[11px] tracking-[0.4em] mt-2 uppercase">Cargando horario...</p>
+        <h1 class="serif-title text-3xl md:text-5xl tracking-[0.2em] uppercase mt-6">Uy Ke Rico</h1>
+        <p id="business-status" class="text-[11px] tracking-[0.4em] mt-2 uppercase font-bold">Cargando horario...</p>
     </header>
 
-    <main id="menu-container" class="max-w-md mx-auto px-6 mt-12 space-y-16"></main>
+    <main id="menu-container" class="max-w-md md:max-w-6xl mx-auto px-6 mt-12 space-y-16"></main>
 
     <div id="cart-bar" class="fixed bottom-0 left-0 right-0 bg-[#1c1614] border-t border-[#d4a373]/30 p-4 transform translate-y-full transition-transform duration-300 shadow-[0_-10px_20px_rgba(0,0,0,0.5)] z-40">
         <div class="max-w-md mx-auto">
@@ -91,11 +94,10 @@
 
     <script src="productos.js"></script>
     <script>
-        // CONFIGURACIÓN DE HORARIO (24 HORAS)
         const HORARIO = { 
-            apertura: 18, // 6:00 PM
-            cierre: 22,    // 10:00 PM
-            diasPermitidos: [4, 5, 6] // 4=Jueves, 5=Viernes, 6=Sábado
+            apertura: 18, 
+            cierre: 22,    
+            diasPermitidos: [4, 5, 6] 
         };
 
         const FOTOS_SLIDER = [
@@ -107,15 +109,13 @@
         let currentSlide = 0;
         let carrito = [];
 
-        // FUNCIÓN REVISAR HORARIO
         function verificarHorario() {
             const ahora = new Date();
             const horaActual = ahora.getHours();
-            const diaActual = ahora.getDay(); // 0=Domingo, 1=Lunes... 4=Jueves, 5=Viernes, 6=Sábado
+            const diaActual = ahora.getDay(); 
 
             const esDiaAbierto = HORARIO.diasPermitidos.includes(diaActual);
             const esHoraAbierta = horaActual >= HORARIO.apertura && horaActual < HORARIO.cierre;
-            
             const estaAbierto = esDiaAbierto && esHoraAbierta;
             
             const statusLabel = document.getElementById('business-status');
@@ -134,7 +134,7 @@
                 if (!esDiaAbierto) {
                    mensaje = "Abrimos Jueves, Viernes y Sábados <br> De 06:00 PM a 10:00 PM";
                 } else if (horaActual < HORARIO.apertura) {
-                    mensaje = `Cerrado • Abre hoy a las 6:00 PM`;
+                    mensaje = `Cerrado <br> Abre hoy a las 6:00 PM`;
                 }
                 
                 statusLabel.innerHTML = mensaje;
@@ -172,18 +172,20 @@
             const container = document.getElementById('menu-container');
             if (typeof MENU_DATA !== 'undefined') {
                 MENU_DATA.forEach(cat => {
+                    // Se añadió la rejilla: 1 col en móvil, 2 en tablet, 3 en PC
                     let html = `<section>
-                        <h2 class="serif-title text-sm tracking-[0.4em] mb-10 border-b border-[#d4a373]/10 pb-2 uppercase">${cat.categoria}</h2>
-                        <div class="space-y-10">`;
+                        <h2 class="serif-title text-sm tracking-[0.4em] mb-10 border-b border-[#d4a373]/10 pb-2 uppercase text-center md:text-left">${cat.categoria}</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12">`;
+                    
                     cat.items.forEach(item => {
                         html += `
-                            <div class="flex justify-between items-start">
+                            <div class="flex justify-between items-start bg-white/5 md:bg-transparent p-4 md:p-0 rounded-lg">
                                 <div class="flex-1 pr-4">
                                     <h3 class="text-white font-bold text-sm uppercase tracking-wider">${item.nombre}</h3>
-                                    <p class="text-stone-500 text-[11px] mt-1 leading-relaxed">${item.desc}</p>
+                                    <p class="text-stone-500 text-[11px] mt-1 leading-relaxed line-clamp-3">${item.desc}</p>
                                     <span class="text-[#d4a373] font-bold text-sm block mt-2">₡${item.precio.toLocaleString()}</span>
                                 </div>
-                                <button onclick="agregarAlCarrito(${item.id})" class="border border-[#d4a373]/40 p-2.5 hover:bg-[#d4a373] hover:text-black transition-all active:scale-90">
+                                <button onclick="agregarAlCarrito(${item.id})" class="border border-[#d4a373]/40 p-2.5 hover:bg-[#d4a373] hover:text-black transition-all active:scale-90 flex-shrink-0">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-width="2.5"/></svg>
                                 </button>
                             </div>`;
@@ -247,7 +249,6 @@
         }
 
         function enviarPedido() {
-            // Validar horario antes de proceder
             if (!verificarHorario()) {
                 alert("Lo sentimos, el negocio está cerrado en este momento.");
                 return;
@@ -275,7 +276,6 @@
         verificarHorario();
         renderSlider();
         renderMenu();
-        // Verificar horario cada minuto automáticamente
         setInterval(verificarHorario, 60000);
     </script>
 </body>
