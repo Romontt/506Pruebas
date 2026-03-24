@@ -66,20 +66,21 @@ const LuxPatrocinio = {
                 text-transform: uppercase;
             }
 
-            /* BANNER MÓVIL - DISEÑO ORIGINAL PERO FIXED */
+            /* BANNER MÓVIL - CORREGIDO PRIORIDAD */
             .banner-lux-mobile {
                 display: none;
-                position: fixed !important; /* FIJO SIEMPRE */
-                top: 72px !important;       /* Ajustado para el alto de tu nav móvil */
+                position: fixed !important; 
+                top: 72px !important;       /* Pegado al nav móvil */
                 left: 0;
                 width: 100%;
                 background: #130f0e;
                 border-bottom: 1.5px solid #d4a373;
                 color: #ffffff;
                 padding: 10px;
-                z-index: 49 !important;      /* Debajo del z-50 del nav */
+                /* Subimos el z-index a 100 para que no lo tape el nav (z-50) */
+                z-index: 100 !important;      
                 text-align: center;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+                box-shadow: 0 4px 15px rgba(0,0,0,0.8);
                 font-family: 'Inter', sans-serif;
                 font-size: 11px;
                 cursor: pointer;
@@ -117,6 +118,7 @@ const LuxPatrocinio = {
         bannerPC.onclick = () => this.scrollToLux();
         bannerMobile.onclick = () => this.scrollToLux();
 
+        // Inyectamos directo al body para máxima jerarquía
         document.body.appendChild(bannerPC);
         document.body.appendChild(bannerMobile);
     },
@@ -143,24 +145,29 @@ const LuxPatrocinio = {
     },
 
     scrollToLux: function() {
-        // Buscamos todas las tarjetas de negocios
+        // Buscamos todas las tarjetas disponibles
         const cards = document.querySelectorAll('.glass-card, [onclick*="abrirModal"]');
         
         for (let card of cards) {
             const contenido = card.textContent.toUpperCase();
-            // Validamos que sea la discoteca y NO el sport bar
+            // Filtro específico para Discoteca (evita Sport Bar)
             if (contenido.includes('LUX') && (contenido.includes('DISCOTECA') || contenido.includes('NIGHT'))) {
                 
                 card.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 
-                // Efecto visual y apertura de modal
+                // Feedback visual
+                card.style.transition = "all 0.3s ease";
                 card.style.border = "2px solid #d4a373";
+                card.style.boxShadow = "0 0 20px rgba(212, 163, 115, 0.4)";
                 
                 setTimeout(() => {
-                    // Disparamos el clic para abrir el modal del registro
+                    // Abrimos el modal de la tarjeta
                     card.click();
-                    setTimeout(() => card.style.border = "", 2000);
-                }, 600);
+                    setTimeout(() => {
+                        card.style.border = "";
+                        card.style.boxShadow = "";
+                    }, 2000);
+                }, 700);
                 
                 break;
             }
