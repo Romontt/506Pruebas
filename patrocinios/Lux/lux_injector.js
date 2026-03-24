@@ -67,30 +67,27 @@ const LuxPatrocinio = {
                 transition: all 0.3s ease;
             }
 
-            /* BANNER MÓVIL - FIJO DEBAJO DEL HEADER */
+            /* BANNER MÓVIL - CORREGIDO PARA NO TAPAR */
             .banner-lux-mobile {
                 display: none;
-                position: fixed !important; /* FIJO SIEMPRE */
-                top: 75px !important;      /* AJUSTA ESTO: Debe ser el alto de tu header */
-                left: 5%;
-                width: 90%;
-                background: rgba(19, 15, 14, 0.95);
-                border: 1px solid #d4a373;
-                border-radius: 10px;
+                position: sticky !important; /* STICKY PARA SEGUIR EL NAV */
+                top: 88px !important;       /* ALTO DEL NAV (AJUSTAR SEGÚN NECESIDAD) */
+                width: 100%;
+                background: #130f0e;        /* Color sólido para que no transparente las cards */
+                border-bottom: 1.5px solid #d4a373;
                 color: #ffffff;
                 padding: 10px;
-                z-index: 9999 !important; /* Encima de las cards */
+                z-index: 45 !important;      /* Justo debajo del z-50 del nav */
                 text-align: center;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-                backdrop-filter: blur(10px);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.5);
                 font-family: 'Inter', sans-serif;
+                font-size: 11px;
             }
 
             .banner-lux-mobile b { color: #d4a373; }
             
-            /* Animación suave para móvil */
             @keyframes mobileSlideIn {
-                from { opacity: 0; transform: translateY(-20px); }
+                from { opacity: 0; transform: translateY(-10px); }
                 to { opacity: 1; transform: translateY(0); }
             }
         `;
@@ -100,6 +97,7 @@ const LuxPatrocinio = {
     createBanners: function() {
         if (document.getElementById('banner-pc-lux')) return;
 
+        // Banner PC
         const bannerPC = document.createElement('div');
         bannerPC.id = 'banner-pc-lux';
         bannerPC.className = 'banner-lux-pc';
@@ -116,16 +114,24 @@ const LuxPatrocinio = {
             </div>
         `;
 
+        // Banner Móvil
         const bannerMobile = document.createElement('div');
         bannerMobile.id = 'banner-mobile-lux';
         bannerMobile.className = 'banner-lux-mobile';
-        bannerMobile.innerHTML = `<span>Vida Nocturna • Patrocinado por <b>LUX</b></span>`;
+        bannerMobile.innerHTML = `<span>Vida Nocturna • Patrocinado por <b>LUX DISCOTECA</b></span>`;
 
         bannerPC.onclick = () => this.scrollToLux();
         bannerMobile.onclick = () => this.scrollToLux();
 
         document.body.appendChild(bannerPC);
-        document.body.appendChild(bannerMobile);
+
+        // INYECCIÓN LÓGICA: Ponerlo justo después del <nav>
+        const navbar = document.querySelector('nav');
+        if (navbar) {
+            navbar.parentNode.insertBefore(bannerMobile, navbar.nextSibling);
+        } else {
+            document.body.appendChild(bannerMobile);
+        }
     },
 
     checkStatus: function() {
@@ -136,16 +142,16 @@ const LuxPatrocinio = {
         const bannerMobile = document.getElementById('banner-mobile-lux');
 
         if (esVidaNocturna) {
-            if (bannerPC.style.display !== 'block' && bannerMobile.style.display !== 'block') {
-                setTimeout(() => {
-                    if (window.innerWidth > 768) {
-                        bannerPC.style.display = 'block';
-                        bannerPC.style.animation = 'luxFadeIn 0.8s ease forwards';
-                    } else {
-                        bannerMobile.style.display = 'block';
-                        bannerMobile.style.animation = 'mobileSlideIn 0.5s ease forwards';
-                    }
-                }, 600);
+            if (window.innerWidth > 768) {
+                if(bannerPC) bannerPC.style.display = 'block';
+                if(bannerMobile) bannerMobile.style.display = 'none';
+            } else {
+                if(bannerMobile) {
+                    bannerMobile.style.display = 'block';
+                    // No usamos transform en la animación para no romper el sticky
+                    bannerMobile.style.animation = 'mobileSlideIn 0.5s ease forwards';
+                }
+                if(bannerPC) bannerPC.style.display = 'none';
             }
         } else {
             if(bannerPC) bannerPC.style.display = 'none';
@@ -159,6 +165,7 @@ const LuxPatrocinio = {
             if (card.textContent.toUpperCase().includes('LUX')) {
                 card.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 card.style.border = "2px solid #d4a373";
+                setTimeout(() => card.style.border = "1px solid rgba(212, 163, 115, 0.2)", 3000);
                 break;
             }
         }
