@@ -1,21 +1,21 @@
 /* BANNER PC - Estilo Cápsula de la Imagen */
 .banner-lux-pc {
-    display: none;
-    position: fixed;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 110px;
-    background: linear-gradient(180deg, rgba(28, 22, 20, 0.95) 0%, rgba(10, 10, 10, 0.98) 100%);
-    border: 1px solid rgba(212, 163, 115, 0.3);
-    border-radius: 60px; /* Forma de cápsula */
-    padding: 0 0 25px 0;
-    z-index: 100;
-    cursor: pointer;
-    text-align: center;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-    overflow: hidden;
+    /* ... tus otros estilos ... */
+    display: none; 
+    z-index: 99999 !important; /* Que nada lo tape */
+}
+
+/* Fuerza la visibilidad del botón de exploración */
+.lux-btn-explore {
+    border: 1px solid #d4a373;
+    border-radius: 20px;
+    padding: 10px 5px;
+    color: #d4a373;
+    display: inline-block;
+    margin-bottom: 20px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 10px;
 }
 
 /* El cabezal dorado de la cápsula */
