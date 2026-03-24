@@ -3,9 +3,8 @@ const LuxPatrocinio = {
         this.injectStyles();
         this.createBanners();
         
-        // Sincronizar posición en scroll y cambio de tamaño para que no se desfase
+        // Sincronización para que no se esconda al escrolear
         window.addEventListener('scroll', () => this.syncMobilePosition());
-        window.addEventListener('resize', () => this.syncMobilePosition());
         
         setInterval(() => this.checkStatus(), 300);
     },
@@ -15,7 +14,7 @@ const LuxPatrocinio = {
         const style = document.createElement('style');
         style.id = 'lux-styles';
         style.innerHTML = `
-            /* TÓTEM PC - DISEÑO ORIGINAL */
+            /* TÓTEM PC - TU DISEÑO ORIGINAL */
             .banner-lux-pc {
                 display: none;
                 position: fixed !important;
@@ -62,7 +61,7 @@ const LuxPatrocinio = {
                 text-transform: uppercase;
             }
 
-            /* BANNER MÓVIL STICKY - DISEÑO ORIGINAL REFORZADO */
+            /* BANNER MÓVIL STICKY - TU DISEÑO ORIGINAL */
             .banner-lux-mobile {
                 display: none;
                 position: sticky !important;
@@ -71,15 +70,12 @@ const LuxPatrocinio = {
                 border-bottom: 1.5px solid #d4a373;
                 color: #ffffff;
                 padding: 12px;
-                /* Nav es z-50, nosotros z-49 para que pegue justo debajo */
-                z-index: 49 !important; 
+                z-index: 49 !important; /* Ajustado para que pegue justo bajo el nav (50) */
                 text-align: center;
                 font-family: 'Inter', sans-serif;
                 font-size: 11px;
                 cursor: pointer;
                 box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-                /* Evita saltos visuales */
-                will-change: top;
             }
 
             .banner-lux-mobile b { color: #d4a373; }
@@ -90,6 +86,7 @@ const LuxPatrocinio = {
     createBanners: function() {
         if (document.getElementById('banner-pc-lux')) return;
 
+        // Banner PC - Estructura Original
         const bannerPC = document.createElement('div');
         bannerPC.id = 'banner-pc-lux';
         bannerPC.className = 'banner-lux-pc';
@@ -102,6 +99,7 @@ const LuxPatrocinio = {
             </div>
         `;
 
+        // Banner Móvil - Estructura Original
         const bannerMobile = document.createElement('div');
         bannerMobile.id = 'banner-mobile-lux';
         bannerMobile.className = 'banner-lux-mobile';
@@ -118,13 +116,13 @@ const LuxPatrocinio = {
         }
     },
 
+    // Esta es la parte que evita que se esconda, sin tocar el diseño
     syncMobilePosition: function() {
         const bannerMobile = document.getElementById('banner-mobile-lux');
         const navbar = document.querySelector('nav');
         if (bannerMobile && navbar && bannerMobile.style.display !== 'none') {
-            const navRect = navbar.getBoundingClientRect();
-            // Si el nav es sticky, su altura real determina el 'top' del banner
-            bannerMobile.style.top = `${navRect.height}px`;
+            const navHeight = navbar.offsetHeight;
+            bannerMobile.style.top = `${navHeight}px`;
         }
     },
 
@@ -156,7 +154,7 @@ const LuxPatrocinio = {
             } else {
                 if(bannerMobile) {
                     bannerMobile.style.display = 'block';
-                    this.syncMobilePosition();
+                    this.syncMobilePosition(); 
                 }
                 if(bannerPC) bannerPC.style.display = 'none';
             }
