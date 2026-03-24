@@ -248,40 +248,6 @@
     <script src="horarios.js"></script>
 <script src="app.js"></script>
     <script>
-// 1. Configuración de Conexión
-// Sustituye con tus credenciales reales de Supabase
-const _supabase = supabase.createClient('https://yfqxnjohojtbjevrmbmq.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlmcXhuam9ob2p0YmpldnJtYm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MjI4ODgsImV4cCI6MjA4ODM5ODg4OH0.ze32GU0sW7EZ5oicnLFlHpthtLcSTUxZ9rlHSyQLFso');
-// 2. Función Maestra de Rastreo
-async function registrarActividad(tipo, valor) {
-    // Validamos que existan datos antes de procesar
-    if (!tipo || !valor) return;
-    console.log(`[LOG] Evento: ${tipo} | Detalle: ${valor}`);
-    // A. Google Analytics (GA4)
-    if (typeof gtag === 'function') {
-        gtag('event', tipo, {
-            'item_id': valor.toLowerCase().replace(/\s+/g, '_'), // ID normalizado
-            'item_name': valor,
-            'proyecto': 'Punto 506'
-        });
-    }
-    // B. Supabase (Inserción Silenciosa)
-    // Usamos .then() para que la UI no se bloquee esperando la respuesta de la DB
-    _supabase
-        .from('registros_actividad')
-        .insert([{ 
-            tipo_evento: tipo, 
-            nombre_negocio: valor, 
-            fecha: new Date().toISOString() 
-        }])
-        .then(({ error }) => {
-            if (error) console.warn("Supabase Sync Error:", error.message);
-        });
-}
-// 3. Función específica para clics
-function registrarClickNegocio(nombreNegocio, plataforma) {
-    const detalle = `${nombreNegocio} (${plataforma})`;
-    registrarActividad('click_red_social', detalle);
-}
         const legalTexts = {
             terminos: `
                 <h2 class="serif-title text-[#d4a373] text-xl mb-6 uppercase tracking-widest">Términos Exclusivos</h2>
