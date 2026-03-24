@@ -2,8 +2,10 @@ const LuxPatrocinio = {
     init: function() {
         this.injectStyles();
         this.createBanners();
+        
         window.addEventListener('scroll', () => this.syncMobilePosition());
         window.addEventListener('resize', () => this.syncMobilePosition());
+        
         setInterval(() => this.checkStatus(), 300);
     },
 
@@ -17,111 +19,111 @@ const LuxPatrocinio = {
                 to { opacity: 1; transform: translateY(-50%) scale(1); }
             }
 
-            /* TÓTEM PC - DISEÑO ORIGINAL TIPO CÁPSULA VERTICAL */
+            @keyframes shine {
+                0% { background-position: -100px; }
+                100% { background-position: 200px; }
+            }
+
+            /* TÓTEM PC - ESTILO ELEGANTE */
             .banner-lux-pc {
                 display: none;
                 position: fixed !important;
-                left: 10px !important;
+                left: 15px !important;
                 top: 50% !important;
                 transform: translateY(-50%);
-                width: 130px;
-                background: linear-gradient(145deg, #130f0e, #1c1817);
-                border: 1px solid rgba(212, 163, 115, 0.5);
-                border-radius: 65px;
+                width: 140px;
+                background: #0a0808;
+                border: 1px solid #d4a373;
+                border-radius: 70px;
                 z-index: 10000 !important;
                 text-align: center;
-                box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+                box-shadow: 0 0 30px rgba(212, 163, 115, 0.2);
                 overflow: hidden;
                 font-family: 'Montserrat', sans-serif;
                 animation: luxFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
                 cursor: pointer;
+                padding-bottom: 20px;
             }
 
-            .lux-header-gold {
-                background: #d4a373;
-                padding: 18px 5px;
-                color: #130f0e;
-                font-size: 10px;
-                font-weight: 900;
-                text-transform: uppercase;
-                letter-spacing: 1.5px;
+            .lux-pc-logo-container {
+                padding: 25px 10px;
+                position: relative;
             }
 
-            .lux-totem-body {
-                padding: 30px 10px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 25px;
+            .lux-pc-logo-blur {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 80px;
+                filter: blur(15px);
+                opacity: 0.5;
+                z-index: 1;
             }
 
-            .lux-btn-oval {
-                border: 1.5px solid #d4a373;
-                border-radius: 35px;
-                padding: 18px 10px;
-                writing-mode: vertical-rl;
-                text-orientation: mixed;
-                color: #d4a373;
-                font-size: 11px;
-                font-weight: 800;
-                text-transform: uppercase;
-                letter-spacing: 4px;
-            }
-
-            /* BANNER MÓVIL - CÁPSULA FLOTANTE (SIN FONDO CAFÉ) */
-            .banner-lux-mobile {
-                display: none; /* Controlado por JS */
-                position: sticky !important;
-                width: 92%;
-                margin: 15px auto !important; /* Espacio para que no choque con el nav */
-                background: rgba(19, 15, 14, 0.65) !important; /* Traslúcido */
-                backdrop-filter: blur(12px) !important; /* Efecto cristal */
-                border: 1px solid rgba(212, 163, 115, 0.35) !important;
-                border-radius: 50px !important; /* Cápsula horizontal */
-                padding: 10px 18px !important;
-                z-index: 49 !important;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.5), 0 0 15px rgba(212, 163, 115, 0.1);
-                
-                /* Layout para alinear logo, texto y botón */
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 12px;
-                cursor: pointer;
-                font-family: 'Inter', sans-serif;
-            }
-
-            /* Contenedor de texto móvil */
-            .lux-m-info {
-                display: flex;
-                flex-direction: column;
-                text-align: left;
-                flex-grow: 1;
-            }
-
-            .lux-m-info span {
-                font-size: 9px;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                color: rgba(255,255,255,0.7);
-            }
-
-            .lux-m-info b {
-                color: #d4a373;
-                font-size: 13px;
-                font-weight: 700;
-                letter-spacing: 0.5px;
-            }
-
-            /* Botón mini de la cápsula móvil */
-            .lux-m-btn {
+            .lux-btn-explora {
                 border: 1px solid #d4a373;
                 border-radius: 20px;
+                padding: 8px 12px;
                 color: #d4a373;
-                font-size: 10px;
-                font-weight: 800;
-                padding: 5px 12px;
+                font-size: 9px;
+                font-weight: 700;
                 text-transform: uppercase;
+                letter-spacing: 1px;
+                margin: 0 10px;
+                transition: all 0.3s ease;
+            }
+
+            /* BANNER MÓVIL - DISEÑO DE LA IMAGEN */
+            .banner-lux-mobile {
+                display: none;
+                position: sticky !important;
+                width: 100%;
+                background: #000000;
+                border-bottom: 1px solid #d4a373;
+                color: #ffffff;
+                padding: 20px 10px;
+                z-index: 49 !important;
+                text-align: center;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                font-family: 'Montserrat', sans-serif;
+                cursor: pointer;
+            }
+
+            .lux-m-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+            }
+
+            .lux-m-title {
+                font-size: 24px;
+                font-weight: 400;
+                letter-spacing: 1px;
+                margin: 0;
+            }
+
+            .lux-m-subtitle {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 11px;
+                color: rgba(255,255,255,0.7);
+                letter-spacing: 2px;
+                text-transform: uppercase;
+            }
+
+            .lux-m-logo-img {
+                height: 35px;
+                filter: drop-shadow(0 0 8px rgba(212, 163, 115, 0.6));
+            }
+
+            /* Efecto glow suave para el nombre en el subtítulo */
+            .lux-m-subtitle b {
+                color: #d4a373;
+                font-weight: 700;
             }
         `;
         document.head.appendChild(style);
@@ -130,30 +132,32 @@ const LuxPatrocinio = {
     createBanners: function() {
         if (document.getElementById('banner-pc-lux')) return;
 
-        // Crear Banner PC
+        // Banner PC
         const bannerPC = document.createElement('div');
         bannerPC.id = 'banner-pc-lux';
         bannerPC.className = 'banner-lux-pc';
         bannerPC.innerHTML = `
-            <div class="lux-header-gold">PARTNER<br>PREMIUM</div>
-            <div class="lux-totem-body">
-                <img src="patrocinios/Lux/lux-discoteca.webp" style="width: 85px;" onerror="this.src='https://placehold.co/80x80/130f0e/d4a373?text=LUX'">
-                <p style="color: #d4a373; font-size: 10px; font-weight: 600;">VIDA NOCTURNA</p>
-                <div class="lux-btn-oval">DESCUBRIR LUX</div>
+            <div style="background: rgba(212, 163, 115, 0.1); padding: 15px 5px; font-size: 10px; color: #d4a373; font-weight: 800; letter-spacing: 1px;">LUX PARTNER</div>
+            <div class="lux-pc-logo-container">
+                <img src="patrocinios/Lux/lux-discoteca.webp" class="lux-pc-logo-blur">
+                <img src="patrocinios/Lux/lux-discoteca.webp" style="width: 70px; position: relative; z-index: 2;">
             </div>
+            <p style="color: #fff; font-size: 10px; margin-bottom: 15px; letter-spacing: 1px; opacity: 0.9;">VIDA NOCTURNA</p>
+            <div class="lux-btn-explora">EXPLORA LUX</div>
         `;
 
-        // Crear Banner Móvil (Diseño Cápsula Horizontal)
+        // Banner Móvil (Siguiendo la imagen)
         const bannerMobile = document.createElement('div');
         bannerMobile.id = 'banner-mobile-lux';
         bannerMobile.className = 'banner-lux-mobile';
         bannerMobile.innerHTML = `
-            <img src="patrocinios/Lux/lux-discoteca.webp" style="width: 32px; height: 32px; object-fit: contain;" onerror="this.src='https://placehold.co/32x32/130f0e/d4a373?text=L'">
-            <div class="lux-m-info">
-                <span>Patrocinado</span>
-                <b>LUX DISCOTECA</b>
+            <div class="lux-m-content">
+                <h2 class="lux-m-title">Vida Nocturna</h2>
+                <div class="lux-m-subtitle">
+                    PATROCINADO POR 
+                    <img src="patrocinios/Lux/lux-discoteca.webp" class="lux-m-logo-img" onerror="this.src='https://placehold.co/60x30/000/d4a373?text=LUX'">
+                </div>
             </div>
-            <div class="lux-m-btn">VER</div>
         `;
 
         bannerPC.onclick = () => this.scrollToLux();
@@ -178,9 +182,16 @@ const LuxPatrocinio = {
     prioritizeLuxCard: function() {
         const container = document.getElementById('grid-comercios') || document.querySelector('.grid');
         if (!container) return;
+
         const cards = Array.from(container.children);
-        const luxCard = cards.find(card => card.textContent.toUpperCase().includes('LUX'));
-        if (luxCard && container.firstChild !== luxCard) container.prepend(luxCard);
+        const luxCard = cards.find(card => 
+            card.textContent.toUpperCase().includes('LUX') && 
+            (card.textContent.toUpperCase().includes('DISCOTECA') || card.textContent.toUpperCase().includes('NIGHT'))
+        );
+
+        if (luxCard && container.firstChild !== luxCard) {
+            container.prepend(luxCard);
+        }
     },
 
     checkStatus: function() {
@@ -191,11 +202,13 @@ const LuxPatrocinio = {
 
         if (esVidaNocturna) {
             if (window.innerWidth > 768) {
-                if(bannerPC) bannerPC.style.display = 'block';
+                setTimeout(() => {
+                    if(bannerPC) bannerPC.style.display = 'block';
+                }, 500);
                 if(bannerMobile) bannerMobile.style.display = 'none';
             } else {
                 if(bannerMobile) {
-                    bannerMobile.style.display = 'flex'; // Usamos flex para el layout horizontal
+                    bannerMobile.style.display = 'block';
                     this.syncMobilePosition(); 
                 }
                 if(bannerPC) bannerPC.style.display = 'none';
@@ -210,12 +223,19 @@ const LuxPatrocinio = {
     scrollToLux: function() {
         const cards = document.querySelectorAll('.glass-card, [onclick*="abrirModal"]');
         for (let card of cards) {
-            if (card.textContent.toUpperCase().includes('LUX')) {
+            const txt = card.textContent.toUpperCase();
+            if (txt.includes('LUX') && (txt.includes('DISCOTECA') || txt.includes('NIGHT'))) {
                 card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                card.style.transition = "all 0.5s cubic-bezier(0.16, 1, 0.3, 1)";
                 card.style.border = "2px solid #d4a373";
+                card.style.boxShadow = "0 0 30px rgba(212, 163, 115, 0.4)";
+                
                 setTimeout(() => {
                     card.click();
-                    setTimeout(() => card.style.border = "", 2000);
+                    setTimeout(() => {
+                        card.style.border = "";
+                        card.style.boxShadow = "";
+                    }, 2500);
                 }, 800);
                 break;
             }
