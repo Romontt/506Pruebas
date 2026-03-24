@@ -15,7 +15,7 @@ const LuxPatrocinio = {
                 to { opacity: 1; transform: translateY(-50%) scale(1); }
             }
 
-            /* TÓTEM PC */
+            /* TÓTEM PC - DISEÑO ORIGINAL */
             .banner-lux-pc {
                 display: none;
                 position: fixed !important;
@@ -66,24 +66,23 @@ const LuxPatrocinio = {
                 text-transform: uppercase;
             }
 
-            /* BANNER MÓVIL - FIJO TOTALMENTE */
+            /* BANNER MÓVIL - DISEÑO ORIGINAL PERO FIXED */
             .banner-lux-mobile {
                 display: none;
-                position: fixed !important; 
-                top: 72px !important; /* Ajuste para que quede pegado al nav de Punto 506 */
+                position: fixed !important; /* FIJO SIEMPRE */
+                top: 72px !important;       /* Ajustado para el alto de tu nav móvil */
                 left: 0;
                 width: 100%;
                 background: #130f0e;
                 border-bottom: 1.5px solid #d4a373;
                 color: #ffffff;
-                padding: 8px 10px;
-                z-index: 49 !important; /* Justo debajo del nav (z-50) */
+                padding: 10px;
+                z-index: 49 !important;      /* Debajo del z-50 del nav */
                 text-align: center;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.8);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.5);
                 font-family: 'Inter', sans-serif;
-                font-size: 10px;
-                text-transform: uppercase;
-                letter-spacing: 1px;
+                font-size: 11px;
+                cursor: pointer;
             }
 
             .banner-lux-mobile b { color: #d4a373; }
@@ -98,18 +97,22 @@ const LuxPatrocinio = {
         bannerPC.id = 'banner-pc-lux';
         bannerPC.className = 'banner-lux-pc';
         bannerPC.innerHTML = `
-            <div class="lux-header-gold">PATROCINIO</div>
+            <div class="lux-header-gold">PATROCINIO<br>DE CATEGORÍA</div>
             <div class="lux-totem-body">
-                <img src="patrocinios/Lux/lux-discoteca.webp" style="width: 80px;" onerror="this.src='https://placehold.co/80x80/130f0e/d4a373?text=LUX'">
-                <p style="color: #d4a373; font-size: 9px; font-weight: 500; margin: 0;">VIDA NOCTURNA</p>
-                <div class="lux-btn-oval">VER DISCOTECA</div>
+                <img src="patrocinios/Lux/lux-discoteca.webp" 
+                     style="width: 80px; filter: drop-shadow(0 0 10px rgba(212,163,115,0.3));" 
+                     onerror="this.src='https://placehold.co/80x80/130f0e/d4a373?text=LUX'">
+                <p style="color: #d4a373; font-size: 9px; font-weight: 500; letter-spacing: 1px; margin: 0;">
+                    VIDA NOCTURNA<br>EXCLUSIVA
+                </p>
+                <div class="lux-btn-oval">EXPLORA LUX</div>
             </div>
         `;
 
         const bannerMobile = document.createElement('div');
         bannerMobile.id = 'banner-mobile-lux';
         bannerMobile.className = 'banner-lux-mobile';
-        bannerMobile.innerHTML = `<span>Patrocinado por <b>LUX DISCOTECA</b> • Ver más</span>`;
+        bannerMobile.innerHTML = `<span>Vida Nocturna • Patrocinado por <b>LUX DISCOTECA</b></span>`;
 
         bannerPC.onclick = () => this.scrollToLux();
         bannerMobile.onclick = () => this.scrollToLux();
@@ -121,16 +124,17 @@ const LuxPatrocinio = {
     checkStatus: function() {
         const params = new URLSearchParams(window.location.search);
         const esVidaNocturna = params.get('categoria') === 'vida nocturna';
+        
         const bannerPC = document.getElementById('banner-pc-lux');
         const bannerMobile = document.getElementById('banner-mobile-lux');
 
         if (esVidaNocturna) {
             if (window.innerWidth > 768) {
-                bannerPC.style.display = 'block';
-                bannerMobile.style.display = 'none';
+                if(bannerPC) bannerPC.style.display = 'block';
+                if(bannerMobile) bannerMobile.style.display = 'none';
             } else {
-                bannerMobile.style.display = 'block';
-                bannerPC.style.display = 'none';
+                if(bannerMobile) bannerMobile.style.display = 'block';
+                if(bannerPC) bannerPC.style.display = 'none';
             }
         } else {
             if(bannerPC) bannerPC.style.display = 'none';
@@ -139,39 +143,28 @@ const LuxPatrocinio = {
     },
 
     scrollToLux: function() {
-        // Buscamos todas las tarjetas
-        const cards = document.querySelectorAll('.glass-card, .business-card'); 
-        let found = false;
-
+        // Buscamos todas las tarjetas de negocios
+        const cards = document.querySelectorAll('.glass-card, [onclick*="abrirModal"]');
+        
         for (let card of cards) {
-            // Buscamos específicamente "DISCOTECA" para no confundir con el Sport Bar
-            if (card.textContent.toUpperCase().includes('LUX DISCOTECA') || 
-               (card.textContent.toUpperCase().includes('LUX') && card.textContent.toUpperCase().includes('DISCO'))) {
+            const contenido = card.textContent.toUpperCase();
+            // Validamos que sea la discoteca y NO el sport bar
+            if (contenido.includes('LUX') && (contenido.includes('DISCOTECA') || contenido.includes('NIGHT'))) {
                 
                 card.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 
-                // Efecto visual de selección
-                card.style.transition = "all 0.5s ease";
+                // Efecto visual y apertura de modal
                 card.style.border = "2px solid #d4a373";
-                card.style.boxShadow = "0 0 20px rgba(212, 163, 115, 0.5)";
-
-                // DISPARAR EL MODAL: 
-                // Simulamos un clic en la tarjeta para que tu sistema abra el detalle
+                
                 setTimeout(() => {
+                    // Disparamos el clic para abrir el modal del registro
                     card.click();
+                    setTimeout(() => card.style.border = "", 2000);
                 }, 600);
-
-                setTimeout(() => {
-                    card.style.border = "";
-                    card.style.boxShadow = "";
-                }, 3000);
-
-                found = true;
+                
                 break;
             }
         }
-
-        if (!found) console.log("No se encontró la tarjeta específica de LUX Discoteca");
     }
 };
 
