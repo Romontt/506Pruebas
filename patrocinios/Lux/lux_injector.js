@@ -2,9 +2,8 @@ const LuxPatrocinio = {
     init: function() {
         this.injectStyles();
         this.createBanners();
-        // Ejecutamos el reordenamiento y luego el chequeo de estado
-        setTimeout(() => this.prioritizeLuxCard(), 500);
-        setInterval(() => this.checkStatus(), 200);
+        // Reordenar tarjetas cada vez que se cambie de categoría
+        setInterval(() => this.checkStatus(), 300);
     },
 
     injectStyles: function() {
@@ -12,11 +11,7 @@ const LuxPatrocinio = {
         const style = document.createElement('style');
         style.id = 'lux-styles';
         style.innerHTML = `
-            @keyframes luxFadeIn {
-                from { opacity: 0; transform: translateY(-45%) scale(0.95); }
-                to { opacity: 1; transform: translateY(-50%) scale(1); }
-            }
-
+            /* TÓTEM PC */
             .banner-lux-pc {
                 display: none;
                 position: fixed !important;
@@ -27,7 +22,7 @@ const LuxPatrocinio = {
                 background: #130f0e;
                 border: 1px solid rgba(212, 163, 115, 0.4);
                 border-radius: 60px;
-                z-index: 999 !important; 
+                z-index: 10000 !important;
                 text-align: center;
                 box-shadow: 0 25px 50px rgba(0,0,0,0.7);
                 overflow: hidden;
@@ -41,96 +36,68 @@ const LuxPatrocinio = {
                 color: #130f0e;
                 font-size: 9px;
                 font-weight: 900;
-                letter-spacing: 1px;
                 text-transform: uppercase;
-                line-height: 1.2;
             }
 
             .lux-totem-body {
-                padding: 25px 10px;
+                padding: 20px 10px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 20px;
+                gap: 15px;
             }
 
             .lux-btn-oval {
                 border: 1.5px solid #d4a373;
                 border-radius: 30px;
-                padding: 15px 8px;
+                padding: 12px 6px;
                 writing-mode: vertical-rl;
-                text-orientation: mixed;
                 color: #d4a373;
                 font-size: 10px;
                 font-weight: 700;
-                letter-spacing: 3px;
                 text-transform: uppercase;
-                cursor: pointer;
             }
 
-            /* BANNER MÓVIL - AJUSTADO DEBAJO DEL NAV */
+            /* BANNER MÓVIL STICKY - JUSTO DEBAJO DEL NAV */
             .banner-lux-mobile {
                 display: none;
-                position: fixed !important;
-                top: 85px !important; /* Aumentado para que no solape el nav */
-                left: 5%;
-                width: 90%;
-                background: rgba(19, 15, 14, 0.98);
-                border: 1px solid #d4a373;
-                border-radius: 12px;
+                position: sticky !important;
+                top: 88px !important; /* SE AJUSTARÁ DINÁMICAMENTE */
+                width: 100%;
+                background: #130f0e;
+                border-bottom: 1.5px solid #d4a373;
                 color: #ffffff;
                 padding: 12px;
-                z-index: 40 !important; /* Menor que el nav (50) pero mayor que las cards */
+                z-index: 45 !important; /* Debajo del nav (50) pero fijo al hacer scroll */
                 text-align: center;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.8);
-                backdrop-filter: blur(10px);
                 font-family: 'Inter', sans-serif;
                 font-size: 11px;
                 cursor: pointer;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.5);
             }
 
-            .banner-lux-mobile b { color: #d4a373; font-weight: 700; }
-
-            @keyframes mobileSlideIn {
-                from { opacity: 0; transform: translateY(-10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
+            .banner-lux-mobile b { color: #d4a373; }
         `;
         document.head.appendChild(style);
-    },
-
-    prioritizeLuxCard: function() {
-        const container = document.querySelector('.grid, .flex-wrap, #cards-container'); // Ajusta al ID de tu contenedor
-        if (!container) return;
-
-        const cards = Array.from(container.querySelectorAll('.glass-card'));
-        const luxCard = cards.find(card => 
-            card.textContent.toUpperCase().includes('LUX') && 
-            (card.textContent.toUpperCase().includes('DISCOTECA') || card.textContent.toUpperCase().includes('NIGHT'))
-        );
-
-        if (luxCard && container.firstChild !== luxCard) {
-            container.insertBefore(luxCard, container.firstChild);
-        }
     },
 
     createBanners: function() {
         if (document.getElementById('banner-pc-lux')) return;
 
+        // Banner PC
         const bannerPC = document.createElement('div');
         bannerPC.id = 'banner-pc-lux';
         bannerPC.className = 'banner-lux-pc';
         bannerPC.innerHTML = `
-            <div class="lux-header-gold">PATROCINIO<br>DE CATEGORÍA</div>
+            <div class="lux-header-gold">PATROCINIO</div>
             <div class="lux-totem-body">
-                <img src="patrocinios/Lux/lux-discoteca.webp" 
-                     style="width: 80px;" 
-                     onerror="this.src='https://placehold.co/80x80/130f0e/d4a373?text=LUX'">
-                <p style="color: #d4a373; font-size: 9px; font-weight: 500; margin: 0;">VIDA NOCTURNA</p>
+                <img src="patrocinios/Lux/lux-discoteca.webp" style="width: 70px;" onerror="this.src='https://placehold.co/80x80/130f0e/d4a373?text=LUX'">
+                <p style="color: #d4a373; font-size: 8px; font-weight: 600;">EXCLUSIVA</p>
                 <div class="lux-btn-oval">EXPLORA LUX</div>
             </div>
         `;
 
+        // Banner Móvil
         const bannerMobile = document.createElement('div');
         bannerMobile.id = 'banner-mobile-lux';
         bannerMobile.className = 'banner-lux-mobile';
@@ -140,7 +107,28 @@ const LuxPatrocinio = {
         bannerMobile.onclick = () => this.scrollToLux();
 
         document.body.appendChild(bannerPC);
-        document.body.appendChild(bannerMobile);
+        
+        // Inyectar móvil justo después del nav para que el sticky funcione perfecto
+        const navbar = document.querySelector('nav');
+        if (navbar) {
+            navbar.parentNode.insertBefore(bannerMobile, navbar.nextSibling);
+        }
+    },
+
+    prioritizeLuxCard: function() {
+        // Buscamos el contenedor de las tarjetas (ajusta si el id es diferente)
+        const container = document.getElementById('grid-comercios') || document.querySelector('.grid');
+        if (!container) return;
+
+        const cards = Array.from(container.children);
+        const luxCard = cards.find(card => 
+            card.textContent.toUpperCase().includes('LUX') && 
+            (card.textContent.toUpperCase().includes('DISCOTECA') || card.textContent.toUpperCase().includes('NIGHT'))
+        );
+
+        if (luxCard && container.firstChild !== luxCard) {
+            container.prepend(luxCard);
+        }
     },
 
     checkStatus: function() {
@@ -148,23 +136,22 @@ const LuxPatrocinio = {
         const esVidaNocturna = params.get('categoria') === 'vida nocturna';
         const bannerPC = document.getElementById('banner-pc-lux');
         const bannerMobile = document.getElementById('banner-mobile-lux');
+        const navbar = document.querySelector('nav');
 
         if (esVidaNocturna) {
-            // Esperamos a que haya tarjetas cargadas antes de mostrar el banner
-            const cardsLoaded = document.querySelectorAll('.glass-card').length > 0;
-            
-            if (cardsLoaded && bannerPC.style.display !== 'block' && bannerMobile.style.display !== 'block') {
-                setTimeout(() => {
-                    if (window.innerWidth > 768) {
-                        bannerPC.style.display = 'block';
-                        bannerPC.style.animation = 'luxFadeIn 0.8s ease forwards';
-                    } else {
-                        bannerMobile.style.display = 'block';
-                        bannerMobile.style.animation = 'mobileSlideIn 0.5s ease forwards';
-                    }
-                    this.prioritizeLuxCard(); // Re-chequeo por si cargaron dinámicamente
-                }, 800);
+            // Ajustar altura sticky según el alto real del nav
+            if (navbar && bannerMobile) {
+                bannerMobile.style.top = navbar.offsetHeight + 'px';
             }
+
+            if (window.innerWidth > 768) {
+                bannerPC.style.display = 'block';
+                bannerMobile.style.display = 'none';
+            } else {
+                bannerMobile.style.display = 'block';
+                bannerPC.style.display = 'none';
+            }
+            this.prioritizeLuxCard();
         } else {
             if(bannerPC) bannerPC.style.display = 'none';
             if(bannerMobile) bannerMobile.style.display = 'none';
@@ -172,7 +159,7 @@ const LuxPatrocinio = {
     },
 
     scrollToLux: function() {
-        const cards = document.querySelectorAll('.glass-card');
+        const cards = document.querySelectorAll('.glass-card, [onclick*="abrirModal"]');
         for (let card of cards) {
             const txt = card.textContent.toUpperCase();
             if (txt.includes('LUX') && (txt.includes('DISCOTECA') || txt.includes('NIGHT'))) {
