@@ -28,7 +28,7 @@ const LuxPatrocinio = {
             .banner-lux-pc {
                 display: none;
                 position: fixed !important;
-                left: 05px !important;
+                left: 10px !important;
                 top: 50% !important;
                 transform: translateY(-50%);
                 width: 130px;
