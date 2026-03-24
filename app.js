@@ -49,7 +49,6 @@ function volverInicio() {
         actualizarURL('todos');
         gestionarVisibilidadHeader('todos');
         
-        // Desactivar botones de filtro visualmente
         document.querySelectorAll('.filter-btn').forEach(btn => {
             if(btn.getAttribute('data-cat') === 'todos') activarBoton(btn);
         });
@@ -182,9 +181,7 @@ function actualizarFlechasNav() {
     }
 }
 
-// Función auxiliar para el estado (abierto/cerrado) si la usas
 function obtenerBadgeEstado(n) {
-    // Si no tienes esta lógica definida aún, devolvemos vacío para evitar errores
     return ''; 
 }
 
@@ -330,16 +327,14 @@ function verDetalle(id) {
     if (!n) return;
 
     const mensajeWA = encodeURIComponent(`¡Hola! Vi a ${n.nombre} en Punto 506 y me gustaría solicitar más información.`);
-    const mapsUrl = (n.maps_link && n.maps_link !== "null") ? n.maps_link : `https://www.google.com/maps/search/${encodeURIComponent(n.nombre + ' ' + n.direccion)}`;
+    const mapsUrl = (n.maps_link && n.maps_link !== "null") ? n.maps_link : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(n.nombre + ' ' + n.direccion)}`;
 
-    // --- LÓGICA DE RUTA PARA EL MENÚ ---
+    // --- LÓGICA DE MENÚ INTERACTIVO ---
     let botonMenuInteractivos = '';
     const esUyKeRico = n.nombre.toLowerCase().includes("uy.. que rico") || n.nombre.toLowerCase().includes("uy ke rico");
     
     if (n.menu_url || esUyKeRico) {
-        // Usamos la ruta de tu repositorio: menu/Uy_ke_rico/index.html
         const rutaFinal = n.menu_url || "menu/Uy_ke_rico/index.html";
-        
         botonMenuInteractivos = `
             <div class="flex justify-center mb-8">
                 <a href="${rutaFinal}" 
@@ -422,7 +417,6 @@ function verDetalle(id) {
         </div>
     `;
 
-    // Lógica Formspree Feedback (Sin cambios)
     const form = document.getElementById('feedback-form');
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -444,6 +438,7 @@ function verDetalle(id) {
     document.getElementById('modal-negocio').classList.remove('hidden');
     document.body.style.overflow = 'hidden';
 }
+
 function cerrarModal() {
     const modal = document.getElementById('modal-negocio');
     if (modal) modal.classList.add('hidden');
