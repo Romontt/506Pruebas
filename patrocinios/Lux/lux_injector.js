@@ -15,117 +15,88 @@ const LuxPatrocinio = {
         style.id = 'lux-styles';
         style.innerHTML = `
             @keyframes luxFadeIn {
-                from { opacity: 0; transform: translateX(-30px); }
+                from { opacity: 0; transform: translateX(-20px); }
                 to { opacity: 1; transform: translateX(0); }
             }
 
             @keyframes neonPulse {
-                0% { filter: drop-shadow(0 0 5px #d4a373) drop-shadow(0 0 15px rgba(212, 163, 115, 0.6)); }
-                50% { filter: drop-shadow(0 0 15px #d4a373) drop-shadow(0 0 30px rgba(212, 163, 115, 0.8)); }
-                100% { filter: drop-shadow(0 0 5px #d4a373) drop-shadow(0 0 15px rgba(212, 163, 115, 0.6)); }
+                0% { filter: drop-shadow(0 0 5px #d4a373) drop-shadow(0 0 15px rgba(212, 163, 115, 0.6)); transform: scale(1); }
+                50% { filter: drop-shadow(0 0 12px #d4a373) drop-shadow(0 0 25px rgba(212, 163, 115, 0.9)); transform: scale(1.05); }
+                100% { filter: drop-shadow(0 0 5px #d4a373) drop-shadow(0 0 15px rgba(212, 163, 115, 0.6)); transform: scale(1); }
             }
 
-            /* TÓTEM PC - DISEÑO CÁPSULA LUXURY */
+            /* TÓTEM PC */
             .banner-lux-pc {
                 display: none;
                 position: fixed !important;
-                left: 10px !important; /* Ajustado a 10px del borde */
+                left: 20px !important;
                 top: 50% !important;
                 transform: translateY(-50%);
-                width: 75px;
-                height: 320px;
-                background: linear-gradient(180deg, rgba(20, 18, 15, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
-                backdrop-filter: blur(15px);
-                border: 1.5px solid rgba(212, 163, 115, 0.5);
-                border-radius: 100px;
+                width: 100px;
+                background: rgba(10, 8, 8, 0.85);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(212, 163, 115, 0.4);
+                border-radius: 50px;
                 z-index: 10000 !important;
                 text-align: center;
-                box-shadow: 0 0 40px rgba(0,0,0,0.8), inset 0 0 15px rgba(212, 163, 115, 0.2);
-                padding: 30px 5px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+                padding: 25px 10px;
                 font-family: 'Montserrat', sans-serif;
-                animation: luxFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+                animation: luxFadeIn 0.8s ease-out forwards;
                 cursor: pointer;
-                transition: all 0.4s ease;
-                overflow: hidden;
+                transition: all 0.3s ease;
             }
 
-            .banner-lux-pc::before {
-                content: '';
-                position: absolute;
-                top: 0; left: 0; right: 0; height: 40px;
-                background: #d4a373;
-                clip-path: ellipse(60% 100% at 50% 0%);
-                opacity: 0.8;
-            }
-
-            .banner-lux-pc:hover {
-                border-color: #d4a373;
-                box-shadow: 0 0 50px rgba(212, 163, 115, 0.4);
-                transform: translateY(-52%) scale(1.02);
-            }
-
-            .lux-pc-vertical-text {
-                writing-mode: vertical-rl;
-                text-orientation: mixed;
-                color: #fff;
-                font-size: 11px;
-                letter-spacing: 4px;
-                text-transform: uppercase;
-                margin: 20px auto;
-                opacity: 0.9;
-                font-weight: 400;
-            }
-
-            .lux-pc-tag-bottom {
-                position: absolute;
-                bottom: 35px;
-                left: 0;
-                right: 0;
+            .lux-pc-tag {
                 font-size: 8px;
                 color: #d4a373;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                margin-bottom: 15px;
                 font-weight: 800;
-                letter-spacing: 1px;
             }
 
-            /* BANNER MÓVIL - TEXTO Y LOGO MAXIMIZADOS */
+            /* BANNER MÓVIL - DISEÑO NEÓN REFINADO */
             .banner-lux-mobile {
                 display: none;
                 position: sticky !important;
                 width: 100%;
                 background: #000;
-                border-bottom: 2px solid #d4a373;
+                border-bottom: 1px solid #d4a373;
                 padding: 10px 15px;
                 z-index: 49 !important;
                 font-family: 'Montserrat', sans-serif;
                 cursor: pointer;
+                box-shadow: 0 5px 20px rgba(212, 163, 115, 0.15);
             }
 
             .lux-m-container {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 15px;
+                gap: 12px;
             }
 
             .lux-m-text {
-                font-size: 13px; /* Más grande */
+                font-size: 10px;
                 color: #fff;
-                letter-spacing: 1.2px;
+                letter-spacing: 1px;
                 text-transform: uppercase;
-                font-weight: 700;
+                font-weight: 500;
             }
 
             .lux-m-text b {
                 color: #d4a373;
-                font-size: 10px; /* Más grande */
-                margin-left: 5px;
-                text-shadow: 0 0 8px rgba(212, 163, 115, 0.5);
+                font-size: 8px;
+                margin-left: 4px;
+                opacity: 0.9;
+                text-shadow: 0 0 5px rgba(212, 163, 115, 0.4);
             }
 
             .lux-m-logo-neon {
-                height: 55px; /* Más grande sin romper el banner */
-                filter: drop-shadow(0 0 8px #d4a373);
-                animation: neonPulse 2s infinite ease-in-out;
+                height: 50px; /* Un poco más grande como pediste */
+                animation: neonPulse 2.5s infinite ease-in-out;
+                transition: all 0.3s ease;
                 object-fit: contain;
             }
         `;
@@ -135,14 +106,14 @@ const LuxPatrocinio = {
     createBanners: function() {
         if (document.getElementById('banner-pc-lux')) return;
 
-        // PC - Tótem Luxury
+        // PC
         const bannerPC = document.createElement('div');
         bannerPC.id = 'banner-pc-lux';
         bannerPC.className = 'banner-lux-pc';
         bannerPC.innerHTML = `
-            <img src="patrocinios/Lux/lux-discoteca.png" style="width: 55px; margin-top: 15px; filter: drop-shadow(0 0 10px #d4a373);">
-            <div class="lux-pc-vertical-text">VIDA NOCTURNA</div>
-            <div class="lux-pc-tag-bottom">EXPLORA LUX</div>
+            <div class="lux-pc-tag">Partner</div>
+            <img src="patrocinios/Lux/lux-discoteca.png" style="width: 70px; filter: drop-shadow(0 0 10px rgba(212,163,115,0.3));">
+            <div style="margin-top: 15px; width: 15px; height: 1px; background: #d4a373; margin-left: auto; margin-right: auto;"></div>
         `;
 
         // Móvil
