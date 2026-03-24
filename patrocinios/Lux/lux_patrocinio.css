@@ -1,44 +1,55 @@
-/* BANNER PC (Lateral) */
+/* BANNER PC - Lateral Izquierdo */
 .banner-lux-pc {
-    display: none; /* Se activa con JS */
+    display: none;
     position: fixed;
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    width: 120px;
-    background: rgba(0, 0, 0, 0.8);
-    border: 1px solid #d4af37;
-    border-radius: 12px;
-    padding: 10px;
-    z-index: 999;
+    width: 140px;
+    background: rgba(19, 15, 14, 0.95);
+    border: 1px solid #d4a373;
+    border-radius: 4px;
+    padding: 15px;
+    z-index: 100;
     cursor: pointer;
     text-align: center;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 10px rgba(212, 163, 115, 0.1);
 }
 
-.banner-lux-pc:hover {
-    transform: translateY(-50%) scale(1.05);
-}
-
-/* BANNER MÓVIL (Barra debajo del Header) */
+/* BANNER MÓVIL - Debajo del Header */
 .banner-lux-mobile {
     display: none;
     position: sticky;
-    top: 60px; /* Ajustar según la altura de tu header */
+    top: 70px; /* Ajusta según tu header real */
     width: 100%;
-    background: linear-gradient(90deg, #000, #1a1a1a);
-    border-bottom: 1px solid #d4af37;
-    padding: 8px 0;
-    z-index: 998;
+    background: #d4a373;
+    color: #130f0e;
+    padding: 10px;
+    z-index: 50;
     text-align: center;
-    color: #d4af37;
-    font-size: 14px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
 }
 
-/* RESALTADO DE TARJETAS LUX */
-.card-highlight-lux {
-    border: 2px solid #d4af37 !important;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4) !important;
-    order: -1; /* Esto la manda al principio si usas Flexbox/Grid */
+/* RESALTADO DE TARJETA LUX */
+.lux-highlight-card {
+    border: 2px solid #d4a373 !important;
+    position: relative;
+}
+
+.lux-highlight-card::before {
+    content: "PATROCINADO";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #d4a373;
+    color: #130f0e;
+    font-size: 7px;
+    font-weight: 900;
+    padding: 2px 6px;
+    z-index: 20;
+    letter-spacing: 0.1em;
 }
