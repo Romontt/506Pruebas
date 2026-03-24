@@ -15,115 +15,91 @@ const LuxPatrocinio = {
         style.id = 'lux-styles';
         style.innerHTML = `
             @keyframes luxFadeIn {
-                from { opacity: 0; transform: translateY(-30%) scale(0.9); }
-                to { opacity: 1; transform: translateY(-50%) scale(1); }
+                from { opacity: 0; transform: translateX(-20px); }
+                to { opacity: 1; transform: translateX(0); }
             }
 
-            @keyframes shine {
-                0% { background-position: -100px; }
-                100% { background-position: 200px; }
-            }
-
-            /* TÓTEM PC - ESTILO ELEGANTE */
+            /* TÓTEM PC - FINO Y ELEGANTE */
             .banner-lux-pc {
                 display: none;
                 position: fixed !important;
-                left: 15px !important;
+                left: 20px !important;
                 top: 50% !important;
                 transform: translateY(-50%);
-                width: 140px;
-                background: #0a0808;
-                border: 1px solid #d4a373;
-                border-radius: 70px;
+                width: 100px;
+                background: rgba(10, 8, 8, 0.85);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(212, 163, 115, 0.4);
+                border-radius: 50px;
                 z-index: 10000 !important;
                 text-align: center;
-                box-shadow: 0 0 30px rgba(212, 163, 115, 0.2);
-                overflow: hidden;
-                font-family: 'Montserrat', sans-serif;
-                animation: luxFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-                cursor: pointer;
-                padding-bottom: 20px;
-            }
-
-            .lux-pc-logo-container {
+                box-shadow: 0 10px 40px rgba(0,0,0,0.5);
                 padding: 25px 10px;
-                position: relative;
-            }
-
-            .lux-pc-logo-blur {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 80px;
-                filter: blur(15px);
-                opacity: 0.5;
-                z-index: 1;
-            }
-
-            .lux-btn-explora {
-                border: 1px solid #d4a373;
-                border-radius: 20px;
-                padding: 8px 12px;
-                color: #d4a373;
-                font-size: 9px;
-                font-weight: 700;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                margin: 0 10px;
+                font-family: 'Montserrat', sans-serif;
+                animation: luxFadeIn 0.8s ease-out forwards;
+                cursor: pointer;
                 transition: all 0.3s ease;
             }
 
-            /* BANNER MÓVIL - DISEÑO DE LA IMAGEN */
+            .banner-lux-pc:hover {
+                border-color: #d4a373;
+                box-shadow: 0 0 20px rgba(212, 163, 115, 0.3);
+                transform: translateY(-52%);
+            }
+
+            .lux-pc-tag {
+                font-size: 8px;
+                color: #d4a373;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                margin-bottom: 15px;
+                font-weight: 800;
+            }
+
+            /* BANNER MÓVIL - COMPACTO Y LOGO PROTAGONISTA */
             .banner-lux-mobile {
                 display: none;
                 position: sticky !important;
                 width: 100%;
-                background: #000000;
+                background: #000;
                 border-bottom: 1px solid #d4a373;
-                color: #ffffff;
-                padding: 20px 10px;
+                padding: 8px 15px;
                 z-index: 49 !important;
-                text-align: center;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
                 font-family: 'Montserrat', sans-serif;
                 cursor: pointer;
             }
 
-            .lux-m-content {
+            .lux-m-container {
                 display: flex;
-                flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                gap: 5px;
+                gap: 15px;
             }
 
-            .lux-m-title {
-                font-size: 24px;
-                font-weight: 400;
+            .lux-m-text-box {
+                text-align: right;
+            }
+
+            .lux-m-small-title {
+                display: block;
+                font-size: 10px;
+                color: #fff;
                 letter-spacing: 1px;
-                margin: 0;
-            }
-
-            .lux-m-subtitle {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                font-size: 11px;
-                color: rgba(255,255,255,0.7);
-                letter-spacing: 2px;
                 text-transform: uppercase;
+                opacity: 0.8;
             }
 
-            .lux-m-logo-img {
-                height: 35px;
-                filter: drop-shadow(0 0 8px rgba(212, 163, 115, 0.6));
-            }
-
-            /* Efecto glow suave para el nombre en el subtítulo */
-            .lux-m-subtitle b {
+            .lux-m-patro-by {
+                display: block;
+                font-size: 7px;
                 color: #d4a373;
-                font-weight: 700;
+                letter-spacing: 0.5px;
+                margin-top: 2px;
+            }
+
+            .lux-m-logo-large {
+                height: 45px; /* Logo grande */
+                filter: drop-shadow(0 0 10px rgba(212, 163, 115, 0.4));
             }
         `;
         document.head.appendChild(style);
@@ -137,26 +113,22 @@ const LuxPatrocinio = {
         bannerPC.id = 'banner-pc-lux';
         bannerPC.className = 'banner-lux-pc';
         bannerPC.innerHTML = `
-            <div style="background: rgba(212, 163, 115, 0.1); padding: 15px 5px; font-size: 10px; color: #d4a373; font-weight: 800; letter-spacing: 1px;">LUX PARTNER</div>
-            <div class="lux-pc-logo-container">
-                <img src="patrocinios/Lux/lux-discoteca.webp" class="lux-pc-logo-blur">
-                <img src="patrocinios/Lux/lux-discoteca.webp" style="width: 70px; position: relative; z-index: 2;">
-            </div>
-            <p style="color: #fff; font-size: 10px; margin-bottom: 15px; letter-spacing: 1px; opacity: 0.9;">VIDA NOCTURNA</p>
-            <div class="lux-btn-explora">EXPLORA LUX</div>
+            <div class="lux-pc-tag">Partner</div>
+            <img src="patrocinios/Lux/lux-discoteca.webp" style="width: 70px; filter: drop-shadow(0 0 10px rgba(212,163,115,0.3));">
+            <div style="margin-top: 15px; width: 15px; height: 1px; background: #d4a373; margin-left: auto; margin-right: auto;"></div>
         `;
 
-        // Banner Móvil (Siguiendo la imagen)
+        // Banner Móvil
         const bannerMobile = document.createElement('div');
         bannerMobile.id = 'banner-mobile-lux';
         bannerMobile.className = 'banner-lux-mobile';
         bannerMobile.innerHTML = `
-            <div class="lux-m-content">
-                <h2 class="lux-m-title">Vida Nocturna</h2>
-                <div class="lux-m-subtitle">
-                    PATROCINADO POR 
-                    <img src="patrocinios/Lux/lux-discoteca.webp" class="lux-m-logo-img" onerror="this.src='https://placehold.co/60x30/000/d4a373?text=LUX'">
+            <div class="lux-m-container">
+                <div class="lux-m-text-box">
+                    <span class="lux-m-small-title">Vida Nocturna</span>
+                    <span class="lux-m-patro-by">PATROCINADO POR</span>
                 </div>
+                <img src="patrocinios/Lux/lux-discoteca.webp" class="lux-m-logo-large" onerror="this.src='https://placehold.co/80x40/000/d4a373?text=LUX'">
             </div>
         `;
 
@@ -202,9 +174,7 @@ const LuxPatrocinio = {
 
         if (esVidaNocturna) {
             if (window.innerWidth > 768) {
-                setTimeout(() => {
-                    if(bannerPC) bannerPC.style.display = 'block';
-                }, 500);
+                if(bannerPC) bannerPC.style.display = 'block';
                 if(bannerMobile) bannerMobile.style.display = 'none';
             } else {
                 if(bannerMobile) {
