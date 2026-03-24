@@ -14,7 +14,12 @@ const LuxPatrocinio = {
         const style = document.createElement('style');
         style.id = 'lux-styles';
         style.innerHTML = `
-            /* TÓTEM PC - TU DISEÑO ORIGINAL */
+            @keyframes luxFadeIn {
+                from { opacity: 0; transform: translateY(-45%) scale(0.95); }
+                to { opacity: 1; transform: translateY(-50%) scale(1); }
+            }
+
+            /* TÓTEM PC - DISEÑO ORIGINAL */
             .banner-lux-pc {
                 display: none;
                 position: fixed !important;
@@ -39,25 +44,29 @@ const LuxPatrocinio = {
                 color: #130f0e;
                 font-size: 9px;
                 font-weight: 900;
+                letter-spacing: 1px;
                 text-transform: uppercase;
+                line-height: 1.2;
             }
 
             .lux-totem-body {
-                padding: 20px 10px;
+                padding: 25px 10px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 15px;
+                gap: 20px;
             }
 
             .lux-btn-oval {
                 border: 1.5px solid #d4a373;
                 border-radius: 30px;
-                padding: 12px 6px;
+                padding: 15px 8px;
                 writing-mode: vertical-rl;
+                text-orientation: mixed;
                 color: #d4a373;
                 font-size: 10px;
                 font-weight: 700;
+                letter-spacing: 3px;
                 text-transform: uppercase;
             }
 
