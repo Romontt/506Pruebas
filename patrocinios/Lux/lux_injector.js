@@ -28,57 +28,56 @@ const LuxPatrocinio = {
         document.head.appendChild(link);
     },
 
-    createBanners: function() {
-        // 1. BANNER PC (Tótem Lateral)
-        const bannerPC = document.createElement('div');
-        bannerPC.id = 'banner-pc-lux';
-        bannerPC.className = 'banner-lux-pc';
-        bannerPC.innerHTML = `
-            <div class="iso-emblem nav-logo-iso" style="margin: 0 auto 15px;">
-                <span style="font-family: 'Cinzel'; color: #d4a373; font-size: 14px;">L</span>
-            </div>
-            <div style="writing-mode: vertical-rl; text-orientation: mixed; margin: 0 auto;">
-                <span class="serif-title" style="color: #d4a373; font-size: 18px;">LUX</span>
-            </div>
-            <p style="font-size: 7px; letter-spacing: 0.2em; margin-top: 15px; color: rgba(212,163,115,0.6);">SOCIO ELITE</p>
-        `;
-        
-        // 2. BANNER MÓVIL (Sticky Superior)
-        const bannerMobile = document.createElement('div');
-        bannerMobile.id = 'banner-mobile-lux';
-        bannerMobile.className = 'banner-lux-mobile';
-        bannerMobile.innerHTML = `
-            <span>EXPLORA LA EXPERIENCIA LUX • VIDA NOCTURNA</span>
-        `;
+   createBanners: function() {
+    const bannerPC = document.createElement('div');
+    bannerPC.id = 'banner-pc-lux';
+    bannerPC.className = 'banner-lux-pc';
+    bannerPC.innerHTML = `
+        <div class="lux-capsule-header">
+            <span>PATROCINIO<br>DE CATEGORÍA</span>
+        </div>
+        <img src="img/logolux.webp" style="width: 70%; margin: 0 auto; filter: drop-shadow(0 0 5px rgba(212,163,115,0.5));" alt="LUX">
+        <p style="font-size: 9px; color: #d4a373; margin-top: 15px; opacity: 0.7; letter-spacing: 0.1em;">VIDA NOCTURNA<br>EXCLUSIVA</p>
+        <div class="lux-btn-explore">EXPLORA LUX</div>
+    `;
+    
+    const bannerMobile = document.createElement('div');
+    bannerMobile.id = 'banner-mobile-lux';
+    bannerMobile.className = 'banner-lux-mobile';
+    bannerMobile.innerHTML = `<span>EXPLORA LA EXPERIENCIA LUX</span>`;
 
-        // Añadir evento de click para scroll a la tarjeta
-        [bannerPC, bannerMobile].forEach(el => {
-            el.onclick = () => this.scrollToLux();
-        });
+    [bannerPC, bannerMobile].forEach(el => {
+        el.onclick = () => this.scrollToLux();
+    });
 
-        document.body.appendChild(bannerPC);
-        document.body.appendChild(bannerMobile);
-    },
+    document.body.appendChild(bannerPC);
+    document.body.appendChild(bannerMobile);
+},
 
-    checkStatus: function() {
-        // Usamos la variable global de tu App principal 'categoriaActual'
-        // Si no existe (por ser página de pruebas), buscamos en el DOM
-        const catName = typeof categoriaActual !== 'undefined' 
-            ? categoriaActual.toLowerCase() 
-            : document.querySelector('#categoria-titulo h2')?.innerText.toLowerCase();
+checkStatus: function() {
+    // Detectar categoría desde el H2 de tu página
+    const h2Element = document.querySelector('#categoria-titulo h2');
+    const catName = h2Element ? h2Element.innerText.toLowerCase().trim() : "";
+    
+    const isLuxCategory = catName === "vida nocturna";
+    const bannerPC = document.getElementById('banner-pc-lux');
+    const bannerMobile = document.getElementById('banner-mobile-lux');
 
-        const isLuxCategory = catName === this.targetCategory;
-        const bannerPC = document.getElementById('banner-pc-lux');
-        const bannerMobile = document.getElementById('banner-mobile-lux');
-
-        if (isLuxCategory) {
-            this.handleResize(); // Muestra el que corresponda
-        } else {
-            if(bannerPC) bannerPC.style.display = 'none';
+    if (isLuxCategory) {
+        // Mostrar según tamaño de pantalla
+        if (window.innerWidth > 768) {
+            if(bannerPC) bannerPC.style.display = 'block';
             if(bannerMobile) bannerMobile.style.display = 'none';
+        } else {
+            if(bannerPC) bannerPC.style.display = 'block'; // O 'flex' según necesites
+            if(bannerMobile) bannerMobile.style.display = 'block';
         }
-    },
-
+    } else {
+        // OCULTAR ABSOLUTAMENTE en otras categorías
+        if(bannerPC) bannerPC.style.display = 'none';
+        if(bannerMobile) bannerMobile.style.display = 'none';
+    }
+}
     handleResize: function() {
         // Solo actuar si estamos en la categoría correcta
         const catName = typeof categoriaActual !== 'undefined' ? categoriaActual.toLowerCase() : "";
