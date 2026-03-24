@@ -85,7 +85,7 @@ const LuxPatrocinio = {
         bannerPC.innerHTML = `
             <div class="lux-capsule-header">PATROCINIO<br>DE CATEGORÍA</div>
             <div style="padding: 10px 0;">
-                <img src="https://romontt.github.io/506Pruebas/img/logolux.webp" 
+                <img src="https://romontt.github.io/506Pruebas/img/lux-discoteca.webp" 
                      style="width: 70px; display: block; margin: 0 auto;" 
                      onerror="this.src='https://placehold.co/70x70/2c1e1a/d4a373?text=LUX'">
             </div>
