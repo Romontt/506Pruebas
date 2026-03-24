@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    </script>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+   <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="icon-mobile.svg">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#130f0e">
     <link rel="manifest" href="site.webmanifest">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Punto 506 | Guía de Actividades y Comercio en Pococí</title>
-    <meta name="description" content="Descubre qué hacer en Guápiles y Pococí. La guía más completa para encontrar dónde comer, salir de noche, servicios de salud y turismo local. Tu conexión con lo mejor de la zona.">
+    <title>¿Qué hacer en Guápiles? | Guía de Actividades y Comercio Punto 506</title>
+    <meta name="description" content="Descubre qué hacer en Guápiles hoy. Directorio exclusivo de restaurantes, salud, eventos y servicios en Pococí. La guía más completa para conectar con lo mejor de la zona.">
     <meta name="keywords" content="qué hacer en guápiles, restaurantes en pococí, turismo guápiles, salir en guápiles, servicios profesionales pococí, punto 506, montzu cr, guía comercial guápiles">
+    <meta name="geo.region" content="CR-L" />
+    <meta name="geo.placename" content="Guapiles" />
     <meta property="og:title" content="¿Qué hacer en Guápiles? | Punto 506">
     <meta property="og:description" content="Explora los mejores lugares para comer, relajarte y comprar en Pococí. Todo en un solo lugar.">
     <meta property="og:image" content="https://punto506.montzucr.com/img/og-preview.webp"> <meta property="og:url" content="https://punto506.montzucr.com/">
     <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=Montserrat:wght@700&family=Baskervville:italic&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="estilos.css">
     <style>
@@ -25,6 +27,22 @@
         .custom-scroll::-webkit-scrollbar-track { background: #130f0e; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #d4a373; }
     </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Guide",
+  "name": "Punto 506 - Guía de Guápiles",
+  "description": "Directorio de actividades y comercios en Guápiles y Pococí",
+  "publisher": {
+    "@type": "Organization",
+    "name": "MONTZU CR"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Guápiles"
+  }
+}
+</script>
 </head>
 <body class="antialiased text-stone-200">
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFXFGHPZ"
@@ -87,13 +105,14 @@
                     "Punto 506 es un espacio creado para fortalecer el comercio local en Pococí. Nuestra misión es conectar a la comunidad con servicios profesionales de calidad, sirviendo como una plataforma de crecimiento mutuo donde cada negocio tiene el potencial de destacar y cada usuario encuentra lo mejor de nuestra zona."
                 </p>
             </div>
-            <section class="sr-only">
-    <h2>Lo mejor de Guápiles y Pococí</h2>
-    <p>Si buscas qué hacer en Guápiles hoy, Punto 506 te ofrece una selección curada de gastronomía, vida nocturna y turismo. Desde los mejores cortes de carne hasta asesoría en visas y salud visual.</p>
+          <section class="sr-only">
+    <h2>Guía Comercial de Guápiles y Pococí</h2>
+    <p>Si no sabes qué hacer en Guápiles, Punto 506 es tu portal de referencia. Encuentra:</p>
     <ul>
-        <li>¿Dónde comer en Guápiles? Encuentra los mejores restaurantes, cafés y bares en nuestro directorio.</li>
-        <li>Servicios en Pococí: Abogados, fotografía, diseño y trámites.</li>
-        <li>Salud y Bienestar: Podología, ópticas y estética.</li>
+        <li><strong>Restaurantes en Guápiles:</strong> Gastronomía local, cafés y vida nocturna.</li>
+        <li><strong>Salud en Pococí:</strong> Clínicas médicas como AC Medical, odontología y estética.</li>
+        <li><strong>Servicios Profesionales:</strong> Abogados en Guápiles, veterinarias y diseño.</li>
+        <li><strong>Turismo Local:</strong> Tours, hoteles y actividades recreativas en la zona de Pococí.</li>
     </ul>
 </section>
             <div id="discover-tagline" class="hidden transition-all duration-700 mb-10">
@@ -229,27 +248,39 @@
     <script src="horarios.js"></script>
 <script src="app.js"></script>
     <script>
-      // --- FUNCIÓN DE ANALYTICS MEJORADA ---
-function registrarClickNegocio(nombreNegocio, plataforma) {
-    // 1. Esto imprimirá en la consola de tu navegador (F12) para que confirmes que el clic funciona
-    console.log("Intentando enviar evento:", nombreNegocio, plataforma);
-    // 2. Intentar enviar vía gtag (forma directa)
+// 1. Configuración de Conexión
+// Sustituye con tus credenciales reales de Supabase
+const _supabase = supabase.createClient('https://yfqxnjohojtbjevrmbmq.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlmcXhuam9ob2p0YmpldnJtYm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MjI4ODgsImV4cCI6MjA4ODM5ODg4OH0.ze32GU0sW7EZ5oicnLFlHpthtLcSTUxZ9rlHSyQLFso');
+// 2. Función Maestra de Rastreo
+async function registrarActividad(tipo, valor) {
+    // Validamos que existan datos antes de procesar
+    if (!tipo || !valor) return;
+    console.log(`[LOG] Evento: ${tipo} | Detalle: ${valor}`);
+    // A. Google Analytics (GA4)
     if (typeof gtag === 'function') {
-        gtag('event', 'click_negocio', {
-            'business_name': nombreNegocio,
-            'platform': plataforma,
-            'transport_type': 'beacon',
-            'send_to': 'G-SCCTHXBBP7' // Forzamos el envío a tu ID específico
-        });
-    } 
-    // 3. También lo enviamos al dataLayer por si usas GTM
-    if (typeof dataLayer !== 'undefined') {
-        dataLayer.push({
-            'event': 'click_negocio',
-            'business_name': nombreNegocio,
-            'platform': plataforma
+        gtag('event', tipo, {
+            'item_id': valor.toLowerCase().replace(/\s+/g, '_'), // ID normalizado
+            'item_name': valor,
+            'proyecto': 'Punto 506'
         });
     }
+    // B. Supabase (Inserción Silenciosa)
+    // Usamos .then() para que la UI no se bloquee esperando la respuesta de la DB
+    _supabase
+        .from('registros_actividad')
+        .insert([{ 
+            tipo_evento: tipo, 
+            nombre_negocio: valor, 
+            fecha: new Date().toISOString() 
+        }])
+        .then(({ error }) => {
+            if (error) console.warn("Supabase Sync Error:", error.message);
+        });
+}
+// 3. Función específica para clics
+function registrarClickNegocio(nombreNegocio, plataforma) {
+    const detalle = `${nombreNegocio} (${plataforma})`;
+    registrarActividad('click_red_social', detalle);
 }
         const legalTexts = {
             terminos: `
@@ -343,19 +374,16 @@ window.onscroll = function() {
     }
 };
     </script>
-   <div id="modal-registro" class="fixed inset-0 z-[1200] hidden flex items-center justify-center p-4 bg-black/95 backdrop-blur-2xl">
+    <div id="modal-registro" class="fixed inset-0 z-[1200] hidden flex items-center justify-center p-4 bg-black/95 backdrop-blur-2xl">
     <div class="bg-[#1c1614] w-full max-w-md border border-[#d4a373]/20 shadow-2xl relative p-8 md:p-10 rounded-sm">
         <button onclick="cerrarModalRegistro()" class="absolute top-6 right-6 text-[#d4a373]/60 hover:text-[#d4a373] transition">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" /></svg>
         </button>
         <div class="text-center mb-8">
             <h2 class="serif-title text-[#d4a373] text-xl mb-2 uppercase tracking-widest font-bold">Unirse a Punto 506</h2>
             <p class="text-stone-400 text-[9px] uppercase tracking-[0.3em]">Déjanos tus datos y nos pondremos en contacto</p>
         </div>
-        
-        <form id="form-registro" class="space-y-5">
+<form id="form-registro" class="space-y-5">
             <div>
                 <label class="block text-[8px] uppercase tracking-widest text-[#d4a373] mb-2 font-bold ml-1">Nombre del Negocio</label>
                 <input type="text" name="nombre_negocio" required class="input-registro" placeholder="Ej: Café de la Montaña">
@@ -376,29 +404,5 @@ window.onscroll = function() {
         </form>
     </div>
 </div>
-
-<div id="banner-pc-lux" class="banner-lux-pc" onclick="abrirLux()">
-    <img src="patrocinios/Lux/logo-lux.png" class="w-full mb-2" alt="Lux Logo">
-    <span class="text-[#d4a373] text-[8px] font-black tracking-widest uppercase">VIP ACCESS</span>
-</div>
-
-<div id="banner-mobile-lux" class="banner-lux-mobile" onclick="abrirLux()">
-    ✨ LUX PRESENTA: LA MEJOR VIDA NOCTURNA - VER MÁS ✨
-</div>
-
-<script>
-    // Define aquí el ID real que tiene LUX en tu negocios.json
-    const PatrocinioLux = {
-        idLux: 32 // Cambia este número por el ID real en tu JSON
-    };
-
-    function abrirLux() {
-        if (typeof verDetalle === "function") {
-            verDetalle(PatrocinioLux.idLux);
-        }
-    }
-</script>
-
-<script src="script.js"></script>
 </body>
 </html>
