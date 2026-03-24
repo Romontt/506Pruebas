@@ -15,7 +15,7 @@ const LuxPatrocinio = {
                 to { opacity: 1; transform: translateY(-50%) scale(1); }
             }
 
-            /* TÓTEM PC - SE MANTIENE EL ESTILO QUE TE GUSTÓ */
+            /* TÓTEM PC */
             .banner-lux-pc {
                 display: none;
                 position: fixed !important;
@@ -31,6 +31,7 @@ const LuxPatrocinio = {
                 box-shadow: 0 25px 50px rgba(0,0,0,0.7);
                 overflow: hidden;
                 font-family: 'Montserrat', sans-serif;
+                cursor: pointer;
             }
 
             .lux-header-gold {
@@ -63,33 +64,29 @@ const LuxPatrocinio = {
                 font-weight: 700;
                 letter-spacing: 3px;
                 text-transform: uppercase;
-                cursor: pointer;
-                transition: all 0.3s ease;
             }
 
-            /* BANNER MÓVIL - CORREGIDO PARA NO TAPAR */
+            /* BANNER MÓVIL - FIJO TOTALMENTE */
             .banner-lux-mobile {
                 display: none;
-                position: sticky !important; /* STICKY PARA SEGUIR EL NAV */
-                top: 88px !important;       /* ALTO DEL NAV (AJUSTAR SEGÚN NECESIDAD) */
+                position: fixed !important; 
+                top: 72px !important; /* Ajuste para que quede pegado al nav de Punto 506 */
+                left: 0;
                 width: 100%;
-                background: #130f0e;        /* Color sólido para que no transparente las cards */
+                background: #130f0e;
                 border-bottom: 1.5px solid #d4a373;
                 color: #ffffff;
-                padding: 10px;
-                z-index: 45 !important;      /* Justo debajo del z-50 del nav */
+                padding: 8px 10px;
+                z-index: 49 !important; /* Justo debajo del nav (z-50) */
                 text-align: center;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.8);
                 font-family: 'Inter', sans-serif;
-                font-size: 11px;
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
             }
 
             .banner-lux-mobile b { color: #d4a373; }
-            
-            @keyframes mobileSlideIn {
-                from { opacity: 0; transform: translateY(-10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
         `;
         document.head.appendChild(style);
     },
@@ -97,61 +94,43 @@ const LuxPatrocinio = {
     createBanners: function() {
         if (document.getElementById('banner-pc-lux')) return;
 
-        // Banner PC
         const bannerPC = document.createElement('div');
         bannerPC.id = 'banner-pc-lux';
         bannerPC.className = 'banner-lux-pc';
         bannerPC.innerHTML = `
-            <div class="lux-header-gold">PATROCINIO<br>DE CATEGORÍA</div>
+            <div class="lux-header-gold">PATROCINIO</div>
             <div class="lux-totem-body">
-                <img src="patrocinios/Lux/lux-discoteca.webp" 
-                     style="width: 80px; filter: drop-shadow(0 0 10px rgba(212,163,115,0.3));" 
-                     onerror="this.src='https://placehold.co/80x80/130f0e/d4a373?text=LUX'">
-                <p style="color: #d4a373; font-size: 9px; font-weight: 500; letter-spacing: 1px; margin: 0;">
-                    VIDA NOCTURNA<br>EXCLUSIVA
-                </p>
-                <div class="lux-btn-oval">EXPLORA LUX</div>
+                <img src="patrocinios/Lux/lux-discoteca.webp" style="width: 80px;" onerror="this.src='https://placehold.co/80x80/130f0e/d4a373?text=LUX'">
+                <p style="color: #d4a373; font-size: 9px; font-weight: 500; margin: 0;">VIDA NOCTURNA</p>
+                <div class="lux-btn-oval">VER DISCOTECA</div>
             </div>
         `;
 
-        // Banner Móvil
         const bannerMobile = document.createElement('div');
         bannerMobile.id = 'banner-mobile-lux';
         bannerMobile.className = 'banner-lux-mobile';
-        bannerMobile.innerHTML = `<span>Vida Nocturna • Patrocinado por <b>LUX DISCOTECA</b></span>`;
+        bannerMobile.innerHTML = `<span>Patrocinado por <b>LUX DISCOTECA</b> • Ver más</span>`;
 
         bannerPC.onclick = () => this.scrollToLux();
         bannerMobile.onclick = () => this.scrollToLux();
 
         document.body.appendChild(bannerPC);
-
-        // INYECCIÓN LÓGICA: Ponerlo justo después del <nav>
-        const navbar = document.querySelector('nav');
-        if (navbar) {
-            navbar.parentNode.insertBefore(bannerMobile, navbar.nextSibling);
-        } else {
-            document.body.appendChild(bannerMobile);
-        }
+        document.body.appendChild(bannerMobile);
     },
 
     checkStatus: function() {
         const params = new URLSearchParams(window.location.search);
         const esVidaNocturna = params.get('categoria') === 'vida nocturna';
-        
         const bannerPC = document.getElementById('banner-pc-lux');
         const bannerMobile = document.getElementById('banner-mobile-lux');
 
         if (esVidaNocturna) {
             if (window.innerWidth > 768) {
-                if(bannerPC) bannerPC.style.display = 'block';
-                if(bannerMobile) bannerMobile.style.display = 'none';
+                bannerPC.style.display = 'block';
+                bannerMobile.style.display = 'none';
             } else {
-                if(bannerMobile) {
-                    bannerMobile.style.display = 'block';
-                    // No usamos transform en la animación para no romper el sticky
-                    bannerMobile.style.animation = 'mobileSlideIn 0.5s ease forwards';
-                }
-                if(bannerPC) bannerPC.style.display = 'none';
+                bannerMobile.style.display = 'block';
+                bannerPC.style.display = 'none';
             }
         } else {
             if(bannerPC) bannerPC.style.display = 'none';
@@ -160,15 +139,39 @@ const LuxPatrocinio = {
     },
 
     scrollToLux: function() {
-        const cards = document.querySelectorAll('.glass-card');
+        // Buscamos todas las tarjetas
+        const cards = document.querySelectorAll('.glass-card, .business-card'); 
+        let found = false;
+
         for (let card of cards) {
-            if (card.textContent.toUpperCase().includes('LUX')) {
+            // Buscamos específicamente "DISCOTECA" para no confundir con el Sport Bar
+            if (card.textContent.toUpperCase().includes('LUX DISCOTECA') || 
+               (card.textContent.toUpperCase().includes('LUX') && card.textContent.toUpperCase().includes('DISCO'))) {
+                
                 card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Efecto visual de selección
+                card.style.transition = "all 0.5s ease";
                 card.style.border = "2px solid #d4a373";
-                setTimeout(() => card.style.border = "1px solid rgba(212, 163, 115, 0.2)", 3000);
+                card.style.boxShadow = "0 0 20px rgba(212, 163, 115, 0.5)";
+
+                // DISPARAR EL MODAL: 
+                // Simulamos un clic en la tarjeta para que tu sistema abra el detalle
+                setTimeout(() => {
+                    card.click();
+                }, 600);
+
+                setTimeout(() => {
+                    card.style.border = "";
+                    card.style.boxShadow = "";
+                }, 3000);
+
+                found = true;
                 break;
             }
         }
+
+        if (!found) console.log("No se encontró la tarjeta específica de LUX Discoteca");
     }
 };
 
