@@ -316,26 +316,6 @@ function aplicarFiltrosCombinados() {
 }
 let timeoutBusqueda = null; // Variable para controlar el tiempo de espera al escribir
 
-function initFilters() {
-    const input = document.getElementById('busqueda');
-    
-    if (input) {
-        input.addEventListener('input', () => {
-            // 1. Ejecutamos el filtro visual como siempre
-            aplicarFiltrosCombinados();
-
-            // 2. Lógica para registrar la búsqueda en Supabase (Debounce)
-            // Esperamos 1.5 segundos después de que el usuario deja de escribir
-            clearTimeout(timeoutBusqueda);
-            timeoutBusqueda = setTimeout(() => {
-                const valor = input.value.trim();
-                // Solo registramos si la búsqueda tiene al menos 3 caracteres
-                if (valor.length >= 3) {
-                    registrarActividad('busqueda_usuario', valor);
-                }
-            }, 1500); 
-        });
-    }
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const catValue = btn.getAttribute('data-cat');
@@ -561,47 +541,6 @@ function cerrarModalRegistro() {
         document.body.style.overflow = 'auto';
     }
 }
-
-// Configuración del envío (Se ejecuta una sola vez al cargar la página)
-document.addEventListener('DOMContentLoaded', () => {
-    const registroForm = document.getElementById('form-registro') || document.getElementById('registro-form');
-    if (registroForm) {
-        registroForm.addEventListener('submit', async (e) => {
-            e.preventDefault(); 
-            const btn = registroForm.querySelector('button[type="submit"]');
-            const textoOriginal = btn.innerText;
-            btn.innerText = "PROCESANDO...";
-            btn.disabled = true;
-            // CREAMOS LOS DATOS
-            const formData = new FormData(registroForm);
-            try {
-                const response = await fetch("https://formspree.io/f/xqedvowy", {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (response.ok) {
-                    gtag('event', 'sign_up', { 'method': 'Formulario Registro' });
-                    btn.innerText = "¡REGISTRO EXITOSO!";
-                    btn.style.backgroundColor = "#d4a373";
-                    btn.style.color = "#130f0e";
-                    setTimeout(() => {
-                        cerrarModalRegistro();
-                        registroForm.reset();
-                        btn.innerText = textoOriginal;
-                        btn.disabled = false;
-                        btn.style.backgroundColor = "";
-                        btn.style.color = "";
-                    }, 2500);
-                } else {
-                    throw new Error("Respuesta no OK");
-                }
-            } catch (error) {
-                console.error("Error al enviar:", error);
-                btn.innerText = "ERROR - REINTENTAR";
-                btn.disabled = false;
-                btn.style.backgroundColor = "#ff4444";
-            }
         });
     }
 });
