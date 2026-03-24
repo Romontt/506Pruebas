@@ -3,6 +3,7 @@ const LuxPatrocinio = {
         this.injectStyles();
         this.createBanners();
         
+        // Sincronización para que no se esconda al escrolear en móvil (Mantiene tu lógica)
         window.addEventListener('scroll', () => this.syncMobilePosition());
         window.addEventListener('resize', () => this.syncMobilePosition());
         
@@ -24,7 +25,7 @@ const LuxPatrocinio = {
                 100% { background-position: 200px; }
             }
 
-            /* TÓTEM PC - APARICIÓN SUAVE */
+            /* TÓTEM PC - SE MANTIENE EXACTO */
             .banner-lux-pc {
                 display: none;
                 position: fixed !important;
@@ -76,33 +77,76 @@ const LuxPatrocinio = {
                 transition: all 0.4s ease;
             }
 
-            /* BANNER MÓVIL - MÁS GRANDE Y ELEGANTE */
+            /* =========================================
+               NUEVO BANNER MÓVIL - ESTILOreferencia
+               Mantiene posición STICKY y lógica JS
+               ========================================= */
             .banner-lux-mobile {
-                display: none;
-                position: sticky !important;
-                width: 100%;
-                background: linear-gradient(90deg, #0a0808 0%, #1a1514 50%, #0a0808 100%);
-                border-bottom: 2px solid #d4a373;
+                display: none; /* Controlado por JS */
+                position: sticky !important; /* Mantiene tu lógica sticky */
+                top: 0; /* Ajustado dinámicamente por syncMobilePosition() */
+                
+                /* Diseño Cápsula "Glow & Glass" */
+                width: 92%; /* Flota en la pantalla como la referencia */
+                margin: 10px auto !important; /* Centrado horizontal y separación del nav */
+                background: rgba(19, 15, 14, 0.6) !important; /* Traslúcido premium */
+                backdrop-filter: blur(10px) !important; /* Desenfoque esmerilado */
+                border: 1px solid rgba(212, 163, 115, 0.3) !important; /* Borde sutil */
+                border-radius: 40px !important; /* Forma de cápsula completa */
+                
                 color: #ffffff;
-                padding: 16px 10px; /* Más grande */
-                z-index: 49 !important;
-                text-align: center;
-                box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-                font-family: 'Montserrat', sans-serif;
-                font-size: 12px;
-                letter-spacing: 0.5px;
+                padding: 12px 15px !important; /* Espaciado interno horizontal */
+                z-index: 49 !important; /* Justo debajo del nav (50) */
+                
+                /* Brillo Perimetral Dorado (referencia Glow) */
+                box-shadow: 0 4px 15px rgba(212, 163, 115, 0.2) !important; 
+                
+                /* Layout Horizontal */
+                display: flex !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                gap: 10px;
+                
                 cursor: pointer;
+                font-family: 'Inter', sans-serif;
+                animation: mobileSlideIn 0.5s ease-out;
             }
 
-            /* Efecto de brillo en el texto del móvil */
-            .banner-lux-mobile span b { 
+            /* Sección de Texto Central (Copia del estilo de referencia) */
+            .banner-lux-mobile .info-container {
+                display: flex;
+                flex-direction: column;
+                text-align: left;
+                flex-grow: 1;
+            }
+
+            .banner-lux-mobile .info-container span {
+                font-size: 10px;
+                letter-spacing: 0.5px;
+                opacity: 0.8;
+            }
+
+            .banner-lux-mobile .info-container b {
                 color: #d4a373; 
-                text-shadow: 0 0 10px rgba(212, 163, 115, 0.4);
-                background: linear-gradient(90deg, #d4a373, #fff, #d4a373);
-                background-size: 200% auto;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                animation: shine 3s linear infinite;
+                font-size: 12px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                /* Sutil destello en el nombre de la marca */
+                text-shadow: 0 0 8px rgba(212, 163, 115, 0.3);
+            }
+
+            /* Botón de Acción derecho (Estiloreferencia) */
+            .banner-lux-mobile .action-btn {
+                border: 1px solid #d4a373;
+                border-radius: 20px;
+                color: #d4a373;
+                font-size: 10px;
+                font-weight: 700;
+                text-transform: uppercase;
+                padding: 6px 14px;
+                letter-spacing: 1px;
+                white-space: nowrap;
             }
 
             @keyframes mobileSlideIn {
@@ -116,6 +160,7 @@ const LuxPatrocinio = {
     createBanners: function() {
         if (document.getElementById('banner-pc-lux')) return;
 
+        // Banner PC - Estructura Original (Se mantiene)
         const bannerPC = document.createElement('div');
         bannerPC.id = 'banner-pc-lux';
         bannerPC.className = 'banner-lux-pc';
@@ -132,27 +177,42 @@ const LuxPatrocinio = {
             </div>
         `;
 
+        // Banner Móvil - NUEVA ESTRUCTURA HORIZONTAL (Tipo referencia)
         const bannerMobile = document.createElement('div');
         bannerMobile.id = 'banner-mobile-lux';
         bannerMobile.className = 'banner-lux-mobile';
-        bannerMobile.innerHTML = `<span>VIDA NOCTURNA • PATROCINADO POR <b>LUX DISCOTECA</b></span>`;
+        // Mismos textos pero en layout horizontal premium
+        bannerMobile.innerHTML = `
+            <img src="patrocinios/Lux/lux-discoteca.webp" 
+                 style="width: 32px; height: 32px; object-fit: contain;" 
+                 onerror="this.src='https://placehold.co/32x32/130f0e/d4a373?text=L'">
+            <div class="info-container">
+                <span>VIDA NOCTURNA • PATROCINADO</span>
+                <b>LUX DISCOTECA</b>
+            </div>
+            <div class="action-btn">VER</div>
+        `;
 
         bannerPC.onclick = () => this.scrollToLux();
         bannerMobile.onclick = () => this.scrollToLux();
 
         document.body.appendChild(bannerPC);
         
+        // Mantiene tu lógica de inserción DOM
         const navbar = document.querySelector('nav');
         if (navbar) {
             navbar.insertAdjacentElement('afterend', bannerMobile);
         }
     },
 
+    // Mantiene tu lógica sticky exacta
     syncMobilePosition: function() {
         const bannerMobile = document.getElementById('banner-mobile-lux');
         const navbar = document.querySelector('nav');
         if (bannerMobile && navbar && bannerMobile.style.display !== 'none') {
-            bannerMobile.style.top = `${navbar.offsetHeight}px`;
+            // Ajuste dinámico basado en la altura real del nav
+            const navHeight = navbar.offsetHeight;
+            bannerMobile.style.top = `${navHeight}px`;
         }
     },
 
@@ -179,14 +239,15 @@ const LuxPatrocinio = {
 
         if (esVidaNocturna) {
             if (window.innerWidth > 768) {
-                // Pequeño retraso para que cargue después de las tarjetas
+                // Pequeño retraso para que cargue después de las tarjetas (Mantiene lógica PC)
                 setTimeout(() => {
                     if(bannerPC) bannerPC.style.display = 'block';
                 }, 500);
                 if(bannerMobile) bannerMobile.style.display = 'none';
             } else {
                 if(bannerMobile) {
-                    bannerMobile.style.display = 'block';
+                    // Mantiene lógica de aparición móvil
+                    bannerMobile.style.display = 'flex'; // Cambiado a flex para el nuevo layout
                     this.syncMobilePosition(); 
                 }
                 if(bannerPC) bannerPC.style.display = 'none';
