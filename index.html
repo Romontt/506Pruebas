@@ -343,16 +343,19 @@ window.onscroll = function() {
     }
 };
     </script>
-    <div id="modal-registro" class="fixed inset-0 z-[1200] hidden flex items-center justify-center p-4 bg-black/95 backdrop-blur-2xl">
+   <div id="modal-registro" class="fixed inset-0 z-[1200] hidden flex items-center justify-center p-4 bg-black/95 backdrop-blur-2xl">
     <div class="bg-[#1c1614] w-full max-w-md border border-[#d4a373]/20 shadow-2xl relative p-8 md:p-10 rounded-sm">
         <button onclick="cerrarModalRegistro()" class="absolute top-6 right-6 text-[#d4a373]/60 hover:text-[#d4a373] transition">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" /></svg>
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+            </svg>
         </button>
         <div class="text-center mb-8">
             <h2 class="serif-title text-[#d4a373] text-xl mb-2 uppercase tracking-widest font-bold">Unirse a Punto 506</h2>
             <p class="text-stone-400 text-[9px] uppercase tracking-[0.3em]">Déjanos tus datos y nos pondremos en contacto</p>
         </div>
-<form id="form-registro" class="space-y-5">
+        
+        <form id="form-registro" class="space-y-5">
             <div>
                 <label class="block text-[8px] uppercase tracking-widest text-[#d4a373] mb-2 font-bold ml-1">Nombre del Negocio</label>
                 <input type="text" name="nombre_negocio" required class="input-registro" placeholder="Ej: Café de la Montaña">
@@ -373,13 +376,29 @@ window.onscroll = function() {
         </form>
     </div>
 </div>
-   <div id="banner-pc-lux" class="banner-lux-pc" onclick="verDetalle(PatrocinioLux.idLux)">
-    <img src="patrocinios/Lux/logo-lux.png" class="w-full mb-2">
+
+<div id="banner-pc-lux" class="banner-lux-pc" onclick="abrirLux()">
+    <img src="patrocinios/Lux/logo-lux.png" class="w-full mb-2" alt="Lux Logo">
     <span class="text-[#d4a373] text-[8px] font-black tracking-widest uppercase">VIP ACCESS</span>
 </div>
 
-<div id="banner-mobile-lux" class="banner-lux-mobile" onclick="verDetalle(PatrocinioLux.idLux)">
+<div id="banner-mobile-lux" class="banner-lux-mobile" onclick="abrirLux()">
     ✨ LUX PRESENTA: LA MEJOR VIDA NOCTURNA - VER MÁS ✨
 </div>
+
+<script>
+    // Define aquí el ID real que tiene LUX en tu negocios.json
+    const PatrocinioLux = {
+        idLux: 32 // Cambia este número por el ID real en tu JSON
+    };
+
+    function abrirLux() {
+        if (typeof verDetalle === "function") {
+            verDetalle(PatrocinioLux.idLux);
+        }
+    }
+</script>
+
+<script src="script.js"></script>
 </body>
 </html>
