@@ -2,7 +2,8 @@ const LuxPatrocinio = {
     init: function() {
         this.injectStyles();
         this.createBanners();
-        // Reordenar tarjetas cada vez que se cambie de categoría
+        // Sincronización inmediata con el scroll para evitar saltos
+        window.addEventListener('scroll', () => this.syncMobileBanner());
         setInterval(() => this.checkStatus(), 300);
     },
 
@@ -47,33 +48,24 @@ const LuxPatrocinio = {
                 gap: 15px;
             }
 
-            .lux-btn-oval {
-                border: 1.5px solid #d4a373;
-                border-radius: 30px;
-                padding: 12px 6px;
-                writing-mode: vertical-rl;
-                color: #d4a373;
-                font-size: 10px;
-                font-weight: 700;
-                text-transform: uppercase;
-            }
-
-            /* BANNER MÓVIL STICKY - JUSTO DEBAJO DEL NAV */
+            /* BANNER MÓVIL STICKY REFORZADO */
             .banner-lux-mobile {
                 display: none;
                 position: sticky !important;
-                top: 88px !important; /* SE AJUSTARÁ DINÁMICAMENTE */
+                /* El top se inyectará dinámicamente por JS */
                 width: 100%;
                 background: #130f0e;
                 border-bottom: 1.5px solid #d4a373;
                 color: #ffffff;
                 padding: 12px;
-                z-index: 45 !important; /* Debajo del nav (50) pero fijo al hacer scroll */
+                /* El nav es z-50, nosotros somos 49 para que las categorías del nav no se tapen */
+                z-index: 49 !important; 
                 text-align: center;
                 font-family: 'Inter', sans-serif;
                 font-size: 11px;
                 cursor: pointer;
                 box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+                transition: transform 0.1s ease-out;
             }
 
             .banner-lux-mobile b { color: #d4a373; }
@@ -84,7 +76,6 @@ const LuxPatrocinio = {
     createBanners: function() {
         if (document.getElementById('banner-pc-lux')) return;
 
-        // Banner PC
         const bannerPC = document.createElement('div');
         bannerPC.id = 'banner-pc-lux';
         bannerPC.className = 'banner-lux-pc';
@@ -93,11 +84,10 @@ const LuxPatrocinio = {
             <div class="lux-totem-body">
                 <img src="patrocinios/Lux/lux-discoteca.webp" style="width: 70px;" onerror="this.src='https://placehold.co/80x80/130f0e/d4a373?text=LUX'">
                 <p style="color: #d4a373; font-size: 8px; font-weight: 600;">EXCLUSIVA</p>
-                <div class="lux-btn-oval">EXPLORA LUX</div>
+                <div style="border: 1.5px solid #d4a373; border-radius: 30px; padding: 12px 6px; writing-mode: vertical-rl; color: #d4a373; font-size: 10px; font-weight: 700; text-transform: uppercase;">EXPLORA LUX</div>
             </div>
         `;
 
-        // Banner Móvil
         const bannerMobile = document.createElement('div');
         bannerMobile.id = 'banner-mobile-lux';
         bannerMobile.className = 'banner-lux-mobile';
@@ -108,15 +98,25 @@ const LuxPatrocinio = {
 
         document.body.appendChild(bannerPC);
         
-        // Inyectar móvil justo después del nav para que el sticky funcione perfecto
+        // Inyectar móvil justo después del nav
         const navbar = document.querySelector('nav');
         if (navbar) {
-            navbar.parentNode.insertBefore(bannerMobile, navbar.nextSibling);
+            navbar.insertAdjacentElement('afterend', bannerMobile);
+        }
+    },
+
+    syncMobileBanner: function() {
+        const bannerMobile = document.getElementById('banner-mobile-lux');
+        const navbar = document.querySelector('nav');
+        if (bannerMobile && navbar && bannerMobile.style.display !== 'none') {
+            // Calculamos el alto real del nav incluyendo bordes
+            const navHeight = navbar.getBoundingClientRect().height;
+            // Forzamos el top para que sea idéntico al alto del nav
+            bannerMobile.style.top = `${navHeight - 1}px`; // -1px para evitar líneas de luz entre elementos
         }
     },
 
     prioritizeLuxCard: function() {
-        // Buscamos el contenedor de las tarjetas (ajusta si el id es diferente)
         const container = document.getElementById('grid-comercios') || document.querySelector('.grid');
         if (!container) return;
 
@@ -136,20 +136,15 @@ const LuxPatrocinio = {
         const esVidaNocturna = params.get('categoria') === 'vida nocturna';
         const bannerPC = document.getElementById('banner-pc-lux');
         const bannerMobile = document.getElementById('banner-mobile-lux');
-        const navbar = document.querySelector('nav');
 
         if (esVidaNocturna) {
-            // Ajustar altura sticky según el alto real del nav
-            if (navbar && bannerMobile) {
-                bannerMobile.style.top = navbar.offsetHeight + 'px';
-            }
-
             if (window.innerWidth > 768) {
-                bannerPC.style.display = 'block';
-                bannerMobile.style.display = 'none';
+                if(bannerPC) bannerPC.style.display = 'block';
+                if(bannerMobile) bannerMobile.style.display = 'none';
             } else {
-                bannerMobile.style.display = 'block';
-                bannerPC.style.display = 'none';
+                if(bannerMobile) bannerMobile.style.display = 'block';
+                if(bannerPC) bannerPC.style.display = 'none';
+                this.syncMobileBanner(); // Sincronizar apenas aparezca
             }
             this.prioritizeLuxCard();
         } else {
@@ -168,7 +163,7 @@ const LuxPatrocinio = {
                 card.style.border = "2px solid #d4a373";
                 
                 setTimeout(() => {
-                    card.click(); // Abre el modal
+                    card.click();
                     setTimeout(() => card.style.border = "", 2000);
                 }, 600);
                 break;
