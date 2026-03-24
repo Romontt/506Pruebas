@@ -22,7 +22,7 @@ const LuxPatrocinio = {
                 <span>PATROCINIO<br>DE CATEGORÍA</span>
             </div>
             <div style="padding: 10px 0;">
-                <img src="img/logolux.webp" style="width: 80px; margin: 0 auto; display: block;" alt="LUX">
+                <img src="img/lux-discoteca.webp" style="width: 80px; margin: 0 auto; display: block;" alt="LUX">
             </div>
             <p style="font-size: 9px; color: #d4a373; margin: 15px 0; opacity: 0.8; line-height: 1.4;">
                 VIDA NOCTURNA<br><b>EXCLUSIVA</b>
