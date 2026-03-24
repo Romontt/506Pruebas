@@ -2,8 +2,11 @@ const LuxPatrocinio = {
     init: function() {
         this.injectStyles();
         this.createBanners();
-        // Sincronización inmediata con el scroll para evitar saltos
-        window.addEventListener('scroll', () => this.syncMobileBanner());
+        
+        // Sincronizar posición en scroll y cambio de tamaño para que no se desfase
+        window.addEventListener('scroll', () => this.syncMobilePosition());
+        window.addEventListener('resize', () => this.syncMobilePosition());
+        
         setInterval(() => this.checkStatus(), 300);
     },
 
@@ -12,7 +15,7 @@ const LuxPatrocinio = {
         const style = document.createElement('style');
         style.id = 'lux-styles';
         style.innerHTML = `
-            /* TÓTEM PC */
+            /* TÓTEM PC - DISEÑO ORIGINAL */
             .banner-lux-pc {
                 display: none;
                 position: fixed !important;
@@ -48,24 +51,35 @@ const LuxPatrocinio = {
                 gap: 15px;
             }
 
-            /* BANNER MÓVIL STICKY REFORZADO */
+            .lux-btn-oval {
+                border: 1.5px solid #d4a373;
+                border-radius: 30px;
+                padding: 12px 6px;
+                writing-mode: vertical-rl;
+                color: #d4a373;
+                font-size: 10px;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+
+            /* BANNER MÓVIL STICKY - DISEÑO ORIGINAL REFORZADO */
             .banner-lux-mobile {
                 display: none;
                 position: sticky !important;
-                /* El top se inyectará dinámicamente por JS */
                 width: 100%;
                 background: #130f0e;
                 border-bottom: 1.5px solid #d4a373;
                 color: #ffffff;
                 padding: 12px;
-                /* El nav es z-50, nosotros somos 49 para que las categorías del nav no se tapen */
+                /* Nav es z-50, nosotros z-49 para que pegue justo debajo */
                 z-index: 49 !important; 
                 text-align: center;
                 font-family: 'Inter', sans-serif;
                 font-size: 11px;
                 cursor: pointer;
                 box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-                transition: transform 0.1s ease-out;
+                /* Evita saltos visuales */
+                will-change: top;
             }
 
             .banner-lux-mobile b { color: #d4a373; }
@@ -84,7 +98,7 @@ const LuxPatrocinio = {
             <div class="lux-totem-body">
                 <img src="patrocinios/Lux/lux-discoteca.webp" style="width: 70px;" onerror="this.src='https://placehold.co/80x80/130f0e/d4a373?text=LUX'">
                 <p style="color: #d4a373; font-size: 8px; font-weight: 600;">EXCLUSIVA</p>
-                <div style="border: 1.5px solid #d4a373; border-radius: 30px; padding: 12px 6px; writing-mode: vertical-rl; color: #d4a373; font-size: 10px; font-weight: 700; text-transform: uppercase;">EXPLORA LUX</div>
+                <div class="lux-btn-oval">EXPLORA LUX</div>
             </div>
         `;
 
@@ -98,21 +112,19 @@ const LuxPatrocinio = {
 
         document.body.appendChild(bannerPC);
         
-        // Inyectar móvil justo después del nav
         const navbar = document.querySelector('nav');
         if (navbar) {
             navbar.insertAdjacentElement('afterend', bannerMobile);
         }
     },
 
-    syncMobileBanner: function() {
+    syncMobilePosition: function() {
         const bannerMobile = document.getElementById('banner-mobile-lux');
         const navbar = document.querySelector('nav');
         if (bannerMobile && navbar && bannerMobile.style.display !== 'none') {
-            // Calculamos el alto real del nav incluyendo bordes
-            const navHeight = navbar.getBoundingClientRect().height;
-            // Forzamos el top para que sea idéntico al alto del nav
-            bannerMobile.style.top = `${navHeight - 1}px`; // -1px para evitar líneas de luz entre elementos
+            const navRect = navbar.getBoundingClientRect();
+            // Si el nav es sticky, su altura real determina el 'top' del banner
+            bannerMobile.style.top = `${navRect.height}px`;
         }
     },
 
@@ -142,9 +154,11 @@ const LuxPatrocinio = {
                 if(bannerPC) bannerPC.style.display = 'block';
                 if(bannerMobile) bannerMobile.style.display = 'none';
             } else {
-                if(bannerMobile) bannerMobile.style.display = 'block';
+                if(bannerMobile) {
+                    bannerMobile.style.display = 'block';
+                    this.syncMobilePosition();
+                }
                 if(bannerPC) bannerPC.style.display = 'none';
-                this.syncMobileBanner(); // Sincronizar apenas aparezca
             }
             this.prioritizeLuxCard();
         } else {
