@@ -89,18 +89,28 @@ const LuxPatrocinio = {
                 opacity: 0.8;
             }
 
-            .lux-m-patro-by {
-                display: block;
-                font-size: 7px;
-                color: #d4a373;
-                letter-spacing: 0.5px;
-                margin-top: 2px;
-            }
+           .lux-m-patro-by {
+    display: block;
+    font-size: 7px;
+    color: #d4a373;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+    text-shadow: 0 0 5px rgba(212, 163, 115, 0.5); /* Brillo sutil al texto */
+}
 
-            .lux-m-logo-large {
-                height: 45px; /* Logo grande */
-                filter: drop-shadow(0 0 10px rgba(212, 163, 115, 0.4));
-            }
+            @keyframes neonPulse {
+    0% { filter: drop-shadow(0 0 5px #d4a373) drop-shadow(0 0 15px rgba(212, 163, 115, 0.6)); }
+    50% { filter: drop-shadow(0 0 10px #d4a373) drop-shadow(0 0 25px rgba(212, 163, 115, 0.8)); }
+    100% { filter: drop-shadow(0 0 5px #d4a373) drop-shadow(0 0 15px rgba(212, 163, 115, 0.6)); }
+}
+
+.lux-m-logo-large {
+    height: 45px; 
+    /* El truco del neón: varias capas de sombra con el color dorado */
+    filter: drop-shadow(0 0 5px #d4a373) drop-shadow(0 0 15px rgba(212, 163, 115, 0.6));
+    animation: neonPulse 2s infinite ease-in-out; /* Hace que la luz 'respire' */
+    transition: all 0.3s ease;
+}
         `;
         document.head.appendChild(style);
     },
@@ -118,19 +128,18 @@ const LuxPatrocinio = {
             <div style="margin-top: 15px; width: 15px; height: 1px; background: #d4a373; margin-left: auto; margin-right: auto;"></div>
         `;
 
-        // Banner Móvil
         const bannerMobile = document.createElement('div');
-        bannerMobile.id = 'banner-mobile-lux';
-        bannerMobile.className = 'banner-lux-mobile';
-        bannerMobile.innerHTML = `
-            <div class="lux-m-container">
-                <div class="lux-m-text-box">
-                    <span class="lux-m-small-title">Vida Nocturna</span>
-                    <span class="lux-m-patro-by">PATROCINADO POR</span>
-                </div>
-                <img src="patrocinios/Lux/lux-discoteca.png" class="lux-m-logo-large" onerror="this.src='https://placehold.co/80x40/000/d4a373?text=LUX'">
-            </div>
-        `;
+bannerMobile.id = 'banner-mobile-lux';
+bannerMobile.className = 'banner-lux-mobile';
+bannerMobile.innerHTML = `
+    <div class="lux-m-container" style="display: flex; align-items: center; justify-content: center; gap: 15px;">
+        <div class="lux-m-text-box" style="text-align: right;">
+            <span class="lux-m-small-title" style="display: block; font-size: 10px; color: #fff; letter-spacing: 1px; text-transform: uppercase;">Vida Nocturna</span>
+            <span class="lux-m-patro-by">PATROCINADO POR</span>
+        </div>
+        <img src="patrocinios/Lux/lux-discoteca.png" class="lux-m-logo-large" onerror="this.src='https://placehold.co/80x40/000/d4a373?text=LUX'">
+    </div>
+`;
 
         bannerPC.onclick = () => this.scrollToLux();
         bannerMobile.onclick = () => this.scrollToLux();
