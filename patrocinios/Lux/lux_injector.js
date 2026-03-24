@@ -19,7 +19,13 @@ const LuxPatrocinio = {
                 to { opacity: 1; transform: translateX(0); }
             }
 
-            /* TÓTEM PC - FINO Y ELEGANTE */
+            @keyframes neonPulse {
+                0% { filter: drop-shadow(0 0 5px #d4a373) drop-shadow(0 0 15px rgba(212, 163, 115, 0.6)); transform: scale(1); }
+                50% { filter: drop-shadow(0 0 12px #d4a373) drop-shadow(0 0 25px rgba(212, 163, 115, 0.9)); transform: scale(1.05); }
+                100% { filter: drop-shadow(0 0 5px #d4a373) drop-shadow(0 0 15px rgba(212, 163, 115, 0.6)); transform: scale(1); }
+            }
+
+            /* TÓTEM PC */
             .banner-lux-pc {
                 display: none;
                 position: fixed !important;
@@ -41,12 +47,6 @@ const LuxPatrocinio = {
                 transition: all 0.3s ease;
             }
 
-            .banner-lux-pc:hover {
-                border-color: #d4a373;
-                box-shadow: 0 0 20px rgba(212, 163, 115, 0.3);
-                transform: translateY(-52%);
-            }
-
             .lux-pc-tag {
                 font-size: 8px;
                 color: #d4a373;
@@ -56,61 +56,49 @@ const LuxPatrocinio = {
                 font-weight: 800;
             }
 
-            /* BANNER MÓVIL - COMPACTO Y LOGO PROTAGONISTA */
+            /* BANNER MÓVIL - DISEÑO NEÓN REFINADO */
             .banner-lux-mobile {
                 display: none;
                 position: sticky !important;
                 width: 100%;
                 background: #000;
                 border-bottom: 1px solid #d4a373;
-                padding: 8px 15px;
+                padding: 10px 15px;
                 z-index: 49 !important;
                 font-family: 'Montserrat', sans-serif;
                 cursor: pointer;
+                box-shadow: 0 5px 20px rgba(212, 163, 115, 0.15);
             }
 
             .lux-m-container {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 15px;
+                gap: 12px;
             }
 
-            .lux-m-text-box {
-                text-align: right;
-            }
-
-            .lux-m-small-title {
-                display: block;
+            .lux-m-text {
                 font-size: 10px;
                 color: #fff;
                 letter-spacing: 1px;
                 text-transform: uppercase;
-                opacity: 0.8;
+                font-weight: 500;
             }
 
-           .lux-m-patro-by {
-    display: block;
-    font-size: 7px;
-    color: #d4a373;
-    letter-spacing: 0.5px;
-    margin-top: 2px;
-    text-shadow: 0 0 5px rgba(212, 163, 115, 0.5); /* Brillo sutil al texto */
-}
+            .lux-m-text b {
+                color: #d4a373;
+                font-size: 8px;
+                margin-left: 4px;
+                opacity: 0.9;
+                text-shadow: 0 0 5px rgba(212, 163, 115, 0.4);
+            }
 
-            @keyframes neonPulse {
-    0% { filter: drop-shadow(0 0 5px #d4a373) drop-shadow(0 0 15px rgba(212, 163, 115, 0.6)); }
-    50% { filter: drop-shadow(0 0 10px #d4a373) drop-shadow(0 0 25px rgba(212, 163, 115, 0.8)); }
-    100% { filter: drop-shadow(0 0 5px #d4a373) drop-shadow(0 0 15px rgba(212, 163, 115, 0.6)); }
-}
-
-.lux-m-logo-large {
-    height: 45px; 
-    /* El truco del neón: varias capas de sombra con el color dorado */
-    filter: drop-shadow(0 0 5px #d4a373) drop-shadow(0 0 15px rgba(212, 163, 115, 0.6));
-    animation: neonPulse 2s infinite ease-in-out; /* Hace que la luz 'respire' */
-    transition: all 0.3s ease;
-}
+            .lux-m-logo-neon {
+                height: 50px; /* Un poco más grande como pediste */
+                animation: neonPulse 2.5s infinite ease-in-out;
+                transition: all 0.3s ease;
+                object-fit: contain;
+            }
         `;
         document.head.appendChild(style);
     },
@@ -118,7 +106,7 @@ const LuxPatrocinio = {
     createBanners: function() {
         if (document.getElementById('banner-pc-lux')) return;
 
-        // Banner PC
+        // PC
         const bannerPC = document.createElement('div');
         bannerPC.id = 'banner-pc-lux';
         bannerPC.className = 'banner-lux-pc';
@@ -128,18 +116,18 @@ const LuxPatrocinio = {
             <div style="margin-top: 15px; width: 15px; height: 1px; background: #d4a373; margin-left: auto; margin-right: auto;"></div>
         `;
 
+        // Móvil
         const bannerMobile = document.createElement('div');
-bannerMobile.id = 'banner-mobile-lux';
-bannerMobile.className = 'banner-lux-mobile';
-bannerMobile.innerHTML = `
-    <div class="lux-m-container" style="display: flex; align-items: center; justify-content: center; gap: 15px;">
-        <div class="lux-m-text-box" style="text-align: right;">
-            <span class="lux-m-small-title" style="display: block; font-size: 10px; color: #fff; letter-spacing: 1px; text-transform: uppercase;">Vida Nocturna</span>
-            <span class="lux-m-patro-by">PATROCINADO POR</span>
-        </div>
-        <img src="patrocinios/Lux/lux-discoteca.png" class="lux-m-logo-large" onerror="this.src='https://placehold.co/80x40/000/d4a373?text=LUX'">
-    </div>
-`;
+        bannerMobile.id = 'banner-mobile-lux';
+        bannerMobile.className = 'banner-lux-mobile';
+        bannerMobile.innerHTML = `
+            <div class="lux-m-container">
+                <div class="lux-m-text">
+                    VIDA NOCTURNA <b>• PATROCINADO POR</b>
+                </div>
+                <img src="patrocinios/Lux/lux-discoteca.png" class="lux-m-logo-neon" onerror="this.src='https://placehold.co/100x50/000/d4a373?text=LUX'">
+            </div>
+        `;
 
         bannerPC.onclick = () => this.scrollToLux();
         bannerMobile.onclick = () => this.scrollToLux();
@@ -163,13 +151,11 @@ bannerMobile.innerHTML = `
     prioritizeLuxCard: function() {
         const container = document.getElementById('grid-comercios') || document.querySelector('.grid');
         if (!container) return;
-
         const cards = Array.from(container.children);
         const luxCard = cards.find(card => 
             card.textContent.toUpperCase().includes('LUX') && 
             (card.textContent.toUpperCase().includes('DISCOTECA') || card.textContent.toUpperCase().includes('NIGHT'))
         );
-
         if (luxCard && container.firstChild !== luxCard) {
             container.prepend(luxCard);
         }
