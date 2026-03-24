@@ -331,7 +331,6 @@ let timeoutBusqueda = null; // Variable para controlar el tiempo de espera al es
             }
         });
     });
-}
 function activarBoton(btn) {
     document.querySelectorAll('.filter-btn').forEach(b => {
         b.classList.remove('text-[#d4a373]', 'border-[#d4a373]', 'font-black');
