@@ -114,7 +114,7 @@ const LuxPatrocinio = {
         bannerPC.className = 'banner-lux-pc';
         bannerPC.innerHTML = `
             <div class="lux-pc-tag">Partner</div>
-            <img src="patrocinios/Lux/lux-discoteca.webp" style="width: 70px; filter: drop-shadow(0 0 10px rgba(212,163,115,0.3));">
+            <img src="patrocinios/Lux/lux-discoteca.png" style="width: 70px; filter: drop-shadow(0 0 10px rgba(212,163,115,0.3));">
             <div style="margin-top: 15px; width: 15px; height: 1px; background: #d4a373; margin-left: auto; margin-right: auto;"></div>
         `;
 
