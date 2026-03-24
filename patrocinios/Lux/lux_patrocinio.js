@@ -1,37 +1,35 @@
 const PatrocinioLux = {
-    init: function(viewActual) {
-        if (viewActual === "vida-nocturna") {
-            this.mostrarBanners();
-            this.resaltarTarjetas();
-        } else {
-            this.ocultarBanners();
-        }
-    },
+    idLux: null, // Se llenará dinámicamente
 
-    mostrarBanners: function() {
-        // Detectar si es móvil o PC
-        if (window.innerWidth > 768) {
-            document.getElementById('banner-pc-lux').style.display = 'block';
-        } else {
-            document.getElementById('banner-mobile-lux').style.display = 'block';
-        }
-    },
+    init: function(categoria) {
+        // Buscamos el ID de Lux en tus datos actuales
+        const luxData = negociosRaw.find(n => n.nombre.toLowerCase().includes("lux"));
+        if (luxData) this.idLux = luxData.id;
 
-    resaltarTarjetas: function() {
-        // Buscamos todas las tarjetas que digan "LUX"
-        const tarjetas = document.querySelectorAll('.card-negocio'); // Cambia por tu clase real
-        tarjetas.forEach(card => {
-            if (card.innerText.includes("LUX")) {
-                card.classList.add('card-highlight-lux');
-                // Forzamos que suba al principio del contenedor
-                card.parentElement.prepend(card);
+        const bannerPC = document.getElementById('banner-pc-lux');
+        const bannerMobile = document.getElementById('banner-mobile-lux');
+
+        if (categoria === 'vida nocturna') {
+            if (window.innerWidth > 768) {
+                if(bannerPC) bannerPC.style.display = 'block';
+            } else {
+                if(bannerMobile) bannerMobile.style.display = 'block';
             }
-        });
+        } else {
+            if(bannerPC) bannerPC.style.display = 'none';
+            if(bannerMobile) bannerMobile.style.display = 'none';
+        }
     },
 
-    abrirModalLux: function() {
-        // Aquí llamas a tu función actual que abre los detalles del negocio
-        // Por ejemplo: abrirDetalle('lux-id');
-        console.log("Abriendo modal de Lux...");
+    // Esta función la llamaremos dentro de aplicarFiltrosCombinados
+    ordenarYResaltar: function(lista) {
+        if (categoriaActual !== 'vida nocturna') return lista;
+
+        // 1. Separar a Lux del resto
+        const lux = lista.filter(n => n.nombre.toLowerCase().includes("lux"));
+        const resto = lista.filter(n => !n.nombre.toLowerCase().includes("lux"));
+
+        // 2. Retornar a Lux de primero
+        return [...lux, ...resto];
     }
 };
