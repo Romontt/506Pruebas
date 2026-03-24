@@ -128,7 +128,7 @@ const LuxPatrocinio = {
                     <span class="lux-m-small-title">Vida Nocturna</span>
                     <span class="lux-m-patro-by">PATROCINADO POR</span>
                 </div>
-                <img src="patrocinios/Lux/lux-discoteca.webp" class="lux-m-logo-large" onerror="this.src='https://placehold.co/80x40/000/d4a373?text=LUX'">
+                <img src="patrocinios/Lux/lux-discoteca.png" class="lux-m-logo-large" onerror="this.src='https://placehold.co/80x40/000/d4a373?text=LUX'">
             </div>
         `;
 
