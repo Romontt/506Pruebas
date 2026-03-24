@@ -1,5 +1,5 @@
 const PatrocinioLux = {
-    idLux: null, // Se llenará dinámicamente
+    idLux: 32, // Se llenará dinámicamente
 
     init: function(categoria) {
         // Buscamos el ID de Lux en tus datos actuales
