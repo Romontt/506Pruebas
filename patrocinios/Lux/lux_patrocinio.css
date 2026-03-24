@@ -1,55 +1,71 @@
-/* BANNER PC - Lateral Izquierdo */
+/* BANNER PC - Estilo Cápsula de la Imagen */
 .banner-lux-pc {
     display: none;
     position: fixed;
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    width: 140px;
-    background: rgba(19, 15, 14, 0.95);
-    border: 1px solid #d4a373;
-    border-radius: 4px;
-    padding: 15px;
+    width: 110px;
+    background: linear-gradient(180deg, rgba(28, 22, 20, 0.95) 0%, rgba(10, 10, 10, 0.98) 100%);
+    border: 1px solid rgba(212, 163, 115, 0.3);
+    border-radius: 60px; /* Forma de cápsula */
+    padding: 0 0 25px 0;
     z-index: 100;
     cursor: pointer;
     text-align: center;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 10px rgba(212, 163, 115, 0.1);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    overflow: hidden;
 }
 
-/* BANNER MÓVIL - Debajo del Header */
+/* El cabezal dorado de la cápsula */
+.lux-capsule-header {
+    background: #d4a373;
+    padding: 15px 10px;
+    margin-bottom: 25px;
+    border-radius: 0 0 0 0; /* Ajuste para que encaje arriba */
+}
+
+.lux-capsule-header span {
+    color: #1c1614;
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+    display: block;
+    text-transform: uppercase;
+}
+
+/* Botón ovalado inferior "Explora" */
+.lux-btn-explore {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 10px 5px;
+    border: 1px solid #d4a373;
+    border-radius: 20px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    color: #d4a373;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+/* Ajuste Banner Móvil para que sea Sticky debajo del Header */
 .banner-lux-mobile {
     display: none;
     position: sticky;
-    top: 70px; /* Ajusta según tu header real */
+    top: 60px; /* AJUSTA esto según la altura exacta de tu navbar */
+    left: 0;
+    right: 0;
     width: 100%;
     background: #d4a373;
     color: #130f0e;
-    padding: 10px;
-    z-index: 50;
+    padding: 12px;
+    z-index: 40; /* Por debajo del modal pero encima de la grid */
     text-align: center;
     font-size: 10px;
     font-weight: 900;
     letter-spacing: 0.2em;
-    text-transform: uppercase;
-}
-
-/* RESALTADO DE TARJETA LUX */
-.lux-highlight-card {
-    border: 2px solid #d4a373 !important;
-    position: relative;
-}
-
-.lux-highlight-card::before {
-    content: "PATROCINADO";
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #d4a373;
-    color: #130f0e;
-    font-size: 7px;
-    font-weight: 900;
-    padding: 2px 6px;
-    z-index: 20;
-    letter-spacing: 0.1em;
 }
