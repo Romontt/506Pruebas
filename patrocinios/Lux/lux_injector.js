@@ -9,7 +9,7 @@ const LuxPatrocinio = {
         setInterval(() => this.checkStatus(), 300);
     },
 
-    injectStyles: function() {
+       injectStyles: function() {
         if (document.getElementById('lux-styles')) return;
         const style = document.createElement('style');
         style.id = 'lux-styles';
@@ -19,8 +19,9 @@ const LuxPatrocinio = {
                 to { opacity: 1; transform: translateY(-50%) scale(1); }
             }
 
-            /* TÓTEM PC - DISEÑO ORIGINAL */
+            /* TÓTEM PC - SE MANTIENE EL ESTILO QUE TE GUSTÓ */
             .banner-lux-pc {
+
                 display: none;
                 position: fixed !important;
                 left: 25px !important;
@@ -35,10 +36,10 @@ const LuxPatrocinio = {
                 box-shadow: 0 25px 50px rgba(0,0,0,0.7);
                 overflow: hidden;
                 font-family: 'Montserrat', sans-serif;
-                cursor: pointer;
-            }
 
+            }
             .lux-header-gold {
+
                 background: #d4a373;
                 padding: 15px 5px;
                 color: #130f0e;
@@ -47,17 +48,20 @@ const LuxPatrocinio = {
                 letter-spacing: 1px;
                 text-transform: uppercase;
                 line-height: 1.2;
-            }
 
+            }
             .lux-totem-body {
+
                 padding: 25px 10px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 gap: 20px;
+
             }
 
             .lux-btn-oval {
+
                 border: 1.5px solid #d4a373;
                 border-radius: 30px;
                 padding: 15px 8px;
@@ -68,6 +72,9 @@ const LuxPatrocinio = {
                 font-weight: 700;
                 letter-spacing: 3px;
                 text-transform: uppercase;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
             }
 
             /* BANNER MÓVIL STICKY - TU DISEÑO ORIGINAL */
