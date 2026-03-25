@@ -42,18 +42,55 @@ const LuxPatrocinio = {
                 z-index: 2;
             }
 
-            .lux-header-text h4 {
+            /* Contenedor de texto a la izquierda */
+            .lux-header-text-group {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: left;
+                flex: 1;
+            }
+
+            .lux-header-text-group h4 {
                 color: #fff;
                 margin: 0;
-                font-size: 13px;
-                letter-spacing: 3px;
+                font-size: 14px;
+                letter-spacing: 2px;
                 text-transform: uppercase;
                 font-weight: 800;
             }
 
-            .lux-header-text b { color: #d4a373; font-weight: 900; margin-left: 5px; }
+            .lux-header-text-group span {
+                color: #d4a373;
+                font-size: 9px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                font-weight: 600;
+                margin-top: 2px;
+            }
 
-            /* Estilo del Botón de Eventos */
+            /* Logo centrado */
+            .lux-logo-wrap {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .lux-header-logo {
+                height: 100px;
+                margin-top: 5px;
+                filter: drop-shadow(0 0 10px rgba(212, 163, 115, 0.6));
+                transition: all 0.5s ease;
+            }
+
+            /* Botón a la derecha */
+            .lux-btn-wrap {
+                flex: 1;
+                display: flex;
+                justify-content: flex-end;
+            }
+
             .lux-btn-eventos {
                 background: rgba(212, 163, 115, 0.1);
                 border: 1px solid #d4a373;
@@ -65,7 +102,6 @@ const LuxPatrocinio = {
                 text-transform: uppercase;
                 letter-spacing: 1px;
                 transition: all 0.3s ease;
-                margin-left: 20px;
                 white-space: nowrap;
             }
 
@@ -74,13 +110,6 @@ const LuxPatrocinio = {
                 color: #000;
                 box-shadow: 0 0 15px rgba(212, 163, 115, 0.5);
                 transform: translateY(-2px);
-            }
-
-            .lux-header-logo {
-                height: 100px;
-                margin-top: 5px;
-                filter: drop-shadow(0 0 10px rgba(212, 163, 115, 0.6));
-                transition: all 0.5s ease;
             }
 
             /* Estilos Móvil */
@@ -100,8 +129,9 @@ const LuxPatrocinio = {
 
             .lux-m-container { display: flex; align-items: center; justify-content: space-between; }
             .lux-m-text-box { display: flex; flex-direction: column; gap: 2px; }
-            .lux-m-text { font-size: 8px; color: #fff; letter-spacing: 1px; font-weight: 600; opacity: 0.8; }
-            .lux-m-logo-neon { height: 50px; }
+            .lux-m-title { font-size: 10px; color: #fff; font-weight: 800; letter-spacing: 1px; }
+            .lux-m-subtitle { font-size: 7px; color: #d4a373; font-weight: 600; letter-spacing: 1px; }
+            .lux-m-logo-neon { height: 45px; margin: 0 10px; }
 
             @media (max-width: 768px) {
                 .lux-header-banner { display: none !important; }
@@ -121,15 +151,18 @@ const LuxPatrocinio = {
             bannerPC.className = 'lux-header-banner';
             bannerPC.innerHTML = `
                 <div class="lux-header-container">
-                    <div style="display: flex; align-items: center;">
-                        <div class="lux-header-text">
-                            <h4>VIDA NOCTURNA<b>• PATROCINADO POR</b></h4>
-                        </div>
+                    <div class="lux-header-text-group">
+                        <h4>VIDA NOCTURNA</h4>
+                        <span>PATROCINADO POR</span>
+                    </div>
+                    <div class="lux-logo-wrap">
+                        <img src="patrocinios/Lux/lux-discoteca.png" class="lux-header-logo">
+                    </div>
+                    <div class="lux-btn-wrap">
                         <button class="lux-btn-eventos" onclick="event.stopPropagation(); LuxPatrocinio.abrirCarteleraLux();">
                             Ver eventos de la semana
                         </button>
                     </div>
-                    <img src="patrocinios/Lux/lux-discoteca.png" class="lux-header-logo">
                 </div>
             `;
             bannerPC.onclick = () => this.abrirCarteleraLux();
@@ -144,10 +177,11 @@ const LuxPatrocinio = {
             bannerMobile.innerHTML = `
                 <div class="lux-m-container">
                     <div class="lux-m-text-box">
-                        <div class="lux-m-text">PATROCINADO POR</div>
-                        <img src="patrocinios/Lux/lux-discoteca.png" class="lux-m-logo-neon">
+                        <div class="lux-m-title">VIDA NOCTURNA</div>
+                        <div class="lux-m-subtitle">PATROCINADO POR</div>
                     </div>
-                    <button class="lux-btn-eventos" style="margin-left: 0; padding: 6px 10px;" onclick="event.stopPropagation(); LuxPatrocinio.abrirCarteleraLux();">
+                    <img src="patrocinios/Lux/lux-discoteca.png" class="lux-m-logo-neon">
+                    <button class="lux-btn-eventos" style="padding: 6px 10px; font-size: 10px;" onclick="event.stopPropagation(); LuxPatrocinio.abrirCarteleraLux();">
                         Eventos
                     </button>
                 </div>
@@ -192,11 +226,10 @@ const LuxPatrocinio = {
 
     abrirCarteleraLux: function() {
         console.log("Abriendo cartelera de eventos de Lux...");
-        // Aquí llamaremos a la función que generará el modal especial de afiches
         if (typeof abrirModalCartelera === "function") {
             abrirModalCartelera();
         } else {
-            alert("Próximamente: Cartelera de eventos Lux Discoteca");
+            alert("Agenda Lux: Próximamente los mejores eventos del fin de semana.");
         }
     }
 };
