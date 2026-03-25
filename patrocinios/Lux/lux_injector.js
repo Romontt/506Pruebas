@@ -36,26 +36,29 @@ const LuxPatrocinio = {
                 z-index: 1;
             }
 
-            .lux-header-container {
-                max-width: 1300px;
+           .lux-header-container {
+                max-width: 1100px; /* Reducido para que no se vea tan separado en pantallas anchas */
                 height: 100%;
                 margin: 0 auto;
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
-                padding: 0 50px;
+                justify-content: space-between; /* Mantiene texto a la izq y logo a la der */
+                padding: 0 20px;
                 position: relative;
                 z-index: 2;
             }
 
-            /* Texto a la izquierda */
             .lux-header-text h4 {
                 color: #fff;
                 margin: 0;
-                font-size: 11px;
-                letter-spacing: 4px;
+                font-size: 13px; /* Un poco más grande para llenar espacio */
+                letter-spacing: 3px;
                 text-transform: uppercase;
                 font-weight: 700;
+                /* Agregamos un degradado sutil al texto para más elegancia */
+                background: linear-gradient(to right, #fff, #d4a373);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
             }
 
             .lux-header-text b {
@@ -65,11 +68,12 @@ const LuxPatrocinio = {
             }
 
             /* Logo Neón a la derecha */
-            .lux-header-logo {
-                height: 50px; /* Tamaño más equilibrado */
-                filter: drop-shadow(0 0 10px rgba(212, 163, 115, 0.6));
+           .lux-header-logo {
+                height: 65px; /* Aumentamos el tamaño del logo */
+                filter: drop-shadow(0 0 12px rgba(212, 163, 115, 0.7));
                 animation: neonPulse 3s infinite ease-in-out;
-                transition: transform 0.5s ease;
+                transition: all 0.5s ease;
+                object-fit: contain;
             }
 
             .lux-header-banner:hover .lux-header-logo {
