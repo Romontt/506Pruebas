@@ -1,9 +1,9 @@
 const CarteleraLux = {
-    eventos: {
-        viernes: "patrocinios/Lux/viernes.webp", 
-        sabado: "",  
-        domingo: ""  
-    },
+    // Definimos los días y el sistema buscará las imágenes automáticamente
+    dias: ['viernes', 'sabado', 'domingo'],
+    
+    // Configuración de la ruta base
+    rutaBase: "506Pruebas/patrocinios/Lux/",
 
     init: function() {
         this.injectStyles();
@@ -24,7 +24,7 @@ const CarteleraLux = {
             .lux-modal-content {
                 width: 95%; max-width: 1100px; max-height: 90vh;
                 background: #0a0a0a; border: 1px solid #d4a373;
-                border-radius: 20px; overflow-y: auto; padding: 40px 20px;
+                border-radius: 20px; overflow-y: auto; padding: 40px 0px; /* Padding lateral 0 para el scroll */
                 position: relative; transform: translateY(20px);
                 transition: transform 0.4s ease;
                 box-shadow: 0 0 60px rgba(212, 163, 115, 0.15);
@@ -34,90 +34,90 @@ const CarteleraLux = {
                 color: #d4a373; font-size: 35px; cursor: pointer; z-index: 10;
             }
             
-            .lux-modal-header { 
-                display: flex; flex-direction: column; align-items: center; 
-                text-align: center; margin-bottom: 25px; 
+            .lux-modal-header, .lux-swipe-hint { 
+                padding: 0 20px; 
+                display: flex; flex-direction: column; align-items: center; text-align: center; 
             }
-            .lux-modal-header img { height: 80px; width: auto; margin-bottom: 15px; }
+            .lux-modal-header img { height: 75px; width: auto; margin-bottom: 10px; }
             .lux-modal-header h2 { 
                 color: #fff; font-family: 'Montserrat', sans-serif; 
-                letter-spacing: 5px; font-size: 20px; margin: 0; font-weight: 900;
+                letter-spacing: 5px; font-size: 18px; margin: 0 0 15px 0; font-weight: 900;
             }
 
             .lux-swipe-hint {
-                color: #d4a373; font-size: 13px; text-align: center; 
-                margin-bottom: 20px; font-weight: 700; letter-spacing: 2px;
-                text-transform: uppercase; display: none;
+                color: #d4a373; font-size: 12px; font-weight: 700; letter-spacing: 2px;
+                text-transform: uppercase; margin-bottom: 20px; opacity: 0.8;
             }
 
             .lux-grid-eventos {
                 display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+                padding: 0 20px;
             }
+
             .lux-card-evento {
                 background: #111; border-radius: 12px; overflow: hidden;
                 border: 1px solid #222; display: flex; flex-direction: column;
-                min-height: 450px; scroll-snap-align: center;
+                min-height: 400px; scroll-snap-align: center;
                 scroll-snap-stop: always;
             }
-            .lux-afiche {
-                width: 100%; height: 100%; object-fit: cover;
-            }
+
+            .lux-afiche { width: 100%; height: 100%; object-fit: cover; }
 
             .lux-empty-state {
                 flex: 1; display: flex; flex-direction: column;
                 align-items: center; justify-content: center;
                 padding: 30px; text-align: center; color: #888;
             }
-            .lux-empty-state h3 { color: #d4a373; font-size: 16px; margin-bottom: 15px; font-weight: 800; }
-            .lux-empty-state p { font-size: 13px; line-height: 1.6; }
+            .lux-empty-state h3 { color: #d4a373; font-size: 14px; margin-bottom: 10px; font-weight: 800; }
+            .lux-empty-state p { font-size: 12px; line-height: 1.5; }
 
             @media (max-width: 768px) {
-                .lux-swipe-hint { display: block; }
-                .lux-modal-content { padding: 30px 0px; /* Quitamos padding lateral para el scroll */ }
-                
-                .lux-modal-header, .lux-swipe-hint { padding: 0 20px; /* Re-aplicamos padding solo a textos */ }
-
                 .lux-grid-eventos {
                     display: flex;
                     overflow-x: auto;
                     scroll-snap-type: x mandatory;
-                    gap: 10px;
-                    padding: 0 20px 20px 20px; /* Padding para que la primera tarjeta no pegue al borde */
+                    gap: 15px;
+                    padding: 0 40px 20px 40px; /* Más padding para centrar la tarjeta pequeña */
                     scrollbar-width: none;
                 }
                 .lux-grid-eventos::-webkit-scrollbar { display: none; }
                 
                 .lux-card-evento {
-                    min-width: calc(100% - 40px); /* Ajuste exacto al ancho del modal menos el padding lateral */
-                    height: 60vh;
+                    min-width: 75%; /* Tarjetas más pequeñas para que se vean las de los lados */
+                    height: 55vh;
                     flex-shrink: 0;
                 }
-                .lux-modal-header img { height: 70px; }
-                .lux-modal-header h2 { font-size: 16px; }
             }
         `;
         document.head.appendChild(style);
     },
 
+    // Función para verificar si la imagen existe en el objeto de eventos o por convención
     render: function() {
-        const dias = ['viernes', 'sabado', 'domingo'];
         let gridHTML = '';
 
-        dias.forEach(dia => {
-            const imgPath = this.eventos[dia];
+        this.dias.forEach(dia => {
+            // Lógica: Construimos la ruta dinámica basada en tu carpeta
+            const imgPath = `${this.rutaBase}${dia}.webp`;
+            
+            // Nota: En JS plano no podemos saber si un archivo existe en el servidor sin un fetch,
+            // pero podemos usar el evento 'onerror' de la imagen para mostrar el empty state.
+            
             gridHTML += `
                 <div class="lux-card-evento">
-                    <div style="background: #d4a373; color: #000; text-align: center; padding: 10px; font-weight: 900; text-transform: uppercase; font-size: 14px; letter-spacing: 2px;">
+                    <div style="background: #d4a373; color: #000; text-align: center; padding: 8px; font-weight: 900; text-transform: uppercase; font-size: 13px;">
                         ${dia}
                     </div>
-                    ${imgPath ? 
-                        `<img src="${imgPath}" class="lux-afiche" alt="Evento ${dia}">` : 
-                        `<div class="lux-empty-state">
-                            <h3>¡DÍA DE SPORT BAR!</h3>
-                            <p>Hoy no hay evento programado,<br>pero te esperamos con las mejores bocas y ambiente.<br><br>
-                            <b style="color: #fff; font-size: 11px;">#NOSVEMOSENLUX</b></p>
-                        </div>`
-                    }
+                    <div class="lux-card-body" style="flex: 1; display: flex; flex-direction: column;">
+                        <img src="${imgPath}" class="lux-afiche" alt="Evento ${dia}" 
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        
+                        <div class="lux-empty-state" style="display: none;">
+                            <h3>DÍA DE RELAX</h3>
+                            <p>Preparando lo mejor para este ${dia}.<br><br>
+                            <b style="color: #fff;">#SportBarAbierto</b></p>
+                        </div>
+                    </div>
                 </div>
             `;
         });
@@ -128,13 +128,11 @@ const CarteleraLux = {
                     <span class="lux-modal-close" onclick="CarteleraLux.close()">&times;</span>
                     
                     <div class="lux-modal-header">
-                        <img src="patrocinios/Lux/lux-discoteca.png" alt="Logo Lux">
-                        <h2>EVENTOS DE LA SEMANA</h2>
+                        <img src="${this.rutaBase}lux-discoteca.png" alt="Logo Lux">
+                        <h2>CARTELERA</h2>
                     </div>
 
-                    <div class="lux-swipe-hint">
-                        ← DESLIZA PARA NAVEGAR →
-                    </div>
+                    <div class="lux-swipe-hint">← DESLIZA →</div>
 
                     <div class="lux-grid-eventos">
                         ${gridHTML}
