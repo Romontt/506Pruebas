@@ -2,8 +2,8 @@ const PatrocinioLux = {
     idLux: null,
 
     init: function(categoria) {
-        // Buscamos el ID de Lux en tus datos actuales si no lo tenemos
-        if (!this.idLux) {
+        // 1. Buscamos el ID de Lux en los datos globales (negociosRaw)
+        if (!this.idLux && typeof negociosRaw !== 'undefined') {
             const luxData = negociosRaw.find(n => n.nombre.toLowerCase().includes("lux"));
             if (luxData) this.idLux = luxData.id;
         }
@@ -11,61 +11,66 @@ const PatrocinioLux = {
         const bannerMobile = document.getElementById('banner-mobile-lux');
         const featuredCard = document.getElementById('lux-featured-card');
 
-        if (categoria === 'vida nocturna') {
+        // Normalizamos el nombre de la categoría (quitando tildes si fuera necesario)
+        const categoriaLimpia = categoria ? categoria.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : '';
+
+        if (categoriaLimpia === 'vida nocturna') {
             if (window.innerWidth > 768) {
                 // PC: Ocultamos banner móvil e inyectamos la Sponsor Card
                 if(bannerMobile) bannerMobile.style.display = 'none';
                 this.injectSponsorCard();
             } else {
-                // MÓVIL: Mostramos banner original y quitamos la Card
+                // MÓVIL: Mostramos banner original y quitamos la Card de la grid
                 if(bannerMobile) bannerMobile.style.display = 'block';
                 if(featuredCard) featuredCard.remove();
             }
         } else {
-            // FUERA DE CATEGORÍA: Limpiamos todo
+            // FUERA DE CATEGORÍA: Limpiamos todo rastro de patrocinio
             if(bannerMobile) bannerMobile.style.display = 'none';
             if(featuredCard) featuredCard.remove();
         }
     },
 
-    // NUEVA FUNCIÓN: Inyecta la tarjeta de doble ancho directamente en la grid
+    // Inyecta la tarjeta especial al inicio de la grid
     injectSponsorCard: function() {
-        const container = document.getElementById('grid-comercios');
+        const container = document.getElementById('grid-negocios');
         if (!container || document.getElementById('lux-featured-card')) return;
 
         const card = document.createElement('div');
         card.id = 'lux-featured-card';
-        card.className = 'lux-featured-card';
+        // Usamos animate-reveal para que use tu animación de entrada global
+        card.className = 'lux-featured-card animate-reveal'; 
+        
         card.innerHTML = `
             <div class="lux-featured-tag">Socio de Entretenimiento Oficial</div>
-            <img src="patrocinios/Lux/lux-discoteca.png" class="lux-featured-logo">
-            <div class="lux-featured-footer">
-                LUX PRESENTA ESTA CATEGORÍA<br>
-                <b>VIDA NOCTURNA EXCLUSIVA POCOCÍ</b>
+            <div class="lux-wrapper">
+                <img src="patrocinios/Lux/lux-discoteca.png" class="lux-featured-logo" alt="Lux Logo">
+                <div class="lux-featured-footer">
+                    LUX PRESENTA ESTA CATEGORÍA<br>
+                    <span class="lux-highlight">VIDA NOCTURNA EXCLUSIVA POCOCÍ</span>
+                </div>
             </div>
         `;
 
-        // Al hacer clic, buscamos la tarjeta real de LUX en la lista y la abrimos
-       card.onclick = () => {
-            if (this.idLux) {
-                // Llamamos a la función real de tu App principal
-                if (typeof verDetalle === 'function') {
-                    verDetalle(this.idLux);
-                }
+        // Al hacer clic, abre el detalle real de Lux
+        card.onclick = () => {
+            if (this.idLux && typeof verDetalle === 'function') {
+                verDetalle(this.idLux);
             }
         };
 
-        // Inyectamos al inicio de la grid de negocios
         container.prepend(card);
     },
-    // Mantenemos esta para asegurar que en la lista original LUX también esté arriba
-    // (aunque la Sponsor Card esté antes, esto asegura que LUX sea el primer "negocio real")
+
+    // Asegura que en la lista de tarjetas normales, LUX aparezca primero
     ordenarYResaltar: function(lista) {
-        if (typeof categoriaActual !== 'undefined' && categoriaActual !== 'vida nocturna') return lista;
-
-        const lux = lista.filter(n => n.nombre.toLowerCase().includes("lux"));
-        const resto = lista.filter(n => !n.nombre.toLowerCase().includes("lux"));
-
-        return [...lux, ...resto];
+        if (typeof categoriaActual !== 'undefined' && 
+           (categoriaActual.toLowerCase().includes('vida nocturna'))) {
+            
+            const lux = lista.filter(n => n.nombre.toLowerCase().includes("lux"));
+            const resto = lista.filter(n => !n.nombre.toLowerCase().includes("lux"));
+            return [...lux, ...resto];
+        }
+        return lista;
     }
 };
