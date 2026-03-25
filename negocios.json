@@ -236,33 +236,31 @@
     "lng": -83.7992972045998,
     "maps_link": "https://maps.app.goo.gl/3Jw8vqgDHtFuzsUeA"
   },
-  {
-    "id": 32,
-    "nombre": "Mal de Amores",
+{
+    "id": 11,
+    "nombre": "LUX Discoteca",
     "categoria": "Vida Nocturna",
-    "etiquetas": ["Bar", "Coctelería", "Música en Vivo", "Despecho"],
-    "keywords_busqueda": "bar tragos cerveza fiesta discoteca noche karaoke musica despecho salir bailar diversion cocteles licores",
-    "servicios_resumen": "Primer Bar de Despecho en Guápiles. Coctelería temática, ambiente de fiesta y noches de karaoke/DJ.",
-    "instagram": "https://www.instagram.com/mal_de.amores/",
-    "facebook": "https://www.facebook.com/profile.php?id=61569214917513",
-    "imagen": "img/logos/mal_de_amores.webp",
-    "whatsapp": "+50671183698",
-    "descripcion": "El lugar definitivo en Guápiles para quienes buscan una noche diferente. Bajo el lema 'Ama, llora y bebe', ofrece un concepto único de Bar de Despecho con promociones semanales, shows de comedia y el mejor ambiente para celebrar o pasar un buen rato entre amigos.",
-    "horario": "Miércoles a Domingo | 5:00 PM a 12:00 MN",
+    "etiquetas": ["Discoteca", "DJs", "Fiesta", "VIP", "Eventos"],
+    "keywords_busqueda": "discoteca fiesta baile lux night room guapiles centro djs musica en vivo barra libre perreo intenso noche diversion cocteleria premium eventos",
+    "servicios_resumen": "Experiencia nocturna exclusiva con los mejores DJs, coctelería premium y noches temáticas.",
+    "instagram": "https://www.instagram.com/luxsportbar_/",
+    "facebook": "https://www.facebook.com/luxdiscotecaysportbar",
+    "imagen": "img/logos/lux-discoteca.webp",
+    "whatsapp": "+50671651360",
+    "descripcion": "El 'Night Room' de LUX redefine la fiesta en Guápiles con una propuesta de entretenimiento de alto nivel. Bajo el concepto de 'One Room, Different Vibes', ofrece una experiencia inmersiva con DJs invitados, una producción visual de vanguardia y un ambiente diseñado para quienes buscan lo mejor de la vida nocturna local.",
+    "horario": "Viernes, Sábado y Domingo | 8:00 PM a 2:30 AM",
     "estado_horario": {
       "tipo": "horario",
       "config": {
-        "3": ["17:00", "23:59"],
-        "4": ["17:00", "23:59"],
-        "5": ["17:00", "23:59"],
-        "6": ["17:00", "23:59"],
-        "7": ["17:00", "23:59"]
+        "5": ["20:00", "02:30"],
+        "6": ["20:00", "02:30"],
+        "7": ["20:00", "02:30"]
       }
     },
-    "direccion": "A un costado de Cosevi, Guápiles)",
-    "lat": 10.196840,
-    "lng": -83.784308,
-    "maps_link": "https://maps.app.goo.gl/agxXpaXArgspxbHXA"
+    "direccion": "Centro Comercial Dos Rios Lux, Guápiles.",
+    "lat": 10.21324916664367,
+    "lng": -83.78680990645091,
+    "maps_link": "https://maps.app.goo.gl/DthUzN9rcn1uXDNU7"
   },
   {
     "id": 12,
@@ -773,30 +771,32 @@
     "maps_link": "https://maps.app.goo.gl/DthUzN9rcn1uXDNU7"
   },
   {
-    "id": 11,
-    "nombre": "LUX Discoteca",
+    "id": 32,
+    "nombre": "Mal de Amores",
     "categoria": "Vida Nocturna",
-    "etiquetas": ["Discoteca", "DJs", "Fiesta", "VIP", "Eventos"],
-    "keywords_busqueda": "discoteca fiesta baile lux night room guapiles centro djs musica en vivo barra libre perreo intenso noche diversion cocteleria premium eventos",
-    "servicios_resumen": "Experiencia nocturna exclusiva con los mejores DJs, coctelería premium y noches temáticas.",
-    "instagram": "https://www.instagram.com/luxsportbar_/",
-    "facebook": "https://www.facebook.com/luxdiscotecaysportbar",
-    "imagen": "img/logos/lux-discoteca.webp",
-    "whatsapp": "+50671651360",
-    "descripcion": "El 'Night Room' de LUX redefine la fiesta en Guápiles con una propuesta de entretenimiento de alto nivel. Bajo el concepto de 'One Room, Different Vibes', ofrece una experiencia inmersiva con DJs invitados, una producción visual de vanguardia y un ambiente diseñado para quienes buscan lo mejor de la vida nocturna local.",
-    "horario": "Viernes, Sábado y Domingo | 8:00 PM a 2:30 AM",
+    "etiquetas": ["Bar", "Coctelería", "Música en Vivo", "Despecho"],
+    "keywords_busqueda": "bar tragos cerveza fiesta discoteca noche karaoke musica despecho salir bailar diversion cocteles licores",
+    "servicios_resumen": "Primer Bar de Despecho en Guápiles. Coctelería temática, ambiente de fiesta y noches de karaoke/DJ.",
+    "instagram": "https://www.instagram.com/mal_de.amores/",
+    "facebook": "https://www.facebook.com/profile.php?id=61569214917513",
+    "imagen": "img/logos/mal_de_amores.webp",
+    "whatsapp": "+50671183698",
+    "descripcion": "El lugar definitivo en Guápiles para quienes buscan una noche diferente. Bajo el lema 'Ama, llora y bebe', ofrece un concepto único de Bar de Despecho con promociones semanales, shows de comedia y el mejor ambiente para celebrar o pasar un buen rato entre amigos.",
+    "horario": "Miércoles a Domingo | 5:00 PM a 12:00 MN",
     "estado_horario": {
       "tipo": "horario",
       "config": {
-        "5": ["20:00", "02:30"],
-        "6": ["20:00", "02:30"],
-        "7": ["20:00", "02:30"]
+        "3": ["17:00", "23:59"],
+        "4": ["17:00", "23:59"],
+        "5": ["17:00", "23:59"],
+        "6": ["17:00", "23:59"],
+        "7": ["17:00", "23:59"]
       }
     },
-    "direccion": "Centro Comercial Dos Rios Lux, Guápiles.",
-    "lat": 10.21324916664367,
-    "lng": -83.78680990645091,
-    "maps_link": "https://maps.app.goo.gl/DthUzN9rcn1uXDNU7"
+    "direccion": "A un costado de Cosevi, Guápiles)",
+    "lat": 10.196840,
+    "lng": -83.784308,
+    "maps_link": "https://maps.app.goo.gl/agxXpaXArgspxbHXA"
   },
   {
     "id": 33,
