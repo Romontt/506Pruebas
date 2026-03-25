@@ -16,8 +16,11 @@ const LuxPatrocinio = {
                 display: none;
                 width: 100%;
                 height: 85px; 
-                background: radial-gradient(circle at 80% center, #1a1a1a 0%, #000 100%), 
-                            url('https://www.transparenttextures.com/patterns/dark-matter.png');
+                /* Imagen de fondo con overlay oscuro para legibilidad */
+                background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                            url('patrocinios/Lux/fondo-banner.webp');
+                background-size: cover;
+                background-position: center;
                 border-bottom: 2px solid #d4a373;
                 position: sticky !important;
                 z-index: 48 !important;
@@ -96,7 +99,9 @@ const LuxPatrocinio = {
                 display: none;
                 position: sticky !important;
                 width: 100%;
-                background: #000;
+                background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                            url('patrocinios/Lux/fondo-banner.webp');
+                background-size: cover;
                 border-bottom: 1px solid #d4a373;
                 padding: 10px 15px;
                 z-index: 49 !important;
@@ -193,7 +198,6 @@ const LuxPatrocinio = {
         let target = null;
 
         for (let card of allCards) {
-            // Buscamos específicamente el texto completo para evitar el Sport Bar
             if (card.textContent.toUpperCase().includes('LUX DISCOTECA')) {
                 target = card;
                 break;
