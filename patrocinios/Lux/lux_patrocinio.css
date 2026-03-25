@@ -1,69 +1,99 @@
-/* BANNER PC - Estilo Cápsula de la Imagen */
-.banner-lux-pc {
-    /* ... tus otros estilos ... */
-    display: none; 
-    z-index: 99999 !important; /* Que nada lo tape */
-}
-
-/* Fuerza la visibilidad del botón de exploración */
-.lux-btn-explore {
-    border: 1px solid #d4a373;
+.lux-featured-card {
+    grid-column: span 2; /* DOBLE ANCHO EN LA GRID */
+    min-height: 320px;
+    background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+    border: 2px solid #d4a373;
     border-radius: 20px;
-    padding: 10px 5px;
-    color: #d4a373;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 0 25px rgba(212, 163, 115, 0.1);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
     margin-bottom: 20px;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
+}
+
+.lux-featured-card:hover {
+    transform: translateY(-8px);
+    border-color: #fff;
+    box-shadow: 0 20px 50px rgba(212, 163, 115, 0.3);
+}
+
+.lux-featured-tag {
     font-size: 10px;
-}
-
-/* El cabezal dorado de la cápsula */
-.lux-capsule-header {
-    background: #d4a373;
-    padding: 15px 10px;
-    margin-bottom: 25px;
-    border-radius: 0 0 0 0; /* Ajuste para que encaje arriba */
-}
-
-.lux-capsule-header span {
-    color: #1c1614;
-    font-size: 8px;
-    font-weight: 900;
-    letter-spacing: 0.1em;
-    line-height: 1.2;
-    display: block;
-    text-transform: uppercase;
-}
-
-/* Botón ovalado inferior "Explora" */
-.lux-btn-explore {
-    margin-top: 20px;
-    display: inline-block;
-    padding: 10px 5px;
-    border: 1px solid #d4a373;
-    border-radius: 20px;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
     color: #d4a373;
-    font-size: 9px;
-    letter-spacing: 0.2em;
+    letter-spacing: 4px;
     text-transform: uppercase;
-    transition: all 0.3s ease;
+    font-weight: 800;
+    margin-bottom: 20px;
 }
 
-/* Ajuste Banner Móvil para que sea Sticky debajo del Header */
+.lux-featured-logo {
+    width: 220px;
+    filter: drop-shadow(0 0 15px rgba(212, 163, 115, 0.4));
+    transition: transform 0.5s ease;
+}
+
+.lux-featured-footer {
+    margin-top: 25px;
+    text-align: center;
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.lux-featured-footer b { 
+    color: #d4a373; 
+    display: block;
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+/* 2. BANNER MÓVIL (MANTENIENDO TU ESTILO DORADO) */
 .banner-lux-mobile {
-    display: none;
-    position: fixed; /* Cambiamos a fixed para asegurar que se vea arriba */
-    top: 60px; /* Altura de tu navbar */
+    display: none; /* Se activa por JS */
+    position: fixed;
     left: 0;
     width: 100%;
     background: #d4a373;
     color: #130f0e;
-    padding: 10px;
-    z-index: 999; /* Máxima prioridad */
+    padding: 12px;
+    z-index: 999; 
     text-align: center;
     font-weight: 900;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.banner-lux-mobile img {
+    height: 30px;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+/* 3. RESPONSIVO */
+@media (max-width: 768px) {
+    /* En móvil, si la tarjeta llegara a renderizarse, que ocupe solo 1 columna */
+    .lux-featured-card { 
+        grid-column: span 1; 
+        display: none; /* Preferimos el banner superior en móvil */
+    }
+}
+
+/* Animación de entrada para la tarjeta */
+@keyframes cardSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.lux-featured-card {
+    animation: cardSlideUp 0.8s ease forwards;
 }
