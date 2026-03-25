@@ -189,12 +189,12 @@ const LuxPatrocinio = {
     },
 
     scrollToLux: function() {
-        // Buscamos la tarjeta que contenga el texto "LUX"
         const allCards = document.querySelectorAll('.glass-card, .card, [onclick*="verDetalle"]');
         let target = null;
 
         for (let card of allCards) {
-            if (card.textContent.toUpperCase().includes('LUX')) {
+            // Buscamos específicamente el texto completo para evitar el Sport Bar
+            if (card.textContent.toUpperCase().includes('LUX DISCOTECA')) {
                 target = card;
                 break;
             }
@@ -203,9 +203,7 @@ const LuxPatrocinio = {
         if (target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'center' });
             
-            // Forzamos el clic para abrir el modal después del scroll
             setTimeout(() => {
-                // Intentamos hacer clic en el contenedor o en su botón interno de detalle
                 const clickTarget = target.querySelector('[onclick*="verDetalle"]') || target;
                 clickTarget.click();
             }, 600);
