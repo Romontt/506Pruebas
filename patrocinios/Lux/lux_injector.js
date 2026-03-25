@@ -69,7 +69,7 @@ const LuxPatrocinio = {
 
             /* Logo Neón a la derecha */
            .lux-header-logo {
-                height: 65px; /* Aumentamos el tamaño del logo */
+                height: 80px; /* Aumentamos el tamaño del logo */
                 filter: drop-shadow(0 0 12px rgba(212, 163, 115, 0.7));
                 animation: neonPulse 3s infinite ease-in-out;
                 transition: all 0.5s ease;
@@ -121,7 +121,7 @@ const LuxPatrocinio = {
             bannerPC.innerHTML = `
                 <div class="lux-header-container">
                     <div class="lux-header-text">
-                        <h4>VIDA NOCTURNA<b>• PATROCINADO POR</b></h4>
+                        <h4>VIDA NOCTURNA<b>• CATEGORIA PATROCINADA POR</b></h4>
                     </div>
                     <img src="patrocinios/Lux/lux-discoteca.png" class="lux-header-logo">
                 </div>
