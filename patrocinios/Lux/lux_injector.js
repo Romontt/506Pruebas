@@ -16,7 +16,6 @@ const LuxPatrocinio = {
                 display: none;
                 width: 100%;
                 height: 85px; 
-                /* Imagen de fondo con overlay oscuro para legibilidad */
                 background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
                             url('patrocinios/Lux/fondo-banner.webp');
                 background-size: cover;
@@ -102,6 +101,7 @@ const LuxPatrocinio = {
                 background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
                             url('patrocinios/Lux/fondo-banner.webp');
                 background-size: cover;
+                background-position: center; /* ESTO CENTRA LA IMAGEN EN MÓVIL */
                 border-bottom: 1px solid #d4a373;
                 padding: 10px 15px;
                 z-index: 49 !important;
