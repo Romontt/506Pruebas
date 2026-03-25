@@ -19,9 +19,9 @@ const CarteleraLux = {
                 opacity: 0; transition: opacity 0.4s ease; backdrop-filter: blur(12px);
             }
             .lux-modal-content {
-                width: 95%; max-width: 1100px; max-height: 90vh;
+                width: 98%; max-width: 1200px; max-height: 95vh;
                 background: #0a0a0a; border: 1px solid #d4a373;
-                border-radius: 20px; overflow-y: auto; padding: 40px 0px;
+                border-radius: 20px; overflow-y: auto; padding: 30px 0px;
                 position: relative; transform: translateY(20px);
                 transition: transform 0.4s ease; box-shadow: 0 0 60px rgba(212, 163, 115, 0.15);
             }
@@ -32,16 +32,16 @@ const CarteleraLux = {
             .lux-modal-header { 
                 padding: 0 20px; display: flex; flex-direction: column; align-items: center; text-align: center; 
             }
-            .lux-modal-header img { height: 75px; width: auto; margin-bottom: 10px; }
+            .lux-modal-header img { height: 70px; width: auto; margin-bottom: 5px; }
             .lux-modal-header h2 { 
                 color: #fff; font-family: 'Montserrat', sans-serif; letter-spacing: 5px; 
-                font-size: 18px; margin: 0 0 15px 0; font-weight: 900;
+                font-size: 18px; margin: 0 0 10px 0; font-weight: 900;
             }
 
             .lux-nav-container { position: relative; width: 100%; display: flex; align-items: center; }
 
             .lux-grid-eventos {
-                display: flex; gap: 20px; padding: 10px 40px 20px 40px;
+                display: flex; gap: 20px; padding: 10px 20px 20px 20px;
                 overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
                 scroll-behavior: smooth; width: 100%;
             }
@@ -50,30 +50,31 @@ const CarteleraLux = {
             .lux-card-evento {
                 background: #111; border-radius: 12px; overflow: hidden;
                 border: 1px solid #222; display: flex; flex-direction: column;
-                /* Eliminamos height fijo y usamos proporción 4:5 */
                 aspect-ratio: 4 / 5; 
-                scroll-snap-align: center; flex-shrink: 0; width: 85%;
+                scroll-snap-align: center; flex-shrink: 0; 
+                width: 90%; /* Tarjeta más grande en móvil */
             }
 
             .lux-card-body { flex: 1; overflow: hidden; display: flex; flex-direction: column; position: relative; background: #000; }
-            .lux-afiche { width: 100%; height: 100%; object-fit: contain; display: block; }
+            .lux-afiche { width: 100%; height: 100%; object-fit: cover; display: block; }
 
             .lux-btn-nav {
                 position: absolute; top: 50%; transform: translateY(-50%);
-                background: rgba(212, 163, 115, 0.2); color: #d4a373;
-                border: 1px solid #d4a373; width: 45px; height: 45px;
+                background: rgba(212, 163, 115, 0.8); color: #000;
+                border: none; width: 50px; height: 50px;
                 border-radius: 50%; cursor: pointer; z-index: 5;
-                display: none; align-items: center; justify-content: center; font-weight: bold;
-                transition: 0.3s;
+                display: none; align-items: center; justify-content: center; 
+                font-size: 20px; transition: 0.3s;
+                box-shadow: 0 0 15px rgba(0,0,0,0.5);
             }
-            .lux-btn-nav:hover { background: #d4a373; color: #000; }
+            .lux-btn-nav:hover { background: #fff; scale: 1.1; }
             .lux-prev { left: 10px; }
             .lux-next { right: 10px; }
 
             @media (min-width: 769px) {
                 .lux-btn-nav { display: flex; }
-                .lux-card-evento { width: 300px; aspect-ratio: 4 / 5; }
-                .lux-grid-eventos { justify-content: flex-start; }
+                .lux-card-evento { width: 350px; } /* Tarjeta más grande en PC */
+                .lux-grid-eventos { justify-content: flex-start; padding: 10px 60px 20px 60px; }
             }
 
             .lux-empty-state {
@@ -96,7 +97,7 @@ const CarteleraLux = {
             
             gridHTML += `
                 <div class="lux-card-evento" data-dia="${dia}" data-fijo="${esFijo}">
-                    <div style="background: #d4a373; color: #000; text-align: center; padding: 8px; font-weight: 900; text-transform: uppercase; font-size: 13px;">
+                    <div style="background: #d4a373; color: #000; text-align: center; padding: 10px; font-weight: 900; text-transform: uppercase; font-size: 14px; letter-spacing: 1px;">
                         ${dia}
                     </div>
                     <div class="lux-card-body">
@@ -121,11 +122,11 @@ const CarteleraLux = {
                         <h2>CARTELERA</h2>
                     </div>
                     <div class="lux-nav-container">
-                        <button class="lux-btn-nav lux-prev" onclick="CarteleraLux.scrollGrid(-320)">❮</button>
+                        <button class="lux-btn-nav lux-prev" onclick="CarteleraLux.scrollGrid(-370)">❮</button>
                         <div class="lux-grid-eventos" id="lux-grid">
                             ${gridHTML}
                         </div>
-                        <button class="lux-btn-nav lux-next" onclick="CarteleraLux.scrollGrid(320)">❯</button>
+                        <button class="lux-btn-nav lux-next" onclick="CarteleraLux.scrollGrid(370)">❯</button>
                     </div>
                 </div>
             </div>
