@@ -46,18 +46,18 @@ const PatrocinioLux = {
         `;
 
         // Al hacer clic, buscamos la tarjeta real de LUX en la lista y la abrimos
-        card.onclick = () => {
+       card.onclick = () => {
             if (this.idLux) {
-                // Usamos tu función global para abrir detalles
-                if (typeof abrirModalDetalle === 'function') {
-                    abrirModalDetalle(this.idLux);
+                // Llamamos a la función real de tu App principal
+                if (typeof verDetalle === 'function') {
+                    verDetalle(this.idLux);
                 }
             }
         };
 
+        // Inyectamos al inicio de la grid de negocios
         container.prepend(card);
     },
-
     // Mantenemos esta para asegurar que en la lista original LUX también esté arriba
     // (aunque la Sponsor Card esté antes, esto asegura que LUX sea el primer "negocio real")
     ordenarYResaltar: function(lista) {
