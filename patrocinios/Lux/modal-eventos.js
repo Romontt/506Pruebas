@@ -128,7 +128,7 @@ const CarteleraLux = {
                     <span class="lux-modal-close" onclick="CarteleraLux.close()">&times;</span>
                     
                     <div class="lux-modal-header">
-                        <img src="${this.rutaBase}lux-discoteca.png" alt="Logo Lux">
+                        <img src="patrocinios/Lux/lux-discoteca.png" alt="Logo Lux">
                         <h2>CARTELERA</h2>
                     </div>
 
