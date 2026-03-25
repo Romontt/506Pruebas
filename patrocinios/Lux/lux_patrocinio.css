@@ -1,99 +1,71 @@
-.lux-featured-card {
-    grid-column: span 2; /* DOBLE ANCHO EN LA GRID */
-    min-height: 320px;
-    background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
-    border: 2px solid #d4a373;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 0 25px rgba(212, 163, 115, 0.1);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    margin-bottom: 20px;
-}
+const PatrocinioLux = {
+    idLux: null,
 
-.lux-featured-card:hover {
-    transform: translateY(-8px);
-    border-color: #fff;
-    box-shadow: 0 20px 50px rgba(212, 163, 115, 0.3);
-}
+    init: function(categoria) {
+        // Buscamos el ID de Lux en tus datos actuales si no lo tenemos
+        if (!this.idLux) {
+            const luxData = negociosRaw.find(n => n.nombre.toLowerCase().includes("lux"));
+            if (luxData) this.idLux = luxData.id;
+        }
 
-.lux-featured-tag {
-    font-size: 10px;
-    color: #d4a373;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    font-weight: 800;
-    margin-bottom: 20px;
-}
+        const bannerMobile = document.getElementById('banner-mobile-lux');
+        const featuredCard = document.getElementById('lux-featured-card');
 
-.lux-featured-logo {
-    width: 220px;
-    filter: drop-shadow(0 0 15px rgba(212, 163, 115, 0.4));
-    transition: transform 0.5s ease;
-}
+        if (categoria === 'vida nocturna') {
+            if (window.innerWidth > 768) {
+                // PC: Ocultamos banner móvil e inyectamos la Sponsor Card
+                if(bannerMobile) bannerMobile.style.display = 'none';
+                this.injectSponsorCard();
+            } else {
+                // MÓVIL: Mostramos banner original y quitamos la Card
+                if(bannerMobile) bannerMobile.style.display = 'block';
+                if(featuredCard) featuredCard.remove();
+            }
+        } else {
+            // FUERA DE CATEGORÍA: Limpiamos todo
+            if(bannerMobile) bannerMobile.style.display = 'none';
+            if(featuredCard) featuredCard.remove();
+        }
+    },
 
-.lux-featured-footer {
-    margin-top: 25px;
-    text-align: center;
-    color: #fff;
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
+    // NUEVA FUNCIÓN: Inyecta la tarjeta de doble ancho directamente en la grid
+    injectSponsorCard: function() {
+        const container = document.getElementById('grid-comercios');
+        if (!container || document.getElementById('lux-featured-card')) return;
 
-.lux-featured-footer b { 
-    color: #d4a373; 
-    display: block;
-    margin-top: 5px;
-    font-size: 15px;
-}
+        const card = document.createElement('div');
+        card.id = 'lux-featured-card';
+        card.className = 'lux-featured-card';
+        card.innerHTML = `
+            <div class="lux-featured-tag">Socio de Entretenimiento Oficial</div>
+            <img src="patrocinios/Lux/lux-discoteca.png" class="lux-featured-logo">
+            <div class="lux-featured-footer">
+                LUX PRESENTA ESTA CATEGORÍA<br>
+                <b>VIDA NOCTURNA EXCLUSIVA POCOCÍ</b>
+            </div>
+        `;
 
-/* 2. BANNER MÓVIL (MANTENIENDO TU ESTILO DORADO) */
-.banner-lux-mobile {
-    display: none; /* Se activa por JS */
-    position: fixed;
-    left: 0;
-    width: 100%;
-    background: #d4a373;
-    color: #130f0e;
-    padding: 12px;
-    z-index: 999; 
-    text-align: center;
-    font-weight: 900;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-    font-size: 11px;
-    letter-spacing: 1px;
-}
+        // Al hacer clic, buscamos la tarjeta real de LUX en la lista y la abrimos
+        card.onclick = () => {
+            if (this.idLux) {
+                // Usamos tu función global para abrir detalles
+                if (typeof abrirModalDetalle === 'function') {
+                    abrirModalDetalle(this.idLux);
+                }
+            }
+        };
 
-.banner-lux-mobile img {
-    height: 30px;
-    vertical-align: middle;
-    margin-left: 10px;
-}
+        container.prepend(card);
+    },
 
-/* 3. RESPONSIVO */
-@media (max-width: 768px) {
-    /* En móvil, si la tarjeta llegara a renderizarse, que ocupe solo 1 columna */
-    .lux-featured-card { 
-        grid-column: span 1; 
-        display: none; /* Preferimos el banner superior en móvil */
+    // Mantenemos esta para asegurar que en la lista original LUX también esté arriba
+    // (aunque la Sponsor Card esté antes, esto asegura que LUX sea el primer "negocio real")
+    ordenarYResaltar: function(lista) {
+        if (typeof categoriaActual !== 'undefined' && categoriaActual !== 'vida nocturna') return lista;
+
+        const lux = lista.filter(n => n.nombre.toLowerCase().includes("lux"));
+        const resto = lista.filter(n => !n.nombre.toLowerCase().includes("lux"));
+
+        return [...lux, ...resto];
     }
-}
-
-/* Animación de entrada para la tarjeta */
-@keyframes cardSlideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.lux-featured-card {
-    animation: cardSlideUp 0.8s ease forwards;
-}
+};
