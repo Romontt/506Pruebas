@@ -194,19 +194,30 @@ function renderCards(listaFiltrada) {
     const landing = document.getElementById('landing-categories');
     const resultados = document.getElementById('section-results');
     const grid = document.getElementById('grid-negocios');
+    
     if(landing) landing.classList.add('hidden');
     if(resultados) resultados.classList.remove('hidden');
+    
     grid.style.opacity = '0';
     
     setTimeout(() => {
-        grid.innerHTML = listaFiltrada.map((n, i) => {
+        // 1. LIMPIAR EL CONTENEDOR ANTES DE RENDERIZAR
+        grid.innerHTML = '';
+
+        // 2. INYECTAR PATROCINIO LUX (Si aplica a la categoría actual)
+        if (typeof PatrocinioLux !== 'undefined') {
+            PatrocinioLux.init(categoriaActual);
+        }
+
+        // 3. RENDERIZAR TARJETAS (Usamos += para anexarlas después del patrocinio)
+        grid.innerHTML += listaFiltrada.map((n, i) => {
             const badgeEstado = obtenerBadgeEstado(n);
             
             // 1. Identificación de nivel
             const esPremium = n.premium === true || n.premium === "true";
             const clasePremium = esPremium ? 'premium' : '';
             
-            // 2. Lógica del Badge "Menú Disponible" (Posicionado en la división imagen/texto)
+            // 2. Lógica del Badge "Menú Disponible"
             const badgeMenu = esPremium ? `
                 <div class="absolute bottom-0 right-0 z-20 flex items-center gap-1.5 px-2.5 py-1.5 rounded-t-sm border-t border-x border-[#d4a373]/30 bg-[#130f0e] shadow-[0_-4px_10px_rgba(212,163,115,0.15)] transition-all duration-500 group-hover:px-4">
                     <svg class="w-3 h-3 text-[#d4a373]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -218,7 +229,7 @@ function renderCards(listaFiltrada) {
             
             // 3. Lógica del Botón Dinámico
             const textoBoton = esPremium ? 'Detalles y Menú' : 'Detalles';
-            const estiloBoton = esPremium 
+            const estiloBoton = esPremium  
                 ? 'border-[#d4a373] shadow-[0_0_15px_rgba(212,163,115,0.3)] bg-[#d4a373]/5' 
                 : 'border-[#d4a373]/20';
 
@@ -252,6 +263,7 @@ function renderCards(listaFiltrada) {
                 </div>
             </article>`;
         }).join('');
+
         grid.style.opacity = '1';
         gestionarLimiteVisual(listaFiltrada.length);
     }, 300);
