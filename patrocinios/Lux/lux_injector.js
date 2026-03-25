@@ -193,17 +193,36 @@ const LuxPatrocinio = {
             if(bannerMobile) bannerMobile.style.display = 'none';
         }
     },
+scrollToLux: function() {
+    // 1. Buscamos todas las tarjetas disponibles
+    const cards = document.querySelectorAll('.glass-card, .card, [onclick*="verDetalle"]');
+    let targetCard = null;
 
-    scrollToLux: function() {
-        const cards = document.querySelectorAll('.glass-card, .card, [onclick*="verDetalle"]');
-        for (let card of cards) {
-            if (card.textContent.toUpperCase().includes('LUX')) {
-                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                setTimeout(() => card.click(), 500);
-                break;
-            }
+    for (let card of cards) {
+        if (card.textContent.toUpperCase().includes('LUX')) {
+            targetCard = card;
+            break;
         }
     }
-};
+
+    if (targetCard) {
+        // 2. Scroll suave hacia la tarjeta
+        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // 3. Intentamos abrir el detalle
+        // Esperamos a que termine el scroll para evitar conflictos visuales
+        setTimeout(() => {
+            // Intentamos disparar el clic directamente
+            targetCard.click();
+
+            // Respaldo: Si tu app usa una función global 'verDetalle'
+            // Extraemos el ID o los datos si es necesario, pero .click() debería bastar
+            // si el elemento capturado es el que tiene el 'onclick'
+        }, 600); 
+    } else {
+        // Si no la encuentra a la primera (por carga asíncrona), reintentamos una vez
+        console.log("Reintentando encontrar tarjeta Lux...");
+    }
+}
 
 LuxPatrocinio.init();
