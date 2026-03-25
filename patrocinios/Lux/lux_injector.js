@@ -16,33 +16,36 @@ const LuxPatrocinio = {
             .lux-header-banner {
                 display: none;
                 width: 100%;
-                height: 75px; /* Altura más elegante y compacta */
-                background: #000 url('https://www.transparenttextures.com/patterns/dark-matter.png');
-                border-bottom: 1px solid rgba(212, 163, 115, 0.4);
+                height: 85px; 
+                /* Fondo negro con textura de "Dark Matter" y un gradiente de profundidad */
+                background: radial-gradient(circle at 80% center, #1a1a1a 0%, #000 100%), 
+                            url('https://www.transparenttextures.com/patterns/dark-matter.png');
+                border-bottom: 2px solid #d4a373;
                 position: sticky !important;
                 z-index: 48 !important;
                 cursor: pointer;
                 font-family: 'Montserrat', sans-serif;
-                overflow: hidden;
+                overflow: visible; /* Permitimos que el logo sobresalga ligeramente */
                 transition: all 0.3s ease;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             }
 
-            /* Brillo ambiental sutil detrás del logo */
+            /* Brillo ambiental neón detrás del logo */
             .lux-header-banner::before {
                 content: '';
                 position: absolute;
                 top: 0; right: 0; width: 40%; height: 100%;
-                background: radial-gradient(circle at 80% center, rgba(212, 163, 115, 0.15) 0%, transparent 70%);
+                background: radial-gradient(circle at 80% center, rgba(212, 163, 115, 0.2) 0%, transparent 70%);
                 z-index: 1;
             }
 
-           .lux-header-container {
-                max-width: 1100px; /* Reducido para que no se vea tan separado en pantallas anchas */
+            .lux-header-container {
+                max-width: 1100px;
                 height: 100%;
                 margin: 0 auto;
                 display: flex;
                 align-items: center;
-                justify-content: space-between; /* Mantiene texto a la izq y logo a la der */
+                justify-content: space-between;
                 padding: 0 20px;
                 position: relative;
                 z-index: 2;
@@ -51,33 +54,47 @@ const LuxPatrocinio = {
             .lux-header-text h4 {
                 color: #fff;
                 margin: 0;
-                font-size: 13px; /* Un poco más grande para llenar espacio */
-                letter-spacing: 3px;
+                font-size: 14px;
+                letter-spacing: 5px;
                 text-transform: uppercase;
-                font-weight: 700;
-                /* Agregamos un degradado sutil al texto para más elegancia */
-                background: linear-gradient(to right, #fff, #d4a373);
+                font-weight: 800;
+                /* Texto metálico con brillo */
+                background: linear-gradient(90deg, #fff, #d4a373, #fff);
+                background-size: 200% auto;
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
+                animation: shineText 5s linear infinite;
+            }
+
+            @keyframes shineText {
+                to { background-position: 200% center; }
             }
 
             .lux-header-text b {
                 color: #d4a373;
                 font-weight: 900;
                 margin-left: 5px;
+                -webkit-text-fill-color: #d4a373;
             }
 
-            /* Logo Neón a la derecha */
-           .lux-header-logo {
-                height: 80px; /* Aumentamos el tamaño del logo */
-                filter: drop-shadow(0 0 12px rgba(212, 163, 115, 0.7));
-                animation: neonPulse 3s infinite ease-in-out;
-                transition: all 0.5s ease;
+            /* LOGO PROTAGONISTA EN PC */
+            .lux-header-logo {
+                height: 110px; /* Tamaño grande para que impacte */
+                margin-top: 10px; /* Lo bajamos un poco para que rompa la línea inferior */
+                filter: drop-shadow(0 0 15px rgba(212, 163, 115, 0.8));
+                animation: neonPulsePC 3s infinite ease-in-out;
+                transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                 object-fit: contain;
             }
 
             .lux-header-banner:hover .lux-header-logo {
-                transform: scale(1.1);
+                transform: scale(1.1) rotate(-2deg);
+                filter: drop-shadow(0 0 25px rgba(212, 163, 115, 1));
+            }
+
+            @keyframes neonPulsePC {
+                0%, 100% { filter: drop-shadow(0 0 10px rgba(212, 163, 115, 0.6)); }
+                50% { filter: drop-shadow(0 0 20px rgba(212, 163, 115, 0.9)); }
             }
 
             /* 2. BANNER MÓVIL (MANTENIDO EXACTAMENTE IGUAL) */
@@ -113,7 +130,6 @@ const LuxPatrocinio = {
         const navbar = document.querySelector('nav') || document.querySelector('header');
         if (!navbar) return;
 
-        // Banner PC con orden invertido (Texto -> Logo)
         if (!document.getElementById('lux-header-banner')) {
             const bannerPC = document.createElement('div');
             bannerPC.id = 'lux-header-banner';
@@ -121,7 +137,7 @@ const LuxPatrocinio = {
             bannerPC.innerHTML = `
                 <div class="lux-header-container">
                     <div class="lux-header-text">
-                        <h4>VIDA NOCTURNA<b>• CATEGORIA PATROCINADA POR</b></h4>
+                        <h4>VIDA NOCTURNA<b>• CATEGORÍA PATROCINADA POR</b></h4>
                     </div>
                     <img src="patrocinios/Lux/lux-discoteca.png" class="lux-header-logo">
                 </div>
@@ -130,7 +146,6 @@ const LuxPatrocinio = {
             navbar.insertAdjacentElement('afterend', bannerPC);
         }
 
-        // Banner Móvil (Sin cambios)
         if (!document.getElementById('banner-mobile-lux')) {
             const bannerMobile = document.createElement('div');
             bannerMobile.id = 'banner-mobile-lux';
