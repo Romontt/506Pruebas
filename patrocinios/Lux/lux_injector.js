@@ -194,7 +194,7 @@ const LuxPatrocinio = {
         let target = null;
 
         for (let card of allCards) {
-            if (card.textContent.toUpperCase().includes('LUX')) {
+            if (card.textContent.toUpperCase().includes('LUX Discoteca')) {
                 target = card;
                 break;
             }
