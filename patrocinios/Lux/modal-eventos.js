@@ -50,13 +50,14 @@ const CarteleraLux = {
             .lux-card-evento {
                 background: #111; border-radius: 12px; overflow: hidden;
                 border: 1px solid #222; display: flex; flex-direction: column;
-                height: 500px; scroll-snap-align: center; flex-shrink: 0; width: 80%;
+                /* Eliminamos height fijo y usamos proporción 4:5 */
+                aspect-ratio: 4 / 5; 
+                scroll-snap-align: center; flex-shrink: 0; width: 85%;
             }
 
-            .lux-card-body { flex: 1; overflow: hidden; display: flex; flex-direction: column; position: relative; }
-            .lux-afiche { width: 100%; height: 100%; object-fit: cover; display: block; }
+            .lux-card-body { flex: 1; overflow: hidden; display: flex; flex-direction: column; position: relative; background: #000; }
+            .lux-afiche { width: 100%; height: 100%; object-fit: contain; display: block; }
 
-            /* Botones de Navegación PC */
             .lux-btn-nav {
                 position: absolute; top: 50%; transform: translateY(-50%);
                 background: rgba(212, 163, 115, 0.2); color: #d4a373;
@@ -71,7 +72,7 @@ const CarteleraLux = {
 
             @media (min-width: 769px) {
                 .lux-btn-nav { display: flex; }
-                .lux-card-evento { width: 300px; height: 450px; }
+                .lux-card-evento { width: 300px; aspect-ratio: 4 / 5; }
                 .lux-grid-eventos { justify-content: flex-start; }
             }
 
@@ -143,11 +144,13 @@ const CarteleraLux = {
     },
 
     scrollGrid: function(amount) {
-        document.getElementById('lux-grid').scrollBy({ left: amount, behavior: 'smooth' });
+        const grid = document.getElementById('lux-grid');
+        if(grid) grid.scrollBy({ left: amount, behavior: 'smooth' });
     },
 
     checkNavButtons: function() {
         const grid = document.getElementById('lux-grid');
+        if(!grid) return;
         const cards = grid.querySelectorAll('.lux-card-evento').length;
         if (cards <= 3) {
             document.querySelectorAll('.lux-btn-nav').forEach(b => b.style.display = 'none');
