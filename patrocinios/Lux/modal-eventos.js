@@ -4,7 +4,8 @@ const CarteleraLux = {
     // Días fijos que siempre muestran algo (imagen o "Relax")
     diasFijos: ['viernes', 'sabado', 'domingo'],
     
-    rutaBase: "506Pruebas/patrocinios/Lux/",
+    // Ajustado para buscar correctamente dentro de la carpeta del proyecto
+    rutaBase: "patrocinios/Lux/",
 
     init: function() {
         this.injectStyles();
@@ -142,11 +143,9 @@ const CarteleraLux = {
         const esFijo = card.getAttribute('data-fijo') === 'true';
 
         if (esFijo) {
-            // Si es viernes, sábado o domingo, mostramos el "Día de Relax"
             imgElement.style.display = 'none';
             card.querySelector('.lux-empty-state').style.display = 'flex';
         } else {
-            // Si es un día extra (miércoles, etc) y no hay imagen, borramos la tarjeta
             card.remove();
         }
     },
