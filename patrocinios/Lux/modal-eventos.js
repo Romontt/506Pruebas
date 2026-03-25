@@ -1,5 +1,5 @@
 const CarteleraLux = {
-    // Rutas de los afiches. Si el string está vacío, muestra el mensaje del Sport Bar.
+    // Configuración de afiches
     eventos: {
         viernes: "patrocinios/Lux/viernes.webp", 
         sabado: "",  
@@ -17,75 +17,85 @@ const CarteleraLux = {
         style.innerHTML = `
             .lux-modal-overlay {
                 position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-                background: rgba(0,0,0,0.95); z-index: 1000;
+                background: rgba(0,0,0,0.96); z-index: 1000;
                 display: flex; align-items: center; justify-content: center;
                 opacity: 0; transition: opacity 0.4s ease;
-                backdrop-filter: blur(10px);
+                backdrop-filter: blur(12px);
             }
             .lux-modal-content {
-                width: 95%; max-width: 1000px; max-height: 90vh;
+                width: 95%; max-width: 1100px; max-height: 90vh;
                 background: #0a0a0a; border: 1px solid #d4a373;
-                border-radius: 15px; overflow-y: auto; padding: 30px;
+                border-radius: 20px; overflow-y: auto; padding: 40px 20px;
                 position: relative; transform: translateY(20px);
                 transition: transform 0.4s ease;
-                box-shadow: 0 0 50px rgba(212, 163, 115, 0.2);
+                box-shadow: 0 0 60px rgba(212, 163, 115, 0.15);
             }
             .lux-modal-close {
                 position: absolute; top: 15px; right: 20px;
-                color: #d4a373; font-size: 30px; cursor: pointer; z-index: 10;
+                color: #d4a373; font-size: 35px; cursor: pointer; z-index: 10;
             }
-            .lux-modal-header { text-align: center; margin-bottom: 20px; }
-            .lux-modal-header img { height: 60px; margin-bottom: 10px; }
+            
+            /* Header Centrado */
+            .lux-modal-header { 
+                display: flex; flex-direction: column; align-items: center; 
+                text-align: center; margin-bottom: 25px; 
+            }
+            .lux-modal-header img { height: 80px; width: auto; margin-bottom: 15px; }
             .lux-modal-header h2 { 
                 color: #fff; font-family: 'Montserrat', sans-serif; 
-                letter-spacing: 4px; font-size: 18px; margin: 0;
+                letter-spacing: 5px; font-size: 20px; margin: 0; font-weight: 900;
             }
 
-            /* Contenedor de Afiches (PC) */
+            /* Texto de Deslizar */
+            .lux-swipe-hint {
+                color: #d4a373; font-size: 13px; text-align: center; 
+                margin-bottom: 20px; font-weight: 700; letter-spacing: 2px;
+                text-transform: uppercase; display: none; /* Se activa en móvil */
+            }
+
+            /* Contenedor de Afiches */
             .lux-grid-eventos {
                 display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
             }
             .lux-card-evento {
-                background: #111; border-radius: 10px; overflow: hidden;
+                background: #111; border-radius: 12px; overflow: hidden;
                 border: 1px solid #222; display: flex; flex-direction: column;
-                min-height: 450px;
+                min-height: 450px; scroll-snap-align: center;
+                scroll-snap-stop: always; /* FUERZA EL UNO POR UNO */
             }
             .lux-afiche {
                 width: 100%; height: 100%; object-fit: cover;
                 transition: transform 0.5s ease;
             }
-            .lux-card-evento:hover .lux-afiche { transform: scale(1.05); }
 
-            /* Estado Vacío (Sport Bar) */
+            /* Estado Vacío */
             .lux-empty-state {
                 flex: 1; display: flex; flex-direction: column;
                 align-items: center; justify-content: center;
-                padding: 20px; text-align: center; color: #888;
+                padding: 30px; text-align: center; color: #888;
             }
-            .lux-empty-state h3 { color: #d4a373; font-size: 14px; margin-bottom: 10px; text-transform: uppercase; }
-            .lux-empty-state p { font-size: 11px; line-height: 1.5; }
+            .lux-empty-state h3 { color: #d4a373; font-size: 16px; margin-bottom: 15px; font-weight: 800; }
+            .lux-empty-state p { font-size: 13px; line-height: 1.6; }
 
-            /* CAMBIOS PARA MÓVIL (HORIZONTAL) */
+            /* Estilos Móvil */
             @media (max-width: 768px) {
-                .lux-modal-content { padding: 20px 15px; }
-                
-                .lux-grid-eventos { 
-                    display: flex; /* Cambia a flex para scroll lateral */
-                    overflow-x: auto; 
-                    scroll-snap-type: x mandatory; 
+                .lux-swipe-hint { display: block; }
+                .lux-grid-eventos {
+                    display: flex;
+                    overflow-x: auto;
+                    scroll-snap-type: x mandatory;
                     gap: 15px;
-                    padding-bottom: 15px;
-                    -webkit-overflow-scrolling: touch;
+                    padding-bottom: 20px;
+                    scrollbar-width: none; /* Firefox */
                 }
-
-                .lux-grid-eventos::-webkit-scrollbar { display: none; } /* Oculta barra de scroll */
-
-                .lux-card-evento { 
-                    min-width: 85vw; /* Ancho de la tarjeta en móvil */
-                    height: 65vh; 
-                    scroll-snap-align: center; 
+                .lux-grid-eventos::-webkit-scrollbar { display: none; }
+                .lux-card-evento {
+                    min-width: 85vw;
+                    height: 60vh;
                     flex-shrink: 0;
                 }
+                .lux-modal-header img { height: 70px; }
+                .lux-modal-header h2 { font-size: 16px; }
             }
         `;
         document.head.appendChild(style);
@@ -99,36 +109,35 @@ const CarteleraLux = {
             const imgPath = this.eventos[dia];
             gridHTML += `
                 <div class="lux-card-evento">
-                    <div style="background: #d4a373; color: #000; text-align: center; padding: 8px; font-weight: 900; text-transform: uppercase; font-size: 13px; letter-spacing: 2px;">
+                    <div style="background: #d4a373; color: #000; text-align: center; padding: 10px; font-weight: 900; text-transform: uppercase; font-size: 14px; letter-spacing: 2px;">
                         ${dia}
                     </div>
                     ${imgPath ? 
                         `<img src="${imgPath}" class="lux-afiche" alt="Evento ${dia}">` : 
                         `<div class="lux-empty-state">
-                            <h3 style="font-weight: 900;">Recargando Baterías</h3>
-                            <p>Estamos preparando lo mejor para el próximo ${dia}.<br><br>
-                            <b style="color: #fff;">¡Te esperamos hoy en el Sport Bar!</b></p>
+                            <h3>¡DÍA DE SPORT BAR!</h3>
+                            <p>Hoy no hay evento programado,<br>pero te esperamos con las mejores bocas y ambiente.<br><br>
+                            <b style="color: #fff; font-size: 11px;">#NOSVEMOSENLUX</b></p>
                         </div>`
                     }
                 </div>
             `;
         });
 
-        // Instrucción visual solo para móviles
-        const instruccionMovil = window.innerWidth <= 768 ? 
-            `<p style="color: #d4a373; font-size: 9px; text-align: center; margin-bottom: 15px; opacity: 0.6; letter-spacing: 1px;">
-                ← DESLIZA PARA VER OTROS DÍAS →
-            </p>` : '';
-
         const modalHTML = `
             <div id="lux-modal" class="lux-modal-overlay" onclick="CarteleraLux.close()">
                 <div class="lux-modal-content" onclick="event.stopPropagation()">
                     <span class="lux-modal-close" onclick="CarteleraLux.close()">&times;</span>
+                    
                     <div class="lux-modal-header">
-                        <img src="patrocinios/Lux/lux-discoteca.png">
+                        <img src="patrocinios/Lux/lux-discoteca.png" alt="Logo Lux">
                         <h2>EVENTOS DE LA SEMANA</h2>
                     </div>
-                    ${instruccionMovil}
+
+                    <div class="lux-swipe-hint">
+                        ← DESLIZA PARA NAVEGAR →
+                    </div>
+
                     <div class="lux-grid-eventos">
                         ${gridHTML}
                     </div>
