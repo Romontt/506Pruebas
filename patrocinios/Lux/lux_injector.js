@@ -186,10 +186,6 @@ const LuxPatrocinio = {
                 <div class="lux-pc-sponsored-section">
                     <div class="lux-pc-vertical-sponsored">PATROCINADO POR</div>
                 </div>
-                <div class="lux-pc-footer-section">
-                    <div class="lux-pc-vertical-text">VIDA NOCTURNA EXCLUSIVA</div>
-                    <div class="lux-pc-btn">EXPLORA LUX</div>
-                </div>
             </div>
         `;
 
