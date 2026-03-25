@@ -1,5 +1,4 @@
 const CarteleraLux = {
-    // Configuración de afiches
     eventos: {
         viernes: "patrocinios/Lux/viernes.webp", 
         sabado: "",  
@@ -35,7 +34,6 @@ const CarteleraLux = {
                 color: #d4a373; font-size: 35px; cursor: pointer; z-index: 10;
             }
             
-            /* Header Centrado */
             .lux-modal-header { 
                 display: flex; flex-direction: column; align-items: center; 
                 text-align: center; margin-bottom: 25px; 
@@ -46,14 +44,12 @@ const CarteleraLux = {
                 letter-spacing: 5px; font-size: 20px; margin: 0; font-weight: 900;
             }
 
-            /* Texto de Deslizar */
             .lux-swipe-hint {
                 color: #d4a373; font-size: 13px; text-align: center; 
                 margin-bottom: 20px; font-weight: 700; letter-spacing: 2px;
-                text-transform: uppercase; display: none; /* Se activa en móvil */
+                text-transform: uppercase; display: none;
             }
 
-            /* Contenedor de Afiches */
             .lux-grid-eventos {
                 display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
             }
@@ -61,14 +57,12 @@ const CarteleraLux = {
                 background: #111; border-radius: 12px; overflow: hidden;
                 border: 1px solid #222; display: flex; flex-direction: column;
                 min-height: 450px; scroll-snap-align: center;
-                scroll-snap-stop: always; /* FUERZA EL UNO POR UNO */
+                scroll-snap-stop: always;
             }
             .lux-afiche {
                 width: 100%; height: 100%; object-fit: cover;
-                transition: transform 0.5s ease;
             }
 
-            /* Estado Vacío */
             .lux-empty-state {
                 flex: 1; display: flex; flex-direction: column;
                 align-items: center; justify-content: center;
@@ -77,20 +71,24 @@ const CarteleraLux = {
             .lux-empty-state h3 { color: #d4a373; font-size: 16px; margin-bottom: 15px; font-weight: 800; }
             .lux-empty-state p { font-size: 13px; line-height: 1.6; }
 
-            /* Estilos Móvil */
             @media (max-width: 768px) {
                 .lux-swipe-hint { display: block; }
+                .lux-modal-content { padding: 30px 0px; /* Quitamos padding lateral para el scroll */ }
+                
+                .lux-modal-header, .lux-swipe-hint { padding: 0 20px; /* Re-aplicamos padding solo a textos */ }
+
                 .lux-grid-eventos {
                     display: flex;
                     overflow-x: auto;
                     scroll-snap-type: x mandatory;
-                    gap: 15px;
-                    padding-bottom: 20px;
-                    scrollbar-width: none; /* Firefox */
+                    gap: 10px;
+                    padding: 0 20px 20px 20px; /* Padding para que la primera tarjeta no pegue al borde */
+                    scrollbar-width: none;
                 }
                 .lux-grid-eventos::-webkit-scrollbar { display: none; }
+                
                 .lux-card-evento {
-                    min-width: 85vw;
+                    min-width: calc(100% - 40px); /* Ajuste exacto al ancho del modal menos el padding lateral */
                     height: 60vh;
                     flex-shrink: 0;
                 }
